@@ -3,7 +3,8 @@
     <el-upload
   class="avatar-uploader"
   action="http://localhost:8080/api/user/imgUpload"
-  :show-file-list="true"
+  :data="this.form"
+  :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload">
   <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -43,7 +44,9 @@
   export default {
     data() {
       return {
-        username: '',
+        form:{
+          username: '',
+        },
         imageUrl: ''
       };
     },
@@ -80,8 +83,13 @@
         console.log(res.data);
         // const captchaImg = window.URL.createObjectURL(res.data.message);
         // this.imgbase=captchaImg;
+        if(res.data.username!=null){
+          this.form.username=res.data.username;
+        }
         if(res.data.message)
-        this.imageUrl="http://localhost:8080/"+res.data.message;
+        {
+          this.imageUrl="http://localhost:8080/"+res.data.message;
+        }
         console.log(this.imageUrl);
          })
       },

@@ -34,8 +34,8 @@ export default {
                   }).then(res=> {
                       alert(res.data.message);
                       if(res.data.success === true)
-                         {   //this.$router.push("/user/message");
-                             store.commit('setGuid',res.data.uid);
+                         {   this.$router.push("/user/message");
+                             //store.commit('setGuid',res.data.uid);
                          }
                   })
             
