@@ -4,19 +4,14 @@
     <div class="inputBox">
       <div class="inputText">
         <span class="iconfont icon-wode"></span>
-        <input type="text" placeholder="手机号/邮箱号" />
+        <input type="text" placeholder="手机号" />
       </div>
-      <div class="inputText">
+      <div class="inputText inputCode">
         <span class="iconfont icon-mima"></span>
-        <input type="password" placeholder="密码" />
+        <input type="password" placeholder="验证码" />
+        <a href="#" class="sendCode">发送验证码</a>
       </div>
       <input class="button" type="button" value="登录" />
-      <div id="sign-up">
-        还没有创建账号?<router-link to="/signIn">注册</router-link>
-      </div>
-      <div id="sign-up">
-        忘记密码?<router-link to="/phoneLogin">手机验证码登录</router-link>
-      </div>
     </div>
   </div>
 </template>

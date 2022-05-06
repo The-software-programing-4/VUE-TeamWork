@@ -3,13 +3,22 @@
     padding: 0;
 }
 
+.button {
+    margin: 0;
+    border: 0;
+    width: 145px;
+    height: 35px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
 /* Login */
 #loginBox {
     padding: 20px 50px;
-    background-color: #00000090;
+    background-color: darkblue;
     text-align: center;
     width: 500px;
-    height: 300px;
+    height: 400px;
 }
 
 #loginBox h1 {
@@ -27,7 +36,13 @@
     margin-top: 20px;
 }
 
-#loginBox input {
+#loginBox .inputText span {
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+#loginBox .inputText input {
     border: 0;
     padding: 6px;
     border-bottom: 1px solid white;
@@ -35,9 +50,44 @@
     color: white;
 }
 
-button {
-    margin: 0;
+#loginBox .button {
+    margin-top: 40px;
+    background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+    color: white;
+}
+
+@keyframes btnAnimate {
+    from {
+        border: 2px solid #fff;
+    }
+
+    to {
+        border: 1px solid rgba(255, 255, 255, 0);
+    }
+}
+
+#loginBox .button:hover {
+    content: '';
+    animation: btnAnimate 3s ease;
+    transition: all 0.5s ease;
+}
+
+#sign-up {
     margin-top: 20px;
-    width: 120px;
-    height: 25px;
+    color: white;
+    font-size: 17px;
+}
+
+#sign-up a {
+    color: #3498db;
+
+}
+
+.inputCode {
+    padding-left: 80px;
+}
+
+.sendCode {
+    color: white;
+    margin-left: 5px;
 }

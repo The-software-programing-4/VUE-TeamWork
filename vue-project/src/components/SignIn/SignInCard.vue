@@ -1,6 +1,6 @@
 <template>
   <div id="loginBox">
-    <h1>登录</h1>
+    <h1>注册</h1>
     <div class="inputBox">
       <div class="inputText">
         <span class="iconfont icon-wode"></span>
@@ -10,13 +10,11 @@
         <span class="iconfont icon-mima"></span>
         <input type="password" placeholder="密码" />
       </div>
-      <input class="button" type="button" value="登录" />
-      <div id="sign-up">
-        还没有创建账号?<router-link to="/signIn">注册</router-link>
+      <div class="inputText">
+        <span class="iconfont icon-mima"></span>
+        <input type="password" placeholder="确认密码" />
       </div>
-      <div id="sign-up">
-        忘记密码?<router-link to="/phoneLogin">手机验证码登录</router-link>
-      </div>
+      <input class="button" type="button" value="注册" />
     </div>
   </div>
 </template>
