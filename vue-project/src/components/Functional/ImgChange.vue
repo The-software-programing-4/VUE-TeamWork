@@ -1,17 +1,19 @@
 <template>
-<div>
-  <el-upload
+  <div>
+    <el-upload
   class="avatar-uploader"
-  action="https://jsonplaceholder.typicode.com/posts/"
+  action="http://localhost:8080/api/user/imgUpload"
+  :data="this.form"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
   :before-upload="beforeAvatarUpload">
   <img v-if="imageUrl" :src="imageUrl" class="avatar">
   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
-<el-button type="success" >完成</el-button>
-</div>
+ 
+  </div>
 </template>
+
 <style>
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
@@ -42,17 +44,21 @@
   export default {
     data() {
       return {
+        form:{
+          username: '',
+        },
         imageUrl: ''
       };
     },
     methods: {
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
+        console.log(res);
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
         const isLt2M = file.size / 1024 / 1024 < 2;
-
+        console.log(this.imageUrl);
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
@@ -60,7 +66,40 @@
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
         return isJPG && isLt2M;
-      }
+      },
+      download_erweima() {
+
+        this.$axios.get("/api/user/getImg").then(res=>{
+        console.log(res.data);
+        // const captchaImg = window.URL.createObjectURL(res.data.message);
+        // this.imgbase=captchaImg;
+        this.imageUrl=res.data.message;
+        console.log(this.imageUrl);
+        
+        })
+      },
+      display_photo(){
+        this.$axios.get("/api/user/getImg").then(res=>{
+        console.log(res.data);
+        // const captchaImg = window.URL.createObjectURL(res.data.message);
+        // this.imgbase=captchaImg;
+        if(res.data.username!=null){
+          this.form.username=res.data.username;
+        }
+        if(res.data.message)
+        {
+          this.imageUrl="http://localhost:8080/"+res.data.message;
+        }
+        console.log(this.imageUrl);
+         })
+      },
+    },
+    created(){
+       this.display_photo();
+    },
+    beforeAvatarUpload(){
+      this.display_photo();
     }
+    
   }
 </script>
