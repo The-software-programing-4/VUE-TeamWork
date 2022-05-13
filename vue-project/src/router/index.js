@@ -27,7 +27,7 @@ const routes = [
 
     path: '/login',
     name: 'Login',
-    component: () => import('../views/LoginView.vue')
+    component: () => import('../components/Functional/login.vue')
   },
   {
     path: '/signIn',
@@ -38,6 +38,21 @@ const routes = [
     path: '/phonelogin',
     name: 'PhoneLogin',
     component: () => import('../views/PhoneLoginView.vue')
+  },
+  {
+    path: '/nav',
+    name: 'nav',
+    component: () => import('../components/pry_part/headtop.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../components/pry_part/searchBox.vue')
+  },
+  {
+    path: '/showlm',
+    name: 'showlm',
+    component: () => import('../components/pry_part/showIm.vue')
   }
 ]
 

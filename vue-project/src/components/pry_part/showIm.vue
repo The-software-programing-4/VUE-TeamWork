@@ -8,7 +8,7 @@
             <!-- 放对影片详细介绍的网址 -->
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     第一页电影描述{{showbox}}
@@ -16,7 +16,7 @@
             </a>
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "电影描述"
@@ -24,7 +24,7 @@
             </a>
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "电影描述"
@@ -32,7 +32,7 @@
             </a>
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "电影描述"
@@ -40,7 +40,7 @@
             </a>
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "电影描述"
@@ -48,7 +48,7 @@
             </a>
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img src="./Images/one.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "电影描述"
@@ -59,7 +59,7 @@
             <!-- 放对影片详细介绍的网址 -->
             <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述1"
@@ -67,7 +67,7 @@
             </a>
              <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述2"
@@ -75,7 +75,7 @@
             </a>
              <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述3"
@@ -83,7 +83,7 @@
             </a>
              <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述4"
@@ -91,7 +91,7 @@
             </a>
              <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述5"
@@ -99,7 +99,7 @@
             </a>
              <a href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img src="./Images/two.jpg" alt="奇异博士">
                 </div>
                 <p>
                     "第二页电影描述6"
