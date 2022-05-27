@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-.bookCard{
+.movieCard{
   position: relative;
   left: 300px;
   top: 50px;

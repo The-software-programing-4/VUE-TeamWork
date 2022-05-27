@@ -2,24 +2,23 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>月亮与六便士</span>
+            <span>{{bookname}}</span>
             </h1>
             <div class="bookImg">
-                <img src="../../assets/月亮与六便士.jpg" alt="">
+                <img :src="src" alt="">
             </div>
             <div class="bookIntro">
-                <li class="bookInfoItem">作者:</li>
-                <li class="bookInfoItem">出版社:</li>
-                <li class="bookInfoItem">出版年:</li>
-                <li class="bookInfoItem">出版年:</li>
-                <li class="bookInfoItem">页数:</li>
-                <li class="bookInfoItem">定价:</li>
-                <li class="bookInfoItem">ISBN:</li> 
+                <li class="bookInfoItem">作者:{{author}}</li>
+                <li class="bookInfoItem">出版社:{{press}}</li>
+                <li class="bookInfoItem">出版年:{{publish_date}}</li>
+                <li class="bookInfoItem">页数:{{pages_number}}</li>
+                <li class="bookInfoItem">定价:{{price}}</li>
+                <li class="bookInfoItem">ISBN:{{isbn}}</li> 
             </div>
             <div class="bookStar">
                 <div class="ratingLogo">图书评分</div>
                 <div class="ratingBody">
-                    <span class="ratingLeft">8.8</span>
+                    <span class="ratingLeft">{{score}}</span>
                     <span class="ratingRight">
                         <div class="bigStar45"></div>
                         <div class="ratingNum">193490人评价</div>
@@ -81,25 +80,15 @@
         <div class="relatedInfo">
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">内容简介</div>
-                <div class="indent">作家远子首部诗集，跨越十年的隐秘书写。记录那些囿于斗室、地铁和格子间的沉思与叹息，描述所有年轻人都经历过却难以言说的诗意瞬间。《室内流亡》以罕见的坦诚刻下一颗在物质和精神的双重匮乏之中渴望上升和救赎的心，描述一种在轨道之中却又时刻想要脱轨的青年生活。以无处不在的“时代精神”为背景，作者在思辨与抒情的夹缝中层层拆解与重建，坚信诗歌的道德力量，执着于发明新的道路，并真诚地交出自己的回答。</div>
+                <div class="indent">{{brief_introduction}}</div>
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">作者简介</div>
-                <div class="indent">远子，作家，湖北红安人。已出版短篇小说集《十七个远方》《夜晚属于恋人》《白日漫游》。译有《达摩流浪者》《思想之诗》《零点女人》。《白日漫游》一书曾入选“《亚洲周刊》2019年十大小说”，入围第二届“宝珀理想国文学奖”决选名单。</div>
+                <div class="indent">{{brief_introduction_of_author}}</div>
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">目录</div>
-                <div class="indent">
-1 而我坐在原地 <br>
-2 心小 <br>
-3 呼喊：给Y <br>
-4 地下室之歌 <br>
-5 乡村医生：给苇风 <br>
-6 在城中村 <br>
-7 一万条街的距离 <br>
-8 我不能告诉你 <br>
-9 小海子站 <br>
-10 金台夕照</div>
+                <div class="indent">{{directory}}</div>
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">短评</div>
@@ -111,9 +100,22 @@
 
 <script>
 import "@/css/style.css";
+import axios from 'axios';
 export default {
     data(){
         return{
+            directory: '',
+            brief_introduction_of_author: '',
+            brief_introduction: '',
+            score: 0.0,
+            src: '',
+            isbn: '',
+            price: '',
+            pages_number: '',
+            press: '',
+            publish_date: '',
+            bookname: "杀死一只知更鸟",
+            author: '',
             stars: [
             {isshow: false },
             {isshow: false },
@@ -143,8 +145,42 @@ export default {
                 this.stars[i].isshow = false;
             }
             this.starCom = '';
+        },
+    
+        getData(){
+            var url='/api/book/message_get';
+            this.$axios.post(
+                url,
+                this.bookname,
+                {
+                    headers: {
+                        'Content-Type':'application/text'
+                    }
+                }
+            )
+            .then(
+                res=>{
+                    console.log(res.data);
+                    this.author = res.data.author;
+                    this.score = res.data.score;
+                    this.src = res.data.src;
+                    this.isbn = res.data.isbn;
+                    this.price = res.data.price;
+                    this.pages_number = res.data.pages_number;
+                    this.press = res.data.press;
+                    this.publish_date = res.data.publish_date;
+                    this.directory = res.data.directory;
+                    this.brief_introduction_of_author = res.data.brief_introduction_of_author;
+                    this.brief_introduction = res.data.brief_introduction;
+                }
+            )
+            .catch(err => {              
+                console.log(err);
+            })
         }
-        
+    },
+    created(){
+        this.getData();
     }
 }
 </script>
