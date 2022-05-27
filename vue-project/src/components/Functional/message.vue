@@ -4,10 +4,12 @@
         <!-- /prevent阻止默认行为/ -->
     <el-form ref="form" :model="form" label-width="90px" 
          @submit.prevent="onSubmit">
-      <el-form-item label="头像："><a style="" @click="toImgChange">点击上传头像</a>
+      <el-form-item label="头像：">
+        <img-change></img-change>
+        <!-- <a style="" @click="toImgChange">点击上传头像</a> -->
       </el-form-item>
   <el-form-item label="昵称：" style="">
-    <el-input v-model="form.name" placeholder="设置我的昵称"></el-input>
+    <el-input v-model="form.username" placeholder="设置我的昵称"></el-input>
     <span>昵称30天内只能修改一次</span>
   </el-form-item>
   <el-form-item label="密码：">
@@ -55,7 +57,8 @@
     <el-input v-model="form.email" placeholder="绑定邮箱"></el-input>
   </el-form-item>
   <el-form-item label="手机号：">
-    <el-input v-model="form.phone" placeholder="换绑手机"></el-input>
+    <span>{{form.phone}}  </span>
+    <a>换绑</a>
   </el-form-item>
   <el-form-item label="第三方：">
 
@@ -80,6 +83,7 @@
   </el-form-item>
     <el-form-item>
     <el-button type="success" @click="changePassword" >保存并重新登录</el-button>
+    <el-button @click="status=0">返回</el-button>
     </el-form-item>
        </el-form>
     </div>
@@ -111,23 +115,31 @@ a:hover{
 import { regionData, CodeToText } from "element-china-area-data";
 import qs from "qs"
 import axios from 'axios'
+import ImgChange from './ImgChange.vue';
 export default {
 
     data() {
       return {
         form: {
-          name: '',
-          password: '',
-          regionOP: '',
+          uid : '',
+          username: '',
+          regionOP: "公开可见",
           date1: '',
-          birthOP: '',
+          birthOP: "公开可见",
           email: '',
-          phone: '',
-          region1: [],
-          region2: []
+          phone: '暂未绑定手机',
+          region1: [null,null,null],
+          region2: [null,null,null],
+          l1: '',
+          l2: '',
+          l3: '',
+          h1: '',
+          h2: '',
+          h3: '',
         },
         options: regionData,
         form2: {
+          uid: '',
           password_temp: '',
           password_temp1: '',
           password_temp2: '',
@@ -139,7 +151,14 @@ export default {
     },
     methods: {
       onSubmit() {
-        var url='http://127.0.0.1:8080/changeMessage';
+        var url='http://127.0.0.1:8080/api/user/message_set';
+        console.log(this.form);
+        this.form.l1=this.form.region1[0];
+        this.form.l2=this.form.region1[1];
+        this.form.l3=this.form.region1[2];
+        this.form.h1=this.form.region2[0];
+        this.form.h2=this.form.region2[1];
+        this.form.h3=this.form.region2[2];
         axios.post(url,
                   this.form,
                   {
@@ -154,7 +173,8 @@ export default {
         this.status=0;
       },
       SubmitPassword() {
-         var url='http://127.0.0.1:8080/changePassword';
+         this.form2.uid=this.form.uid;
+         var url='/api/user/password_set';
         axios.post(url,
                   this.form2,
                   {
@@ -163,6 +183,7 @@ export default {
                     }
                   }
         ).then(res => {
+          alert(res.data.message);
           console.log(res);
         })
 
@@ -179,34 +200,50 @@ export default {
         loc += CodeToText[this.from.region2[i]];
       }
      },
-    changePassword() {
-          if(this.form2.password_temp === this.form.password)
-          {
-              if(this.form2.password_temp1 === this.form2.password_temp2)
+     changePassword() {
+              if(this.form2.password_temp1.length<6)
+              {
+                alert("密码至少为6位！");
+              }
+              else if(this.form2.password_temp1 === this.form2.password_temp2)
               {
                 this.form.password=this.form2.password_temp1;
-                console.log(this.form.password);
-                console.log(this.form2.password_temp);
-                console.log(this.form2.password_temp1);
+                console.log(this.form2);
                 this.SubmitPassword();
-                alert("密码设置成功！")
-                this.$router.go(0);
+                //this.$router.go(0);
               }
               else{
                 alert("两次输入的密码不一致！");
               }
-          }
-          else{
-            alert("原密码不正确!");
-          }
       },
       toImgChange() {
-        this.$router.push('./ImgChange');
+        this.$router.push('/user/ImgChange');
       },
+      getMessage(){
+        this.$axios.get("/api/user/message_get").then(res=>{
+        console.log(res.data);
+
+          this.form.uid = res.data.uid;
+          this.form.username= res.data.username;
+          this.form.password= res.data.password;
+          this.form.regionOP= res.data.regionOP;
+          var n=(res.data.date1).split(" ");
+          this.form.date1= n[0];
+          this.form.birthOP= res.data.birthOP;
+          this.form.email= res.data.email;
+          this.form.phone= res.data.phone;
+          this.form.region1= res.data.region1;
+          this.form.region2= res.data.region2;
+
+          console.log(this.form);
+         })
+      }
     },
-    
+    created(){
+      this.getMessage();
+    },
     components: {
-      
+      ImgChange,
     }
   };
 </script>

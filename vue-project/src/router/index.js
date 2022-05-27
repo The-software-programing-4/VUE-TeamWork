@@ -22,6 +22,37 @@ const routes = [
     path: '/user/message',
     name: 'Message',
     component: () => import('../components/Functional/message.vue')
+  },
+  {
+
+    path: '/login',
+    name: 'Login',
+    component: () => import('../components/Functional/login.vue')
+  },
+  {
+    path: '/signIn',
+    name: 'SignIn',
+    component: () => import('../views/SignView.vue')
+  },
+  {
+    path: '/phonelogin',
+    name: 'PhoneLogin',
+    component: () => import('../views/PhoneLoginView.vue')
+  },
+  {
+    path: '/nav',
+    name: 'nav',
+    component: () => import('../components/pry_part/headtop.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../components/pry_part/searchBox.vue')
+  },
+  {
+    path: '/showlm',
+    name: 'showlm',
+    component: () => import('../components/pry_part/showIm.vue')
   }
 ]
 
