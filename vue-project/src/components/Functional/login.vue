@@ -24,8 +24,7 @@ export default {
     }
   },
   methods:{
-      login()
-      {
+      login(){
           var url="api/user/login";
           this.$axios.post(url,this.form, {
                     headers: {
