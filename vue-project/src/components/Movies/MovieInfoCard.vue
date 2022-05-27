@@ -2,26 +2,26 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>美丽人生</span>
+            <span>{{name}}</span>
             </h1>
             <div class="bookImg">
-                <img src="../../assets/美丽人生.jpg" alt="">
+                <img :src="src" alt="">
             </div>
             <div class="bookIntro">
-                <li class="bookInfoItem">导演:</li>
-                <li class="bookInfoItem">编剧:</li>
-                <li class="bookInfoItem">主演:</li>
-                <li class="bookInfoItem">类型:</li>
-                <li class="bookInfoItem">国家:</li>
-                <li class="bookInfoItem">语言:</li>
-                <li class="bookInfoItem">上映时间:</li>
-                <li class="bookInfoItem">片长:</li>
-                <li class="bookInfoItem">IMDb:</li> 
+                <li class="bookInfoItem">导演:{{directors}}</li>
+                <li class="bookInfoItem">编剧:{{writers}}</li>
+                <li class="bookInfoItem">主演:{{actors}}</li>
+                <li class="bookInfoItem">类型:{{category}}</li>
+                <li class="bookInfoItem">国家:{{position}}</li>
+                <li class="bookInfoItem">语言:{{language}}</li>
+                <li class="bookInfoItem">上映时间:{{date}}</li>
+                <li class="bookInfoItem">片长:{{length}}</li>
+                <li class="bookInfoItem">IMDb:{{IMDb}}</li> 
             </div>
             <div class="bookStar">
                 <div class="ratingLogo">电影评分</div>
                 <div class="ratingBody">
-                    <span class="ratingLeft">9.6</span>
+                    <span class="ratingLeft">{{score}}</span>
                     <span class="ratingRight">
                         <div class="bigStar45"></div>
                         <div class="ratingNum">1212613人评价</div>
@@ -79,14 +79,12 @@
         <div class="relatedInfo">
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">剧情简介</div>
-                <div class="indent">犹太青年圭多（罗伯托·贝尼尼）邂逅美丽的女教师多拉（尼可莱塔·布拉斯基），他彬彬有礼的向多拉鞠躬：“早安！公主！”。历经诸多令人啼笑皆非的周折后，天遂人愿，两人幸福美满的生活在一起。
-　　然而好景不长，法西斯政权下，圭多和儿子被强行送往犹太人集中营。多拉虽没有犹太血统，毅然同行，与丈夫儿子分开关押在一个集中营里。聪明乐天的圭多哄骗儿子这只是一场游戏，奖品就是一辆大坦克，儿子快乐、天真的生活在纳粹的阴霾之中。尽管集中营的生活艰苦寂寞，圭多仍然带给他人很多快乐，他还趁机在纳粹的广播里问候妻子：“早安！公主！”
-　　法西斯政权即将倾覆，纳粹的集中营很快就要接受最后的清理，圭多编给儿子的游戏该怎么结束？他们一家能否平安的度过这黑暗的年代呢？            
+                <div class="indent">{{brief_introduction}}            
                 </div>
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">演职员</div>
-                <div class="indent">远子，作家，湖北红安人。已出版短篇小说集《十七个远方》《夜晚属于恋人》《白日漫游》。译有《达摩流浪者》《思想之诗》《零点女人》。《白日漫游》一书曾入选“《亚洲周刊》2019年十大小说”，入围第二届“宝珀理想国文学奖”决选名单。</div>
+                <div class="indent"></div>
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">视频和图片</div>
@@ -112,6 +110,19 @@ import "@/css/style.css";
 export default {
     data(){
         return{
+            name: '美丽人生',
+            src: '',
+            directors: '',
+            writers: '',
+            actors: '',
+            category: '',
+            language: '',
+            length: 0,
+            date: '',
+            position: '',
+            IMDb: '',
+            score: 0.0,
+            brief_introduction: '',
             stars: [
             {isshow: false },
             {isshow: false },
@@ -141,8 +152,35 @@ export default {
                 this.stars[i].isshow = false;
             }
             this.starCom = '';
+        },
+        getData(){
+            var url='/api/movie/message_get';
+            this.$axios.post(
+                url,
+                this.name
+            )
+            .then(
+                res=>{
+                    this.src = res.data.src;
+                    this.score = res.data.score;
+                    this.actors = res.data.actors;
+                    this.IMDb = res.data.IMDb;
+                    this.category = res.data.category;
+                    this.directors = res.data.directors;
+                    this.writers = res.data.writers;
+                    this.language = res.data.language;
+                    this.length = res.data.length;
+                    this.date = res.data.date;
+                    this.position = res.data.position;
+                }
+            )
+            .catch(err => {              
+                console.log(err);
+            })
         }
-        
+    },
+    created(){
+        this.getData();
     }
 }
 </script>
