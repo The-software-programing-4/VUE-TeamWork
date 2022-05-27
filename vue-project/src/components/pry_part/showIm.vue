@@ -6,103 +6,23 @@
         </div>
         <div class="image-page" v-show="showbox==1">
             <!-- 放对影片详细介绍的网址 -->
-            <a href="" target="_blank" class="item">
+            <a v-for='img in imagePath' href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
+                    <img :src="img.path"/>
                 </div>
                 <p>
-                    第一页电影描述{{showbox}}
-                </p>
-            </a>
-            <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "电影描述"
-                </p>
-            </a>
-            <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "电影描述"
-                </p>
-            </a>
-            <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "电影描述"
-                </p>
-            </a>
-            <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "电影描述"
-                </p>
-            </a>
-            <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/one.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "电影描述"
+                    第一页电影描述{{img.path}}
                 </p>
             </a>
         </div>
         <div class="image-page" data-index="2" v-show="showbox==2">
             <!-- 放对影片详细介绍的网址 -->
-            <a href="" target="_blank" class="item">
+            <a v-for='img in imagePath2' href="" target="_blank" class="item">
                 <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
+                    <img :src="img.path"/>
                 </div>
                 <p>
-                    "第二页电影描述1"
-                </p>
-            </a>
-             <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "第二页电影描述2"
-                </p>
-            </a>
-             <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "第二页电影描述3"
-                </p>
-            </a>
-             <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "第二页电影描述4"
-                </p>
-            </a>
-             <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "第二页电影描述5"
-                </p>
-            </a>
-             <a href="" target="_blank" class="item">
-                <div class="image-div">
-                    <img src="./images/two.jpg" alt="奇异博士">
-                </div>
-                <p>
-                    "第二页电影描述6"
+                    第二页电影描述{{img.path}}
                 </p>
             </a>
         </div>
@@ -113,6 +33,22 @@ export default {
     data(){
         return{
             showbox:1,
+            imagePath:[
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')}
+            ],
+            imagePath2:[
+                {path:require('./images/two.jpg')},
+                {path:require('./images/two.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')}
+            ]
         }
     },
     
