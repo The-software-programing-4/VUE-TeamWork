@@ -6,12 +6,12 @@
         </div>
         <div class="image-page" v-show="showbox==1">
             <!-- 放对影片详细介绍的网址 -->
-            <a v-for='img in imagePath' href="" target="_blank" class="item">
+            <a v-for='img in imagePath1' href="" target="_blank" class="item">
                 <div class="image-div">
                     <img :src="img.path"/>
                 </div>
                 <p>
-                    第一页电影描述{{img.path}}
+                    第一页电影名字{{img.path}}
                 </p>
             </a>
         </div>
@@ -26,14 +26,23 @@
                 </p>
             </a>
         </div>
+        <div class="block">
+    
+</div>
     </div>
+    
 </template>
 <script>
 export default {
     data(){
         return{
             showbox:1,
-            imagePath:[
+            imagePath1:[
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
+                {path:require('./images/one.jpg')},
                 {path:require('./images/one.jpg')},
                 {path:require('./images/one.jpg')},
                 {path:require('./images/one.jpg')},
@@ -50,6 +59,21 @@ export default {
                 {path:require('./images/one.jpg')}
             ]
         }
+    },
+    methods:{
+        getPhoto(){
+        this.$axios.get("/api/user/ImgPath").then(res=>{
+         //控制台打印
+        console.log(res.data);
+        //对数据初始化
+        if(res.data.imagePath1!=null) this.imagePath1=res.data.imagePath1;
+        if(res.data.imagePath2!=null) this.imagePath2=res.data.imagePath2;})
+        }
+    },
+
+    created(){
+        //请求初始化图片链接
+        this.getPhoto();
     },
     
 }
