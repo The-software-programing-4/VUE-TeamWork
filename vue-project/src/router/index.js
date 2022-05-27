@@ -58,6 +58,16 @@ const routes = [
     path: '/showlm',
     name: 'showlm',
     component: () => import('../components/pry_part/showIm.vue')
+  },
+  {
+    path: '/bookInfo',
+    name: 'bookInfo',
+    component: () => import('../views/BookInfoView.vue')
+  },
+  {
+    path: '/movieInfo',
+    name: 'movieInfo',
+    component: () => import('../views/MovieInfoView.vue')
   }
 ]
 

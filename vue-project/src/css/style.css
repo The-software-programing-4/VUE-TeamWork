@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+h1 {
+    word-wrap: break-word;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
 .button {
     margin: 0;
     border: 0;
@@ -90,4 +96,175 @@
 .sendCode {
     color: white;
     margin-left: 5px;
+}
+
+/* BookCard */
+.bookCard {
+    width: 50%;
+}
+
+.bookInfo {
+    width: 1040px;
+    height: 300px;
+}
+
+.bookTitle {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 200%;
+}
+
+.bookImg {
+    float: left;
+    margin: 0px 12px 0 0;
+}
+
+.bookImg img {
+    width: 125px;
+    height: 200px;
+}
+
+.bookIntro {
+    float: left;
+    text-align: left;
+    color: #666666;
+    width: 300px;
+}
+
+.bookInfoItem {
+    list-style: none;
+    margin-bottom: 6px;
+}
+
+.bookStar {
+    float: left;
+    border-left: 1px solid rgb(234, 234, 234);
+    padding-left: 15px;
+}
+
+.ratingLogo {
+    text-align: left;
+    color: #666666;
+}
+
+.ratingBody {
+    height: 75px;
+}
+
+.ratingLeft {
+    float: left;
+    color: #494949;
+    font-weight: normal;
+    font-size: 38px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.ratingRight {
+    float: left;
+    padding-left: 15px;
+}
+
+.bigStar45 {
+    display: inline-block;
+    width: 150px;
+    height: 22px;
+    background: url(../assets/ic_rating_m@2x.png) no-repeat;
+    background-size: 118px 260px;
+    background-position: 0 -25px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.ratingNum {
+    text-align: left;
+}
+
+.ratingGrade {
+    display: block;
+    list-style: none;
+    text-align: left;
+    font-size: 15px;
+    color: #9b9b9b;
+    height: 20px;
+}
+
+.ratingGradeStar {
+    float: left;
+}
+
+.ratingGradeImg {
+    position: relative;
+    top: 2px;
+    height: 15px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 10px;
+    background: #ffd596 none repeat scroll 0 0;
+}
+
+.ratingGradePerc {
+    position: relative;
+    top: 2px;
+}
+
+.bookFav {
+    height: 20px;
+}
+
+.bookFavComment {
+    float: left;
+}
+
+.bookFavStar {
+    float: left;
+}
+
+.bookFavStarList {
+    list-style: none;
+    float: left;
+}
+
+.bookFavImg {
+    position: relative;
+    top: 3px;
+}
+
+.rateWord {
+    float: left;
+    margin-left: 3px;
+    font-size: 15px;
+    color: #999;
+}
+
+.bookCommentLink {
+    margin-top: 10px;
+    height: 50px;
+}
+
+.bookWriteLink {
+    float: left;
+    list-style: none;
+    margin-right: 25px;
+}
+
+.bookWriteWord {
+    margin-left: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bookWriteWord:hover {
+    background-color: #a6c0fe;
+}
+
+.relatedInfoBlock {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.relatedInfoTitle {
+    color: #007722;
+    font-size: 18px;
+    height: 50px;
 }
