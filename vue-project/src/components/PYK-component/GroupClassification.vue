@@ -39,27 +39,7 @@ export default {
   data() {
     return {
       groupclassificationData: [
-        {
-          Firstorder_groupsname: "兴趣",
-          Firstorder_groupslink:"/",
-          Firstorder_groupshot:1000,
-          Secondorder_groups: [
-            {
-              group_name: "旅游",
-              group_link: "/",
-            },
-          ],
-        },{
-          Firstorder_groupsname: "生活",
-          Firstorder_groupslink:"/",
-          Firstorder_groupshot:100,
-          Secondorder_groups: [
-            {
-              group_name: "健康",
-              group_link: "/",
-            },
-          ],
-        },
+        
       ],
     };
   },
@@ -81,5 +61,25 @@ export default {
 </script>
 
 <!-- 
-  
+  {
+          Firstorder_groupsname: "兴趣",
+          Firstorder_groupslink:"/",
+          Firstorder_groupshot:1000,
+          Secondorder_groups: [
+            {
+              group_name: "旅游",
+              group_link: "/",
+            },
+          ],
+        },{
+          Firstorder_groupsname: "生活",
+          Firstorder_groupslink:"/",
+          Firstorder_groupshot:100,
+          Secondorder_groups: [
+            {
+              group_name: "健康",
+              group_link: "/",
+            },
+          ],
+        },
 -->

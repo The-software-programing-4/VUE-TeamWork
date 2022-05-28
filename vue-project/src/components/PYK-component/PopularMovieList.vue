@@ -35,19 +35,7 @@ export default {
   data() {
     return {
       PopularMovieListData: [
-        {
-          movielistname: "movielistazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movielist_link: "/",
-          num_of_Recommend: 10000000000,
-        },{
-          movielistname: "movielistb",
-          movielist_link: "/",
-          num_of_Recommend: 10,
-        },{
-          movielistname: "movielistc",
-          movielist_link: "/",
-          num_of_Recommend: 100,
-        },
+        
       ],
     };
   },

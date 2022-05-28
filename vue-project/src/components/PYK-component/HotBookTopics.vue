@@ -39,48 +39,7 @@ export default {
   data() {
     return {
       hotbooktopicsData: [
-        {
-          booktopic_name: "文学",
-          booktopic_hot:1000,
-          Secondorder_booktopics: [
-            {
-              Secondorder_booktopic_name: "小说",
-              Secondorder_booktopic_link: "/",
-            },
-            {
-              Secondorder_booktopic_name: "随笔",
-              Secondorder_booktopic_link: "/",
-            },
-            {
-              Secondorder_booktopic_name: "日本文学",
-              Secondorder_booktopic_link: "/",
-            },
-            {
-              Secondorder_booktopic_name: "散文",
-              Secondorder_booktopic_link: "/",
-            },
-            {
-              Secondorder_booktopic_name: "日本文学",
-              Secondorder_booktopic_link: "/",
-            },
-          ],
-          more_Secondorder_booktopics_link: "/",
-        },
-        {
-          booktopic_name: "topic1",
-          booktopic_hot:1001,
-          Secondorder_booktopics: [
-            {
-              Secondorder_booktopic_name: "topic11",
-              Secondorder_booktopic_link: "/",
-            },
-            {
-              Secondorder_booktopic_name: "topic12",
-              Secondorder_booktopic_link: "/",
-            },
-          ],
-          more_Secondorder_booktopics_link: "/",
-        }, 
+        
       ],
     };
   },
