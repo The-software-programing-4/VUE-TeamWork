@@ -37,6 +37,7 @@
             </form>
         </div>
     </div>
+    <div id="img-show">
     <!-- 电影展示 -->
     <div v-show="showScene==1">
         <showIm></showIm>
@@ -45,6 +46,7 @@
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
         <searchImg :msg="searchText"></searchImg>
+    </div>
     </div>
   </div>
 </template>
@@ -63,7 +65,7 @@ export default {
    data(){
         return{
             searchText:'',
-            showScene:1,//showScence决定展示哪一个页面
+            showScene:0,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
                 {path:require("../components/pry_part/images/one.jpg"),
                 name:"名字1",
@@ -159,6 +161,10 @@ export default {
         background-color:#339933;
         color: #FFFFcc;
         width: 20%;
+    }
+    #img-show{
+        width: 750px;
+        float: left;
     }
 /* 搜索框样式end */
 </style>

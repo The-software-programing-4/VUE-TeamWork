@@ -154,6 +154,7 @@ export default {
     height: 70px;
     text-align: center;
     line-height: 70px;
+    color: #ffffff;
     font-size: 20px;
     background: url("./images/back1.jpg");
     background-size: 100%, 100%;
@@ -181,7 +182,7 @@ export default {
     /* color: aliceblue; */
 }
  #images-show{
-     width: 750px;
+     width: 100%;
      float: left;
      /* background:url("./images/back1.jpg");
      background-size:100% 100%; */
