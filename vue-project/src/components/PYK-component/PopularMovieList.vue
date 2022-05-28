@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     download_movielists() {
-      this.$axios.get("api/movie").then((res) => {
+      this.$axios.post("api/movie/listmovie","123").then((res) => {
         console.log(res.data);
         this.PopularMovieListData = res.data.PopularMovieListData;
       });

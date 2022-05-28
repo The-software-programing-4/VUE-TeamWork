@@ -60,7 +60,7 @@
                 <ul>
                     <li v-for="(item, index) in stars" class="bookFavStarList">
                         <img v-if="item.isshow" src="../../assets/fullStar.png" class="bookFavImg" @mouseleave="emptyStar">
-                        <img v-else="item.isshow" src="../../assets/emptyStar.png" class="bookFavImg" @mouseover="fillStar(index)">
+                        <img v-else="!item.isshow" src="../../assets/emptyStar.png" class="bookFavImg" @mouseover="fillStar(index)">
                     </li>
                 </ul>
             </span>
@@ -111,6 +111,7 @@ export default {
     data(){
         return{
             name: '美丽人生',
+            mid:  '',
             src: '',
             directors: '',
             writers: '',
@@ -160,11 +161,17 @@ export default {
             var url='/api/movie/message_get';
             this.$axios.post(
                 url,
-                this.name
+                1,
+                {
+                    headers: {
+                      'Content-Type':'application/json'
+                    }
+                }
             )
             .then(
                 res=>{
                     this.src = res.data.src;
+                    this.mid = res.data.mid;
                     this.score = res.data.score;
                     this.actors = res.data.actors;
                     this.IMDb = res.data.IMDb;

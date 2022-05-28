@@ -167,13 +167,13 @@ export default {
                     this.imgList=res.data.messages;
                     console.log(res.messages);
                     var str="http://39.105.102.182:8080/";
-                    for(var i=0;i<res.data.messages.length;i++)
+                    for(var i=0;i<this.imgList.length;i++)
                     {
                         var temp;
-                        temp=res.data.messages[i];
-                        temp.src=str+temp.src;
-                        this.imgList[i]=temp;
-                        console.log(temp);
+                        temp=res.data.messages[i].src;
+                        temp=str+temp;
+                        this.imgList[i].src=temp;
+                        //console.log(temp);
                     }
                     console.log(this.imgList.length);
                 }

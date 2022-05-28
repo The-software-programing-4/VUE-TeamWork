@@ -3,7 +3,7 @@
     <!-- {{msg}} -->
 
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{mag}}搜索结果</div>
+    <div id="crossLine">{{msg}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
@@ -54,7 +54,7 @@
 export default {
    data(){
         return{
-           // msg:'123',
+            //msg:'123',
 
            isClass: false,
             currentPage: 1,
@@ -136,13 +136,13 @@ export default {
     },
    created(){
 
-       axios.post(url,
-                    this.msg//提交的是搜索框内容
-            ).then(res => {
-            console.log(res);
-            alert("更新成功！")
+    //    axios.post(url,
+    //                 this.msg//提交的是搜索框内容
+    //         ).then(res => {
+    //         console.log(res);
+    //         alert("更新成功！")
             
-        })
+    //     })
    },
    methods:{
        currentChange(val) {
