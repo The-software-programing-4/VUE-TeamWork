@@ -28,7 +28,7 @@
                     <input type="text" id="search" placeholder="小组 话题" v-model="searchText">
                 </div>
                 <div class="up">
-                    <input type="submit" value="搜索一下" @click="onSearch">
+                    <input  value="搜索一下" @click="onSearch">
                 </div>
             </form>
         </div>

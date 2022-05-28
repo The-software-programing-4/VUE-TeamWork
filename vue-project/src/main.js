@@ -9,8 +9,8 @@ axios.defaults.withCredentials = true;
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = 'http://localhost:8080/'
-Vue.prototype.$hostURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://39.105.102.182:8080/'
+Vue.prototype.$hostURL = 'http://39.105.102.182:8080'
 Vue.config.productionTip = false;
 new Vue({
   router,

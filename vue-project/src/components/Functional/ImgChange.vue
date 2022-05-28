@@ -2,7 +2,7 @@
   <div>
     <el-upload
   class="avatar-uploader"
-  action="http://localhost:8080/api/user/imgUpload"
+  action="http://39.105.102.182:8080/api/user/imgUpload"
   :data="this.form"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
@@ -79,7 +79,7 @@
         })
       },
       display_photo(){
-        this.$axios.get("/api/user/getImg").then(res=>{
+        this.$axios.get("/api/user/getimg").then(res=>{
         console.log(res.data);
         // const captchaImg = window.URL.createObjectURL(res.data.message);
         // this.imgbase=captchaImg;
@@ -88,7 +88,7 @@
         }
         if(res.data.message)
         {
-          this.imageUrl="http://localhost:8080/"+res.data.message;
+          this.imageUrl="http://39.105.102.182:8080/"+res.data.message;
         }
         console.log(this.imageUrl);
          })

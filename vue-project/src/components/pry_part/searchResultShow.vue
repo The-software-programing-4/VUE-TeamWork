@@ -49,13 +49,13 @@ export default {
         msg:String//从父组件获取的值
     },
    created(){
-       axios.post(url,
-                    this.msg//提交的是搜索框内容
-            ).then(res => {
-            console.log(res);
-            alert("更新成功！")
+    //    axios.post(url,
+    //             this.msg//提交的是搜索框内容
+    //         ).then(res => {
+    //         console.log(res);
+    //         alert("更新成功！")
             
-        })
+    //     })
    }
 
 }
