@@ -6,7 +6,7 @@
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="250px" wight="100px">
-      <el-carousel-item v-for="img in idoLists" :key="img.id">
+      <el-carousel-item v-for="img in imgList" :key="img.mid">
         <img :src="img.path" class="image" @click="clickMv(img.name, 2)">
       </el-carousel-item>
     </el-carousel>
@@ -70,7 +70,43 @@ export default {
             pageSize: 9,
             // 轮播图使用的图片列表
             imgList:[
-            
+                {mid:1,
+                path:require('./images/one.jpg'),
+                name:"pic1",
+                score:1},
+                {mid:2,
+                path:require('./images/back8.jpg'),
+                name:"pic2",
+                score:2},
+                {mid:3,
+                path:require('./images/back9.jpg'),
+                name:"pic3",
+                score:3},
+                 {mid:5,
+                 path:require('./images/one.jpg'),
+                name:"pic1",
+                score:1},
+                {mid:7,
+                path:require('./images/back4.jpg'),
+                name:"pic2",
+                score:2},
+                {
+                mid:8,
+                path:require('./images/back6.jpg'),
+                name:"pic3",
+                score:3},
+                {mid:9,
+                path:require('./images/back5.jpg'),
+                name:"pic1",
+                score:1},
+                {mid:11,
+                path:require('./images/back1.jpg'),
+                name:"pic2",
+                score:2},
+                {mid:13,
+                path:require('./images/one.jpg'),
+                name:"pic3",
+                score:3},
             //imagebox是assets下一个放图片的文件夹
             ],
             idoLists:[
@@ -115,30 +151,38 @@ export default {
         }
     },
     methods:{
-        // getPhoto(){
-        // this.$axios.get("/api/user/ImgPath").then(res=>{
-        //  //控制台打印
-        // console.log(res.data);
-        // //对数据初始化
-        // if(res.data.imagePath1!=null) this.imagePath1=res.data.imagePath1;
-        // if(res.data.imagePath2!=null) this.imagePath2=res.data.imagePath2;})
-        // },
-        currentChange(val) {
+        getPhoto(){
+             var url='/api/movie/listmovie';
+            this.$axios.post(
+                url,
+                "123"
+            )
+            .then(
+                res=>{
+                    this.imgList=res.data.messages
+                }
+            )
+            .catch(err => {              
+                console.log(err);
+            })
+        },
+        currentChange(val){
         // alert(val)
         this.currentPage = val;
         // alert(this.currentPage);
         },
         clickMv(val1, val2){
            // alert(val1+val2);
-           console.log(val2)
+           console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         }
+        
     },
     
-    // created(){
-    //     //请求初始化图片链接
-    //     this.getPhoto();
-    // },
+    created(){
+        //请求初始化图片链接
+        this.getPhoto();
+    },
     
 }
 </script>

@@ -89,18 +89,18 @@ export default {
         onSearch(){
            // alert(this.searchText+this.searching);
             this.showScene=0;
-            alert(this.searchText+this.showScene);
-            var url='http://127.0.0.1:8080/changeMessage';
-            axios.post(url,
-                    this.searchText//提交的是搜索框内容
-            ).then(res => {
-            console.log(res);
-            alert("更新成功！")
-            })
-            this.status=0;
+            // alert(this.searchText+this.showScene);
+            // var url='http://127.0.0.1:8080/changeMessage';
+            // axios.post(url,
+            //         this.searchText//提交的是搜索框内容
+            // ).then(res => {
+            // console.log(res);
+            // alert("更新成功！")
+            // })
+            // this.status=0;
         },
         // 事件处理函数
-       async changeFromShowIm(param1,param2) {
+       async changeFromShowIm(param1,param2) {//从子组件处获取的值
             this.showScene=param2;
             this.toMovieName=param1;
             alert(this.showScene+this.toMovieName);
