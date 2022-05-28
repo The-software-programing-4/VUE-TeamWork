@@ -1,6 +1,25 @@
+/* Global */
 * {
     margin: 0;
     padding: 0;
+}
+
+a {
+    color: #3377aa;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+    background: #a6c0fe;
+}
+
+a {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
 }
 
 h1 {
@@ -267,4 +286,150 @@ h1 {
     color: #007722;
     font-size: 18px;
     height: 50px;
+}
+
+/* Comment */
+.commentCard {
+    word-wrap: break-word;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.commentNav {
+    height: 30px;
+}
+
+.commentThumb {
+    float: right;
+}
+
+.commentUser {
+    text-decoration: none;
+    color: #3377aa;
+    float: left;
+}
+
+.commentStar {
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    top: 3px;
+}
+
+.commentItem {
+    list-style: none;
+    padding: 18px 0;
+    border-top: 1px solid rgb(234, 234, 234);
+}
+
+.commentDate {
+    color: #aaa;
+    margin-left: 3px;
+}
+
+/* Topics */
+.topicContent {
+    padding: 20px 24px 20px;
+    border-radius: 2px;
+    border: solid 1px rgba(0, 0, 0, 0.15);
+}
+
+.topicIcon {
+    width: 35px;
+    height: 35px;
+    float: left;
+}
+
+.topicNav {
+    height: 40px;
+}
+
+.topicTitle {
+    float: left;
+}
+
+.topicFollow {
+    float: right;
+    position: relative;
+    bottom: 3px;
+}
+
+.topicCounter {
+    text-align: left;
+    color: #999999;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.topicWord {
+    text-align: left;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.topicFoot {
+    margin-top: 20px;
+    height: 25px;
+}
+
+.topicFootItem {
+    width: 33%;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+.topicFootCommentIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.topicFootCommentTag {
+    position: relative;
+    bottom: 6px;
+    margin-left: 3px;
+}
+
+.topicFootLast {
+    border: none;
+}
+
+.topicTransition {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 20px;
+}
+
+.topicTransitionSlash {
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+    position: relative;
+    top: 3px;
+}
+
+.topicTransitionLeft {
+    float: left;
+    font-size: 15px;
+}
+
+.topicTransitionRight {
+    float: right;
+    color: #999;
+    font-size: 15px;
+}
+
+.topicComment {
+    text-align: left;
+}
+
+.topicNow {
+    cursor: default;
+    color: black;
+}
+
+.topicWait {
+    cursor: pointer;
+    color: #3377aa;
 }

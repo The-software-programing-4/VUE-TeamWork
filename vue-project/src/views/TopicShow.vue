@@ -36,8 +36,9 @@
             </form>
         </div>
     </div>
-        <div id="topic-show" v-show="showScene==1">
-            <topics @change="changeFromTopicShow"></topics>
+        <div id="topic-show" >
+            <topics @change="changeFromTopicShow" v-show="showScene==1"></topics>
+            <topicInfoCard class="topicCard" v-show="showScene==2"> </topicInfoCard>
         </div>
         <div id="topiclist">
             <span>榜单</span>
@@ -51,12 +52,14 @@ import headTop from "../components/pry_part/headtop.vue"
 import topics from "../components/pry_part/topics.vue"
 import movielist from "../components/PYK-component/movielist.vue"
 import PopularMovieList from "../components/PYK-component/PopularMovieList.vue"
+import topicInfoCard from "@/components/Topic/topicInfoCard.vue";
 export default {
   components:{
     headTop,
     movielist,
     PopularMovieList,
     topics,
+    topicInfoCard,
 },
    data(){
         return{
@@ -179,4 +182,7 @@ export default {
        font-size:20px ;
     }
 /* 搜索框样式end */
+.topicCard{ 
+    margin-top:50px ;
+}
 </style>
