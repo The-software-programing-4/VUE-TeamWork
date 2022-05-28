@@ -40,12 +40,16 @@
     <div id="img-show">
     <!-- 电影展示 -->
     <div v-show="showScene==1">
-        <showIm></showIm>
+        <showIm @change="changeFromShowIm"></showIm>
     </div>
     <!-- 搜索结果展示 -->
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
         <searchImg :msg="searchText"></searchImg>
+    </div>
+    <!-- 点击后对电影详情页的显示-->
+    <div v-show="showScene==2">
+        <MovieInfoCard class="movieCard" :name="toMovieName"></MovieInfoCard>
     </div>
     </div>
   </div>
@@ -55,16 +59,20 @@ import headTop from "../components/pry_part/headtop.vue"
 import showIm from"../components/pry_part/showIm.vue"
 import searchImg from"../components/pry_part/searchResultShow.vue"
 import searchBox from"../components/pry_part/searchBox.vue"
+import MovieInfoCard from "../components/Movies/MovieInfoCard.vue"
 export default {
   components:{
     headTop,
     showIm,
     searchImg,
-    searchBox
-  },
+    searchBox,
+    MovieInfoCard,
+    MovieInfoCard
+},
    data(){
         return{
             searchText:'',
+            toMovieName:"",//点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
                 {path:require("../components/pry_part/images/one.jpg"),
@@ -90,6 +98,13 @@ export default {
             alert("更新成功！")
             })
             this.status=0;
+        },
+        // 事件处理函数
+       async changeFromShowIm(param1,param2) {
+            this.showScene=param2;
+            this.toMovieName=param1;
+            alert(this.showScene+this.toMovieName);
+            console.log(this.showScene);
         },
     },
 
@@ -163,8 +178,12 @@ export default {
         width: 20%;
     }
     #img-show{
-        width: 750px;
+        width: 65%;
         float: left;
     }
+    .movieCard{
+    margin-left: 10%;
+    width: 90%;
+}
 /* 搜索框样式end */
 </style>

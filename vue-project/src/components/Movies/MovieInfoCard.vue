@@ -140,6 +140,9 @@ export default {
             ]
         }
     },
+    props:{
+        name: String,//从父组件传值
+    },
     methods: {
         fillStar(index){
             for(let i = 0; i <= index; i++){

@@ -6,8 +6,8 @@
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="250px" wight="100px">
-      <el-carousel-item v-for="item in imgList" :key="item.id">
-        <img :src="item.idView" class="image">
+      <el-carousel-item v-for="img in idoLists" :key="img.id">
+        <img :src="img.path" class="image" @click="clickMv(img.name, 2)">
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
@@ -27,21 +27,22 @@
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         <div class="image-page" >
             <!-- 放对影片详细介绍的网址 -->
-            <a v-for='img in idoLists.slice(
+            <div v-for='img in idoLists.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
-        )' href="" target="_blank" class="item">
+        )' href=""  class="item" >
                 <div class="image-div">
                     <!-- <img :src="img.path"/> -->
-                    <el-image
+                     <img :src="img.path" class="image" @click="clickMv(img.name, 2)">
+                    <!-- <el-image
                         style=" height: 100%"
                         :src="img.path"
-                        :fit="fit"></el-image>
+                        :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
                 <p>
                     当前页{{currentPage}}
                 </p>
-            </a>
+            </div>
         </div>
          <el-pagination
         background
@@ -67,86 +68,77 @@ export default {
             isClass: false,
             currentPage: 1,
             pageSize: 9,
-            imagePath1:[
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')}
-            ],
-            imagePath2:[
-                {path:require('./images/two.jpg')},
-                {path:require('./images/two.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')}
-            ],
             // 轮播图使用的图片列表
             imgList:[
-            {id:0,idView:require('./images/one.jpg')},
-            {id:1,idView:require('./images/two.jpg')},
-            {id:2,idView:require('./images/one.jpg')},
-            {id:0,idView:require('./images/one.jpg')},
-            {id:1,idView:require('./images/two.jpg')},
-            {id:2,idView:require('./images/one.jpg')}
+            
             //imagebox是assets下一个放图片的文件夹
             ],
             idoLists:[
-                {path:require('./images/two.jpg')},
-                {path:require('./images/back1.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/back2.jpg')},
-                {path:require('./images/two.jpg')},
-                {path:require('./images/two.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/two.jpg')},
-                {path:require('./images/back4.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/back9.jpg')},
-                {path:require('./images/back6.jpg')},
-                {path:require('./images/two.jpg')},
-                 {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/two.jpg')},
-                {path:require('./images/back8.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/one.jpg')},
-                {path:require('./images/back5.jpg')},
-                {path:require('./images/one.jpg')}
+                {id:1,
+                path:require('./images/one.jpg'),
+                name:"pic1",
+                score:1},
+                {id:2,
+                path:require('./images/back8.jpg'),
+                name:"pic2",
+                score:2},
+                {id:3,
+                path:require('./images/back9.jpg'),
+                name:"pic3",
+                score:3},
+                 {id:5,
+                 path:require('./images/one.jpg'),
+                name:"pic1",
+                score:1},
+                {id:7,
+                path:require('./images/back4.jpg'),
+                name:"pic2",
+                score:2},
+                {
+                id:8,
+                path:require('./images/back6.jpg'),
+                name:"pic3",
+                score:3},
+                {id:9,
+                path:require('./images/back5.jpg'),
+                name:"pic1",
+                score:1},
+                {id:11,
+                path:require('./images/back1.jpg'),
+                name:"pic2",
+                score:2},
+                {id:13,
+                path:require('./images/one.jpg'),
+                name:"pic3",
+                score:3},
             ],
         }
     },
     methods:{
-        getPhoto(){
-        this.$axios.get("/api/user/ImgPath").then(res=>{
-         //控制台打印
-        console.log(res.data);
-        //对数据初始化
-        if(res.data.imagePath1!=null) this.imagePath1=res.data.imagePath1;
-        if(res.data.imagePath2!=null) this.imagePath2=res.data.imagePath2;})
-        },
+        // getPhoto(){
+        // this.$axios.get("/api/user/ImgPath").then(res=>{
+        //  //控制台打印
+        // console.log(res.data);
+        // //对数据初始化
+        // if(res.data.imagePath1!=null) this.imagePath1=res.data.imagePath1;
+        // if(res.data.imagePath2!=null) this.imagePath2=res.data.imagePath2;})
+        // },
         currentChange(val) {
         // alert(val)
         this.currentPage = val;
         // alert(this.currentPage);
         },
+        clickMv(val1, val2){
+           // alert(val1+val2);
+           console.log(val2)
+            this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        }
     },
     
-    created(){
-        //请求初始化图片链接
-        this.getPhoto();
-    },
+    // created(){
+    //     //请求初始化图片链接
+    //     this.getPhoto();
+    // },
     
 }
 </script>
@@ -194,22 +186,22 @@ export default {
      width: 100%;
      height: 900px;
  }
- #images-show .image-page a{
+ #images-show .image-page .item{
      display: block;
      float: left;
      font-size: 13px;
      text-align: center;
-     margin-right: 30px;
+     margin-right: 3%;
      /* margin-bottom: 10px; */
-     width: 220px;
+     width: 30%;
      height: 300px;
      
  }
- #images-show .image-page a .image-div{
+ #images-show .image-page .item .image-div{
      height: 80%;
      width: 100%
  }
- #images-show .image-page a img{
+ #images-show .image-page .item img{
      max-width: 100%;
      max-height: 100%;
      vertical-align: middle;
