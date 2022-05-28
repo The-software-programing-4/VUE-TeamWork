@@ -22,6 +22,22 @@ const routes = [
     path: '/user/message',
     name: 'Message',
     component: () => import('../components/Functional/message.vue')
+  },
+  {
+
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/signIn',
+    name: 'SignIn',
+    component: () => import('../views/SignView.vue')
+  },
+  {
+    path: '/phonelogin',
+    name: 'PhoneLogin',
+    component: () => import('../views/PhoneLoginView.vue')
   }
 ]
 
