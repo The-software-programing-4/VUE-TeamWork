@@ -92,9 +92,32 @@
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">短评</div>
-                <div class="indent"></div>
+                <div class="commentCard">
+                    <ul>
+                        <li v-for="(item, index) in marks" class="commentItem">
+                            <div class="commentNav">
+                                <a href="#" class="commentUser">{{item.username}}</a>
+                                <span class="commentStar">
+                                    <el-rate
+                                        v-model="item.score"
+                                        disabled
+                                        text-color="#ff9900">
+                                    </el-rate>
+                                </span>
+                                <span class="commentThumb">{{item.thumb}}
+                                <a @click="thumb(index)">{{item.isthumb}}</a>
+                                </span>
+                                <span class="commentDate">
+                                    {{item.day}}
+                                </span>
+                            </div>
+                            <div>{{item.content}}</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -104,6 +127,18 @@ import axios from 'axios';
 export default {
     data(){
         return{
+            marks:[
+                {
+                id: 1,
+                username: 'ando',
+                score: 3,
+                content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
+                thumb: 0,
+                reply: 0,
+                day: '2022.5.21 15:36:01',
+                isthumb: '点赞', 
+                },
+            ],
             directory: '',
             brief_introduction_of_author: '',
             brief_introduction: '',
@@ -111,10 +146,11 @@ export default {
             src: '',
             isbn: '',
             price: '',
+            book_id: 1,
             pages_number: '',
             press: '',
             publish_date: '',
-            bookname: "杀死一只知更鸟",
+            bookname: "",
             author: '',
             stars: [
             {isshow: false },
@@ -146,17 +182,34 @@ export default {
             }
             this.starCom = '';
         },
-    
+        thumb(index){
+            if(this.marks[index].isthumb == "点赞"){
+                this.marks[index].thumb++;
+                this.marks[index].isthumb = '已点赞'
+            }
+            else{
+                this.marks[index].thumb--;
+                this.marks[index].isthumb = '点赞'
+            }
+            var url='/api/mark/thumb';
+            this.$axios.post(
+                url,
+                {
+                    id: this.marks[index].id,
+                    target: this.marks[index].thumb
+                }
+            )
+        },
         getData(){
             var url='/api/book/message_get';
             this.$axios.post(
                 url,
-                this.bookname,
-                {
-                    headers: {
-                        'Content-Type':'application/text'
-                    }
-                }
+                this.book_id
+                // {
+                //     headers: {
+                //         'Content-Type':'application/text'
+                //     }
+                // }
             )
             .then(
                 res=>{
@@ -177,10 +230,35 @@ export default {
             .catch(err => {              
                 console.log(err);
             })
+        },
+        getMarks(){
+            var url='/api/marks/getmark';
+            this.$axios.post(
+                url,
+                {
+                type:1,
+                target:this.book_id
+                }
+                // {
+                //     headers: {
+                //         'Content-Type':'application/text'
+                //     }
+                // }
+            )
+            .then(
+                res=>{
+                    console.log(res.data)
+                    this.marks = res.data.marks;
+                }
+            )
+            .catch(err => {              
+                console.log(err);
+            })
         }
     },
     created(){
         this.getData();
+        this.getMarks();
     }
 }
 </script>
