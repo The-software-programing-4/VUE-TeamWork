@@ -1,8 +1,11 @@
 <template>
+  <div class="about">
+    <headTop></headTop>
+    
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆瓣酱小组</a>
+            <a href="">豆瓣酱电影</a>
         </div>
         <div class="items">
             <ul>
@@ -28,39 +31,80 @@
                     <input type="text" id="search" placeholder="小组 话题" v-model="searchText">
                 </div>
                 <div class="up">
-                    <input type="submit" value="搜索一下" @click="onSearch">
+                    <!-- <input  value="搜索一下" @click="onSearch"  > -->
+                    <el-button type="success" icon="el-icon-search" @click="onSearch" background-color="#67C23A">搜索</el-button>
                 </div>
             </form>
         </div>
     </div>
+    <!-- 电影展示 -->
+    <div v-show="showScene==1">
+        <showIm></showIm>
+    </div>
+    <!-- 搜索结果展示 -->
+    <div v-show="showScene==0" id="search-result">
+    <!-- 给子组件的msg变量传值 -->
+        <searchImg :msg="searchText"></searchImg>
+    </div>
+  </div>
 </template>
 <script>
-export default{
-    data(){
+import headTop from "../components/pry_part/headtop.vue"
+import showIm from"../components/pry_part/showIm.vue"
+import searchImg from"../components/pry_part/searchResultShow.vue"
+import searchBox from"../components/pry_part/searchBox.vue"
+export default {
+  components:{
+    headTop,
+    showIm,
+    searchImg,
+    searchBox
+  },
+   data(){
         return{
             searchText:'',
-            searching:0,
+            showScene:1,//showScence决定展示哪一个页面
+            searchImgResult:[
+                {path:require("../components/pry_part/images/one.jpg"),
+                name:"名字1",
+                score:"2分"},
+                {path:require("../components/pry_part/images/two.jpg"),
+                name:"名字2",
+                score:"3分"}
+            ]
+
         }
     },
     methods:{
         onSearch(){
-           // this.$emit("getData", this.searchText);//给父组件传值
-             alert(this.searchText);
-            // //点击跳转到搜索结果页面
-            // this.$router.push({path:"/searchResult"})
+           // alert(this.searchText+this.searching);
+            this.showScene=0;
+            alert(this.searchText+this.showScene);
+            var url='http://127.0.0.1:8080/changeMessage';
+            axios.post(url,
+                    this.searchText//提交的是搜索框内容
+            ).then(res => {
+            console.log(res);
+            alert("更新成功！")
+            })
+            this.status=0;
         },
     },
+
 }
 </script>
 <style scoped>
+/* 搜索框样式 */
     #db-nav-group{
         position: relative;
-        background-color: #FFFFcc;
+        /* background-color: #FFFFcc; */
+        background: url("../components/pry_part/images/back9.jpg");
         height: 98px;
         width: 100%;
         margin: 0;
         padding: 0;
-    }
+        background-size: 100%, 100%;
+        }
     #db-nav-group .logo{
         height: 58px;
         width: 145px;
@@ -94,7 +138,7 @@ export default{
         color: #339933;
     }
     #db-nav-group .nav-search{
-        height: 50px;
+        height: 30px;
         margin-top: 40px;
         width: 25%;
         float: right;
@@ -105,8 +149,9 @@ export default{
         float: left;
         border: transparent;
         width: 70%;
-        height: 20px;
+        height: 40px;
         font-size: 15px;
+        
     }
     #db-nav-group .nav-search .up input{
         float: left;
@@ -115,4 +160,5 @@ export default{
         color: #FFFFcc;
         width: 20%;
     }
+/* 搜索框样式end */
 </style>
