@@ -29,6 +29,11 @@ const routes = [
     component: () => import('../components/Functional/message.vue')
   },
   {
+    path: '/user/login',
+    name: 'Message2',
+    component: () => import('../components/Functional/login.vue')
+  },
+  {
 
     path: '/login',
     name: 'Login',
