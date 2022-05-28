@@ -7,7 +7,7 @@
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="250px" wight="100px">
       <el-carousel-item v-for="img in imgList" :key="img.mid">
-        <img :src="img.path" class="image" @click="clickMv(img.name, 2)">
+        <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
@@ -27,20 +27,20 @@
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         <div class="image-page" >
             <!-- 放对影片详细介绍的网址 -->
-            <div v-for='img in idoLists.slice(
+            <div v-for='img in imgList.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )' href=""  class="item" >
                 <div class="image-div">
-                    <!-- <img :src="img.path"/> -->
-                     <img :src="img.path" class="image" @click="clickMv(img.name, 2)">
+                    <!-- <img :src="isrc"/> -->
+                     <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
                     <!-- <el-image
                         style=" height: 100%"
-                        :src="img.path"
+                        :src="isrc"
                         :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
                 <p>
-                    当前页{{currentPage}}
+                    当前页{{currentPage}}{{img.name}}
                 </p>
             </div>
         </div>
@@ -53,9 +53,6 @@
         :total="idoLists.length"
          >
       </el-pagination>
-        <div class="block">
-    
-</div>
     </div>
     
 </template>
@@ -64,87 +61,87 @@ export default {
     data(){
         return{
             showbox:1,
-            // showClass:"imagePath1",
+            // showClass:"imsrc1",
             isClass: false,
             currentPage: 1,
             pageSize: 9,
             // 轮播图使用的图片列表
             imgList:[
                 {mid:1,
-                path:require('./images/one.jpg'),
+    src:require('./images/one.jpg'),
                 name:"pic1",
                 score:1},
                 {mid:2,
-                path:require('./images/back8.jpg'),
+    src:require('./images/back8.jpg'),
                 name:"pic2",
                 score:2},
                 {mid:3,
-                path:require('./images/back9.jpg'),
+    src:require('./images/back9.jpg'),
                 name:"pic3",
                 score:3},
                  {mid:5,
-                 path:require('./images/one.jpg'),
+        src:require('./images/one.jpg'),
                 name:"pic1",
                 score:1},
                 {mid:7,
-                path:require('./images/back4.jpg'),
+    src:require('./images/back4.jpg'),
                 name:"pic2",
                 score:2},
                 {
                 mid:8,
-                path:require('./images/back6.jpg'),
+    src:require('./images/back6.jpg'),
                 name:"pic3",
                 score:3},
                 {mid:9,
-                path:require('./images/back5.jpg'),
+    src:require('./images/back5.jpg'),
                 name:"pic1",
                 score:1},
                 {mid:11,
-                path:require('./images/back1.jpg'),
+    src:require('./images/back1.jpg'),
                 name:"pic2",
                 score:2},
                 {mid:13,
-                path:require('./images/one.jpg'),
+    src:require('./images/one.jpg'),
                 name:"pic3",
                 score:3},
             //imagebox是assets下一个放图片的文件夹
             ],
             idoLists:[
-                {id:1,
-                path:require('./images/one.jpg'),
+                {mid:1,
+    src:require('./images/one.jpg'),
                 name:"pic1",
                 score:1},
-                {id:2,
-                path:require('./images/back8.jpg'),
+                {mid:2,
+    src:require('./images/back8.jpg'),
                 name:"pic2",
                 score:2},
-                {id:3,
-                path:require('./images/back9.jpg'),
+                {mid:3,
+    src:require('./images/back9.jpg'),
                 name:"pic3",
                 score:3},
-                 {id:5,
-                 path:require('./images/one.jpg'),
+                 {mid:5,
+        src:require('./images/one.jpg'),
                 name:"pic1",
                 score:1},
-                {id:7,
-                path:require('./images/back4.jpg'),
+                {mid:7,
+    src:require('./images/back4.jpg'),
                 name:"pic2",
                 score:2},
                 {
-                id:8,
-                path:require('./images/back6.jpg'),
+                mid:8,
+    src:require('./images/back6.jpg'),
                 name:"pic3",
                 score:3},
-                {id:9,
-                path:require('./images/back5.jpg'),
+                {mid:9,
+    src:require('./images/back5.jpg'),
                 name:"pic1",
                 score:1},
-                {id:11,
-                path:require('./images/back1.jpg'),
+                {mid:11,
+    src:require('./images/back1.jpg'),
                 name:"pic2",
                 score:2},
-                {id:13,
-                path:require('./images/one.jpg'),
+                {mid:13,
+    src:require('./images/one.jpg'),
                 name:"pic3",
                 score:3},
             ],
@@ -209,12 +206,14 @@ export default {
     margin-bottom: 10px;
     margin-top:10px;
     height: 20px;
+    font-size: 15px;
 }
 #images-show .choose-page button{
     text-align: center;
     background-color: #ffffff;
     border: transparent;
     margin-right: 5px;
+    font-size: 15px;
     float: left;
     /* color: aliceblue; */
 }
@@ -233,7 +232,7 @@ export default {
  #images-show .image-page .item{
      display: block;
      float: left;
-     font-size: 13px;
+     font-size: 15px;
      text-align: center;
      margin-right: 3%;
      /* margin-bottom: 10px; */

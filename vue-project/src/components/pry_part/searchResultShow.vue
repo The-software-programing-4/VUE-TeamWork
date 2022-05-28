@@ -15,7 +15,7 @@
         </div>
         <div class="detail">
             <div>
-                <a href="">名字:{{img.name}}</a>
+                <div @click="clickMv(img.name, 2)">名字:{{img.name}}</div>
             </div>
             <div>
                 <el-rate
@@ -144,6 +144,11 @@ export default {
         this.currentPage = val;
         // alert(this.currentPage);
         },
+        clickMv(val1, val2){
+           // alert(val1+val2);
+           console.log(val2);
+            this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        }
    }
 
 }

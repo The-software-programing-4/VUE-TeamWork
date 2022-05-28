@@ -53,7 +53,13 @@ const routes = [
     path: '/movieInfo',
     name: 'movieInfo',
     component: () => import('../views/MovieInfoView.vue')
-  }
+  },
+  {
+    path: '/TopicShow',
+    name: 'TopicShow',
+    component: () => import('../views/TopicShow.vue')
+  },
+  
 ]
 
 const router = new VueRouter({
