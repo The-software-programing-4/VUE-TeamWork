@@ -65,7 +65,7 @@ export default {
    data(){
         return{
             searchText:'',
-            showScene:0,//showScence决定展示哪一个页面，0时显示搜索结果
+            showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
                 {path:require("../components/pry_part/images/one.jpg"),
                 name:"名字1",

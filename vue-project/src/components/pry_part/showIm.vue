@@ -25,15 +25,6 @@
                <button @click.stop="showbox=5">日本</button>
         </div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <el-pagination
-        background
-        layout="prev, pager, next"
-        :page-size="pageSize"
-        :current-page="currentPage"
-        @current-change="currentChange"
-        :total="idoLists.length"
-         >
-      </el-pagination>
         <div class="image-page" >
             <!-- 放对影片详细介绍的网址 -->
             <a v-for='img in idoLists.slice(
@@ -52,6 +43,15 @@
                 </p>
             </a>
         </div>
+         <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        @current-change="currentChange"
+        :total="idoLists.length"
+         >
+      </el-pagination>
         <div class="block">
     
 </div>
@@ -63,6 +63,7 @@ export default {
     data(){
         return{
             showbox:1,
+            // showClass:"imagePath1",
             isClass: false,
             currentPage: 1,
             pageSize: 9,
@@ -191,6 +192,7 @@ export default {
  } 
  #images-show .image-page{
      width: 100%;
+     height: 900px;
  }
  #images-show .image-page a{
      display: block;
@@ -198,7 +200,7 @@ export default {
      font-size: 13px;
      text-align: center;
      margin-right: 30px;
-     margin-bottom: 10px;
+     /* margin-bottom: 10px; */
      width: 220px;
      height: 300px;
      
