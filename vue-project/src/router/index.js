@@ -48,7 +48,23 @@ const routes = [
     path: '/phonelogin',
     name: 'PhoneLogin',
     component: () => import('../views/PhoneLoginView.vue')
-  }
+  },
+  {
+    path: '/bookInfo',
+    name: 'bookInfo',
+    component: () => import('../views/BookInfoView.vue')
+  },
+  {
+    path: '/movieInfo',
+    name: 'movieInfo',
+    component: () => import('../views/MovieInfoView.vue')
+  },
+  {
+
+    path: '/TopicShow',
+    name: 'TopicShow',
+    component: () => import('../views/TopicShow.vue')
+  },
 ]
 
 const router = new VueRouter({

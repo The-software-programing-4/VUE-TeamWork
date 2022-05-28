@@ -53,9 +53,7 @@
         :total="idoLists.length"
          >
       </el-pagination>
-        <div class="block">
-    
-</div>
+
     </div>
     
 </template>
@@ -112,7 +110,8 @@ export default {
             ],
             idoLists:[
                 {mid:1,
-    src:'./images/one.jpg',
+
+    src:require('./images/one.jpg'),
                 name:"pic1",
                 score:1},
                 {mid:2,
@@ -158,6 +157,7 @@ export default {
         getPhoto(){
             var url='/api/movie/listmovie';
             console.log("start");
+
             this.$axios.post(
                 url,
                 "123"
