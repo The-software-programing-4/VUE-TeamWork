@@ -97,11 +97,13 @@ export default {
 /* 搜索框样式 */
     #db-nav-group{
         position: relative;
-        background-color: #FFFFcc;
+        /* background-color: #FFFFcc; */
+        background: url("../components/pry_part/images/back9.jpg");
         height: 98px;
         width: 100%;
         margin: 0;
         padding: 0;
+        background-size: 100%, 100%;
         }
     #db-nav-group .logo{
         height: 58px;
