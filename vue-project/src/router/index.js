@@ -27,6 +27,32 @@ const routes = [
     path: '/user/message',
     name: 'Message',
     component: () => import('../components/Functional/message.vue')
+  },
+  {
+
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/signIn',
+    name: 'SignIn',
+    component: () => import('../views/SignView.vue')
+  },
+  {
+    path: '/phonelogin',
+    name: 'PhoneLogin',
+    component: () => import('../views/PhoneLoginView.vue')
+  },
+  {
+    path: '/bookInfo',
+    name: 'bookInfo',
+    component: () => import('../views/BookInfoView.vue')
+  },
+  {
+    path: '/movieInfo',
+    name: 'movieInfo',
+    component: () => import('../views/MovieInfoView.vue')
   }
 ]
 
