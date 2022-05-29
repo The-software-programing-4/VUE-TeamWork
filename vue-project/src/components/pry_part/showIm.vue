@@ -148,6 +148,7 @@ export default {
                 name:"pic3",
                 score:3},
             ],
+            str:'a'
         }
     },
     methods:{
@@ -160,22 +161,17 @@ export default {
 
             this.$axios.post(
                 url,
-                "123"
+                this.str
             )
             .then(
                 res=>{
                     this.imgList=res.data.messages;
-                    console.log(res.messages);
-                    var str="http://39.105.102.182:8080/";
-                    for(var i=0;i<this.imgList.length;i++)
+                    console.log(res.data.messages);
+                    for(var i=0;i<res.data.messages.length;i++)
                     {
-                        var temp;
-                        temp=res.data.messages[i].src;
-                        temp=str+temp;
-                        this.imgList[i].src=temp;
-                        //console.log(temp);
+                        var temp=res.data.messages[i];
+                        this.imgList[i].src=this.$hostURL+'/'+temp.src;
                     }
-                    console.log(this.imgList.length);
                 }
             )
             // .catch(err => {              
