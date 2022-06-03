@@ -63,7 +63,7 @@
 <script>
 import headTop from "../components/pry_part/headtop.vue"
 import showbook from"../components/pry_part/showbook.vue"
-import searchImg from"../components/pry_part/searchResultShow.vue"
+import searchImg from"../components/pry_part/BookSearchResult.vue"
 import searchBox from"../components/pry_part/searchBox.vue"
 import BookInfoCard from "../components/Books/bookInfoCard.vue"
 import movielist from "../components/PYK-component/movielist.vue"

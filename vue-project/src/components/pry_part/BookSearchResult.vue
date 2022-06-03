@@ -4,7 +4,7 @@
     <!-- {{msg}} -->
 
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{msg}}搜索结果</div>
+    <div id="crossLine">{{msg}}的搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="img-show" v-for="img in imageResult1.slice(
           (currentPage - 1) * pageSize,
@@ -14,12 +14,12 @@
             <!-- <a href="" class="a-img">
                 <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
             </a> -->
-            <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
+            <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
         </div>
         <div class="detail">
             <div>
 
-                <div @click="clickMv(img.name, 2)">名字:{{img.name}}</div>
+                <div @click="clickMv(img.bookname, 2)">名字:{{img.bookname}}</div>
             </div>
             <div>
                 <el-rate
@@ -31,8 +31,9 @@
                 </el-rate>
             </div>
             <div>
-                <p>简介：{{img.brief_introduction}}
+                <p>作者：{{img.author}}
                 </p>
+                <p>出版社：{{img.press}}</p>
             </div>
         </div>
     </div>
