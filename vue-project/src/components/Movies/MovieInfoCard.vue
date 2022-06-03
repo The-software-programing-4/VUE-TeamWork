@@ -110,7 +110,7 @@ import "@/css/style.css";
 export default {
     data(){
         return{
-            name: '美丽人生',
+            //name: '美丽人生',
             mid:  '',
             src: '',
             directors: '',

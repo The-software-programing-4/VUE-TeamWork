@@ -54,10 +54,10 @@ export default {
   },
   methods: {
     download_movielist() {
-      // this.$axios.get("http://39.105.102.182:8080/api/movie").then((res) => {
-      //   console.log(res.data);
-      //   this.movietableData = res.data.movietableData;
-      // });
+      this.$axios.get("/api/movie/listmovie").then((res) => {
+        console.log(res.data);
+        this.movietableData = res.data.movietableData;
+      });
     },
   },
   filters: {
