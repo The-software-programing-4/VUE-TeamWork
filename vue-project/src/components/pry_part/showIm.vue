@@ -49,7 +49,7 @@
                         :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
                 <p>
-                    当前页{{currentPage}}{{img.name}}
+                    {{img.name}}
                 </p>
             </div>
         </div>
