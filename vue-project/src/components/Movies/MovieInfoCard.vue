@@ -170,7 +170,8 @@ export default {
             )
             .then(
                 res=>{
-                    this.src = res.data.src;
+                    
+                    this.src = this.$hostURL+'/'+res.data.src;
                     this.mid = res.data.mid;
                     this.score = res.data.score;
                     this.actors = res.data.actors;
