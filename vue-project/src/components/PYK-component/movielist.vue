@@ -4,17 +4,16 @@
       stripe
       highlight-current-row
       style="width: 350"
-      :default-sort="{ prop: 'score', order: 'descending' }"
       max-height="870"
     >
       <el-table-column type="index"></el-table-column>
-      <el-table-column label="一周口碑榜" prop="score" width="300">
+      <el-table-column label="一周口碑榜"  width="300">
         <template slot-scope="scope">
           <el-descriptions :column="2" size="mini" :colon="false">
             <el-descriptions-item span="2" label="">
               <el-link
                 :underline="false"
-                :href="scope.row.movie_link"
+                :href=""
                 style="font-size: 15px"
               >
                 {{ scope.row.name | ellipsis }}
@@ -30,7 +29,7 @@
               </el-rate>
             </el-descriptions-item>
             <el-descriptions-item label=""
-              >({{ scope.row.num_of_evaluators }}人评价)</el-descriptions-item
+              >({{ scope.row.score }}人评价)</el-descriptions-item
             >
           </el-descriptions>
         </template>
@@ -51,10 +50,12 @@ export default {
   },
   methods: {
     download_movielist() {
+      console.log("start rank")
       this.$axios.post("/api/movie/listmovie").then((res) => {
-        console.log(res.data);
+        console.log(res.data.messages);
         this.movietableData = res.data.messages;
       });
+      console.log("end rank");
     },
   },
   filters: {
@@ -74,64 +75,3 @@ export default {
   },
 };
 </script>
-
-<!--
-  {
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 0.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 1.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 2.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 3.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 0.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 1.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 2.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 3.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 0.7,
-          num_of_evaluators: 10000000000,
-        },{
-          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          score: 1.7,
-          num_of_evaluators: 10000000000,
-        },
--->
-<!--
-  rank->由score排序
-  moviename->name
-  movie_link->?
-  movie_score->score
-  num_of_evaluators
--->
