@@ -71,6 +71,11 @@ const routes = [
     name: 'BookShow',
     component: () => import('../views/BookShow.vue')
   },
+  {
+    path: '/Group',
+    name: 'Group',
+    component: () => import('../views/Group.vue')
+  }
 ]
 
 const router = new VueRouter({
