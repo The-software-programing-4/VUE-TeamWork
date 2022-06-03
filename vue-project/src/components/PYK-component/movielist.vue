@@ -51,9 +51,9 @@ export default {
   },
   methods: {
     download_movielist() {
-      this.$axios.post("/api/movie/list_movie").then((res) => {
+      this.$axios.post("/api/movie/listmovie").then((res) => {
         console.log(res.data);
-        this.movietableData = res.data.message;
+        this.movietableData = res.data.messages;
       });
     },
   },
