@@ -121,5 +121,12 @@ export default {
 </script>
 
 <style>
-
+#showIm{
+ float: left;
+}
+#list{
+float: left;
+height: 100px;
+background-color:#339933 ;
+}
 </style>

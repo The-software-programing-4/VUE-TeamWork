@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>{{bookname}}</span>
+            <span>bookname:{{bookname}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -150,7 +150,7 @@ export default {
             pages_number: '',
             press: '',
             publish_date: '',
-            bookname: "",
+            // bookname: "",
             author: '',
             stars: [
             {isshow: false },
@@ -168,6 +168,9 @@ export default {
                 '力荐'
             ]
         }
+    },
+    props:{
+        bookname: String,//从父组件传值
     },
     methods: {
         fillStar(index){

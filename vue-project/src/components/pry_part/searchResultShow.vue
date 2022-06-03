@@ -5,13 +5,13 @@
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="crossLine">{{msg}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="img-show" v-for="img in imageResult.slice(
+    <div id="img-show" v-for="img in imageResult1.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )">
         <div class="item-root">
             <a href="" class="a-img">
-                <img :src="img.path" alt="">
+                <img :src="img.src" alt="">
             </a>
         </div>
         <div class="detail">
@@ -24,17 +24,12 @@
                 v-model="img.score"
                 disabled
                 show-score
-
                 text-color="#EA7500"
                 score-template="评分">
                 </el-rate>
             </div>
             <div>
-                <p>简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
+                <p>简介：{{img.brief_introduction}}
                 </p>
             </div>
         </div>
@@ -54,7 +49,7 @@
 export default {
    data(){
         return{
-            //msg:'123',
+            //msg:"的",
 
            isClass: false,
             currentPage: 1,
@@ -62,87 +57,31 @@ export default {
             imageResult:[
                 {path:require('./images/one.jpg'),
                 name:"pic1",
-                score:1},
+                score:1,
+                message:"123"},
 
-                {path:require('./images/back8.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {path:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back2.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/one.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {path:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back2.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/one.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3}
             ],
 
         }
     },
     props:{
-        msg:String//从父组件获取的值
+        msg:String,//从父组件获取的值
+        imageResult1:Array
     },
    created(){
-
-    //    axios.post(url,
-    //                 this.msg//提交的是搜索框内容
-    //         ).then(res => {
-    //         console.log(res);
-    //         alert("更新成功！")
-            
-    //     })
+       var url='/api/movie/moviesearch';
+       console.log("have created search");
+       this.$axios.post(url,
+                toString(this.msg),
+                {
+                        headers: {
+                      'Content-Type':'application/text'
+                    }
+                }
+            ).then(res => {
+            console.log(res.data);
+            this.imageResult=res.data.messages;
+        })
    },
    methods:{
        currentChange(val) {
@@ -154,6 +93,9 @@ export default {
            // alert(val1+val2);
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        },
+        getArr(arr){
+            this.imageResult1=arr;
         }
    }
 

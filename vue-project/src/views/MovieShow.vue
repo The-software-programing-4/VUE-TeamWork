@@ -5,7 +5,7 @@
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆瓣酱电影</a>
+            <!-- <a href="">豆瓣酱电影</a> -->
         </div>
         <div class="items">
             <ul>
@@ -45,7 +45,7 @@
     <!-- 搜索结果展示 -->
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
-        <searchImg :msg="searchText" @change="changeFromShowIm"></searchImg>
+        <searchImg :msg="searchText" ref="child" @change="changeFromShowIm"></searchImg>
     </div>
     <!-- 点击后对电影详情页的显示-->
     <div v-show="showScene==2">
@@ -91,25 +91,38 @@ export default {
                 name:"名字2",
                 score:"3分"}
             ]
-
         }
     },
     methods:{
         onSearch(){
-           // alert(this.searchText+this.searching);
+            //alert(this.searchText+this.searching);
             this.showScene=0;
-            // alert(this.searchText+this.showScene);
-            // var url='http://127.0.0.1:8080/changeMessage';
-            // axios.post(url,
-            //         this.searchText//提交的是搜索框内容
-            // ).then(res => {
-            // console.log(res);
-            // alert("更新成功！")j
-            // })
-            // this.status=0;
+            //alert(this.searchText+this.showScene);
+            var url='/api/movie/moviesearch';
+            this.$axios.post(url,
+                this.searchText,
+                 {
+                    headers: {
+                      'Content-Type':'application/text'
+                    }
+                }//提交的是搜索框内容
+            ).then(res => {
+            
+            this.searchImgResult=res.data.messages;
+
+            for(var i=0;i<res.data.messages.length;i++)
+            {
+                var temp=res.data.messages[i];
+                this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
+            }
+            console.log(this.searchImgResult);
+            console.log("更新成功！");
+            this.$refs.child.getArr(this.searchImgResult);
+            })
+            this.status=0;
         },
         // 事件处理函数
-       async changeFromShowIm(param1,param2) {//从子组件处获取的值
+        async changeFromShowIm(param1,param2) {//从子组件处获取的值
             this.showScene=param2;
             this.toMovieName=param1;
             alert(this.showScene+this.toMovieName);
@@ -132,12 +145,14 @@ export default {
         background-size: 100%, 100%;
         }
     #db-nav-group .logo{
-        height: 58px;
+        height: 100%;
         width: 145px;
-        margin-top: 30px;
+        margin-top: 0;
         float: left;
         margin-left: 50px;
         text-align: center;
+        background: url("../components/pry_part/images/logo.jpg");
+        background-size: 100%, 100%;
     }
     #db-nav-group .items{
         margin-top: 20px;

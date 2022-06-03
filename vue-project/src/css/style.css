@@ -433,3 +433,37 @@ h1 {
     cursor: pointer;
     color: #3377aa;
 }
+
+/* Home */
+.homeNav {
+    background-image: url(../assets/homePhone.jpg);
+    background-color: #edf4ed;
+    background-size: contain;
+    background-position: calc(50% - 305px) top;
+    background-repeat: no-repeat;
+    height: 300px;
+}
+
+.homeNavLogin {
+    width: 20%;
+    float: right;
+    margin-right: 20%;
+    margin-top: 5%;
+}
+
+.homeLoginIn {
+    margin-bottom: 10px;
+}
+
+.homeFoot {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.homeICP {
+    margin-top: 20px;
+    color: #999;
+    font: 12px Helvetica, Arial, sans-serif;
+}
