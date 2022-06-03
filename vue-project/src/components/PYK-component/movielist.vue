@@ -3,14 +3,12 @@
       :data="movietableData"
       stripe
       highlight-current-row
-      style="width: 100%"
-      :default-sort="{ prop: 'rank', order: 'ascending' }"
-      max-height="800"
+      style="width: 350"
+      :default-sort="{ prop: 'score', order: 'descending' }"
+      max-height="870"
     >
-      <el-table-column prop="rank" width="40">
-        <template slot-scope="scope"> {{ scope.row.rank }}. </template>
-      </el-table-column>
-      <el-table-column label="一周口碑榜" width="350">
+      <el-table-column type="index"></el-table-column>
+      <el-table-column label="一周口碑榜" prop="score" width="300">
         <template slot-scope="scope">
           <el-descriptions :column="2" size="mini" :colon="false">
             <el-descriptions-item span="2" label="">
@@ -19,14 +17,13 @@
                 :href="scope.row.movie_link"
                 style="font-size: 15px"
               >
-                {{ scope.row.moviename | ellipsis }}
+                {{ scope.row.name | ellipsis }}
               </el-link>
             </el-descriptions-item>
             <el-descriptions-item label="">
               <el-rate
-                v-model="scope.row.movie_score"
+                v-model="scope.row.score"
                 disabled
-                show-score
                 text-color="#ff9900"
                 @change="rateChange"
               >
@@ -54,17 +51,17 @@ export default {
   },
   methods: {
     download_movielist() {
-      this.$axios.get("/api/movie/listmovie").then((res) => {
+      this.$axios.post("/api/movie/list_movie").then((res) => {
         console.log(res.data);
-        this.movietableData = res.data.movietableData;
+        this.movietableData = res.data.message;
       });
     },
   },
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 30) {
-        return value.slice(0, 30) + "...";
+      if (value.length > 20) {
+        return value.slice(0, 20) + "...";
       }
       return value;
     },
@@ -79,74 +76,62 @@ export default {
 </script>
 
 <!--
-		{
-          rank: 1,
-          moviename: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+  {
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
           movie_link: "/",
-          movie_score: 0.7,
+          score: 0.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 1.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 2.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 3.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 0.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 1.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 2.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 3.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 0.7,
+          num_of_evaluators: 10000000000,
+        },{
+          name: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+          movie_link: "/",
+          score: 1.7,
           num_of_evaluators: 10000000000,
         },
-        {
-          rank: 2,
-          moviename: "moviebaaaaaaaaaaaaaaaaaaaaaaaazzzz",
-          movie_link: "/",
-          movie_score: 3.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 3,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 4,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 5,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 6,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 7,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 8,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 9,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 10,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
+-->
+<!--
+  rank->由score排序
+  moviename->name
+  movie_link->?
+  movie_score->score
+  num_of_evaluators
 -->
