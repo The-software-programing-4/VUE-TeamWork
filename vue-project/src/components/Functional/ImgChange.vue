@@ -88,7 +88,7 @@
         }
         if(res.data.message)
         {
-          this.imageUrl="http://127.0.0.1:8080/"+res.data.message;
+          this.imageUrl=this.$hostURL+"/"+res.data.message;
         }
         console.log(this.imageUrl);
          })
