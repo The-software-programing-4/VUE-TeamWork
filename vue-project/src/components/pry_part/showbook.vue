@@ -52,7 +52,9 @@
                 </p>
             </div>
         </div>
-       
+       <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
+        <div id="crossLine3">最受欢迎的书评</div>
+        <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         
 
     </div>
@@ -217,6 +219,15 @@ export default {
     font-size: 20px;
     color: #097262;
     background: url("./images/yellow5.jpg");
+    background-size: 100%, 100%;
+}
+#crossLine3{ 
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 20px;
+    color: #097262;
+    background: url("./images/yellow8.jpg");
     background-size: 100%, 100%;
 }
 #images-show .choose-page{

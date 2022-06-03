@@ -5,7 +5,7 @@
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆酱图书</a>
+            <!-- <a href="">豆酱图书</a> -->
         </div>
         <div class="items">
             <ul>
@@ -146,12 +146,14 @@ export default {
         background-size: 100%, 100%;
         }
     #db-nav-group .logo{
-        height: 58px;
+        height: 100%;
         width: 145px;
-        margin-top: 30px;
+        margin-top: 0;
         float: left;
         margin-left: 50px;
         text-align: center;
+        background: url("../components/pry_part/images/logo.jpg");
+        background-size: 100%, 100%;
     }
     #db-nav-group .items{
         margin-top: 20px;
