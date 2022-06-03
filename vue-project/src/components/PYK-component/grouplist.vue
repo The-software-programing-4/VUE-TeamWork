@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       grouptableData: [
-        
+        	
       ],
     };
   },
@@ -57,9 +57,9 @@ export default {
       this.$router.push(row.group_link);
     },
     download_grouplist() {
-      this.$axios.get("http://39.105.102.182:8080/api/group").then((res) => {
+      this.$axios.post("/api/group/grouplist").then((res) => {
         console.log(res.data);
-        this.grouptableData = res.data.grouptableData;
+        this.grouptableData = res.data.message;
       });
     },
   },
@@ -74,10 +74,6 @@ export default {
   },
   created() {
     this.download_grouplist();
-  },
-  mounted: function () {
-    // 高度调整
-    this.elTableHeight = $(".booklist").height();
   },
 };
 </script>

@@ -1,45 +1,32 @@
 <template>
-    <el-table
-      :data="booktableData"
-      stripe
-      highlight-current-row
-      style="width: 100%"
-      :default-sort="{ prop: 'rank', order: 'ascending' }"
-       max-height="800"
-	   >
-      <el-table-column prop="rank" width="40">
-        <template slot-scope="scope">{{scope.row.rank}}.</template>
-      </el-table-column>
-      <el-table-column label="畅销图书榜" width="300">
-        <template slot-scope="scope">
-          <el-descriptions :column="2" size="mini" :colon="false">
-            <el-descriptions-item span="2" label="">
-              <el-link
-                :underline="false"
-                :href="scope.row.book_link"
-                style="font-size: 15px"
-              >
-                {{ scope.row.bookname | ellipsis }}
-              </el-link>
-            </el-descriptions-item>
-            <el-descriptions-item>
-              [{{ scope.row.author_country }}] {{ scope.row.author }}
-            </el-descriptions-item>
-          </el-descriptions>
-        </template>
-      </el-table-column>
-      <el-table-column width="100">
-        <template slot-scope="scope">
-          <el-button
-            size="middle"
-			type="text"
-			plain
-            @click="gotopurchaselink(scope.$index, scope.row)"
-            >去购买</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
+  <el-table
+    :data="booktableData"
+    stripe
+    highlight-current-row
+    style="width: 300px"
+    :default-sort="{ prop: 'score', order: 'descending' }"
+    max-height="850"
+  >
+    <el-table-column type="index"></el-table-column>
+    <el-table-column label="畅销图书榜" prop="score" width="250">
+      <template slot-scope="scope" >
+        <el-descriptions  :column="1" size="mini" :colon="false">
+          <el-descriptions-item label="">
+            <el-link 
+              :underline="false"
+              :href="scope.row.book_link"
+              style="font-size: 15px"
+            >
+              {{ scope.row.name | ellipsis }}
+            </el-link>
+          </el-descriptions-item>
+          <el-descriptions-item >
+            {{ scope.row.author }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
@@ -59,17 +46,17 @@ export default {
       this.$router.push(row.purchase_link);
     },
     download_booklist() {
-      this.$axios.get("http://39.105.102.182:8080/api/book").then((res) => {
+      this.$axios.post("/api/book/listBook").then((res) => {
         console.log(res.data);
-        this.booktableData = res.data.booktableData;
+        this.booktableData = res.data.message;
       });
     },
   },
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 30) {
-        return value.slice(0, 30) + "...";
+      if (value.length > 15) {
+        return value.slice(0, 15) + "...";
       }
       return value;
     },
@@ -82,54 +69,66 @@ export default {
 
 <!--
 		{
-          rank: 1,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
+          name: "平凡的世界（全三部）",
+          author: "[中] 路遥",
           book_link: "/",
-          purchase_link: "/",
+          score: 5.0,
         },
         {
-          rank:2,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
+          name: "活着",
+          author: "[中] 余华",
           book_link: "/",
-          purchase_link: "/",
-        },{
-          rank: 3,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
-          book_link: "/",
-          purchase_link: "/",
-        },{
-          rank: 4,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
-          book_link: "/",
-          purchase_link: "/",
-        },{
-          rank: 5,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
-          book_link: "/",
-          purchase_link: "/",
-        },{
-          rank: 6,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
-          book_link: "/",
-          purchase_link: "/",
-        },{
-          rank: 7,
-          bookname: "bookazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          author_country: "英",
-          author: "author_a",
-          book_link: "/",
-          purchase_link: "/",
+          score: 4.9,
         },
+        {
+          name: "蛤蟆先生去看心理医生",
+          author: "[英] 罗伯特·戴博德",
+          book_link: "/",
+          score: 4.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 1.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+        {
+          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          author: "[z] author_a",
+          book_link: "/",
+          score: 5.8,
+        },
+-->
+<!--
+  book_link->?
 -->
