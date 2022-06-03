@@ -95,7 +95,7 @@
   text-align: left;
 }
 .message{
-  width: 500px;
+  width: 90%;
 }
 span{
   color: gray;
