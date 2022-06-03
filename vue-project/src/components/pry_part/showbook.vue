@@ -48,7 +48,7 @@
                         :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
                 <p>
-                    当前页{{currentPage}}{{img.name}}
+                    {{img.name}}
                 </p>
             </div>
         </div>
@@ -158,9 +158,9 @@ export default {
             return require(src);
         },
         getPhoto(){
-            var url='/api/movie/listmovie';
+            var url='/api/book/listBook';
             console.log("start");
-
+    
             this.$axios.post(
                 url,
                 this.str

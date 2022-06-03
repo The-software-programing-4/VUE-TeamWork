@@ -45,7 +45,7 @@
     <!-- 搜索结果展示 -->
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
-        <searchImg :msg="searchText" @change="changeFromShowIm"></searchImg>
+        <searchImg :msg="searchText" ref="child" @change="changeFromShowIm"></searchImg>
     </div>
     <!-- 点击后对图书详情页的显示-->
     <!-- 子组件的bookname变量的值是从父组件传的 -->
@@ -96,17 +96,30 @@ export default {
     },
     methods:{
         onSearch(){
-           // alert(this.searchText+this.searching);
-            this.showScene=0;
-            // alert(this.searchText+this.showScene);
-            // var url='http://127.0.0.1:8080/changeMessage';
-            // axios.post(url,
-            //         this.searchText//提交的是搜索框内容
-            // ).then(res => {
-            // console.log(res);
-            // alert("更新成功！")j
-            // })
-            // this.status=0;
+           this.showScene=0;
+            //alert(this.searchText+this.showScene);
+            var url='/api/book/booksearch';
+            this.$axios.post(url,
+                this.searchText,
+                 {
+                    headers: {
+                      'Content-Type':'application/text'
+                    }
+                }//提交的是搜索框内容
+            ).then(res => {
+            
+            this.searchImgResult=res.data.messages;
+
+            for(var i=0;i<res.data.messages.length;i++)
+            {
+                var temp=res.data.messages[i];
+                this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
+            }
+            console.log(this.searchImgResult);
+            console.log("更新成功！");
+            this.$refs.child.getArr(this.searchImgResult);
+            })
+            this.status=0;
         },
         // 事件处理函数
        async changeFromShowIm(param1,param2) {//从子组件处获取的值
