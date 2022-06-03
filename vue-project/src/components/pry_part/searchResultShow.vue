@@ -24,17 +24,12 @@
                 v-model="img.score"
                 disabled
                 show-score
-
                 text-color="#EA7500"
                 score-template="评分">
                 </el-rate>
             </div>
             <div>
-                <p>简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
+                <p>简介：{{img.brief_introduction}}
                 </p>
             </div>
         </div>
@@ -62,71 +57,9 @@ export default {
             imageResult:[
                 {path:require('./images/one.jpg'),
                 name:"pic1",
-                score:1},
+                score:1,
+                message:"123"},
 
-                {path:require('./images/back8.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {path:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back2.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/one.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {path:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-                {path:require('./images/back2.jpg'),
-                name:"pic1",
-                score:1},
-                {path:require('./images/one.jpg'),
-                name:"pic2",
-                score:2},
-                {path:require('./images/one.jpg'),
-                name:"pic3",
-                score:3}
             ],
 
         }
