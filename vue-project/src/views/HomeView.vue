@@ -1,6 +1,6 @@
 <template>
 <div>
-  <headtop></headtop>
+  <!-- <headtop></headtop> -->
   <homeCard></homeCard>
 </div>
 </template>

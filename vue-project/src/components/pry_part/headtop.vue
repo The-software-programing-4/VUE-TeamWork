@@ -3,7 +3,9 @@
         <div class="db">
             <div class="top-nav-info">
                 <!-- href里待添加login页面地址 -->
-                <a href="" class="nav-login" ref="nofollow">登录/注册</a>
+                <!-- <a href="" class="nav-login" ref="nofollow">登录/注册</a> -->
+                <router-link to="/user/login"> 登录</router-link>
+                <router-link to="/user/message"> 个人主页</router-link>
             </div>
             <div class="top-nav-app">
                 <!-- 待插入下载页面地址 -->

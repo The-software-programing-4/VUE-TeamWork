@@ -1,6 +1,6 @@
 <template>
 <div>
-    <headtop></headtop>
+    <!-- <headtop></headtop> -->
     <div>小组</div>
 </div>
 </template>
