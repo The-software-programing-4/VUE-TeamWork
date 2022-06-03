@@ -2,7 +2,7 @@
 
     <div id="images-show">
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine1">最新热映</div>
+        <div id="crossLine1">畅销图书</div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="250px" wight="100px">
@@ -11,18 +11,17 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2">热门电影</div>
+        <div id="crossLine2">新书速递</div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
         <div class="choose-page">
             <button @click.stop="showbox=1">全部</button>
-            <button @click.stop="showbox=2">热门</button>
-            <button @click.stop="showbox=3">最新</button>
-            <button @click.stop="showbox=4">豆酱高分</button>
-             <button @click.stop="showbox=5">冷门佳片</button>
-              <button @click.stop="showbox=5">华语</button>
-               <button @click.stop="showbox=5">欧美</button>
-               <button @click.stop="showbox=5">韩国</button>
-               <button @click.stop="showbox=5">日本</button>
+            <button @click.stop="showbox=2">文学</button>
+            <button @click.stop="showbox=3">小说</button>
+            <button @click.stop="showbox=4">历史文化</button>
+             <button @click.stop="showbox=5">社会纪实</button>
+              <button @click.stop="showbox=5">科学新知</button>
+               <button @click.stop="showbox=5">商业经营</button>
+               <button @click.stop="showbox=5">绘本漫画</button>
         </div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
           <el-pagination
@@ -60,6 +59,7 @@
     
 </template>
 <script>
+
 export default {
     data(){
         return{
@@ -67,7 +67,7 @@ export default {
             // showClass:"imsrc1",
             isClass: false,
             currentPage: 1,
-            pageSize: 9,
+            pageSize: 8,
             url:"",
             // 轮播图使用的图片列表
             imgList:[
@@ -158,9 +158,9 @@ export default {
             return require(src);
         },
         getPhoto(){
-            var url='/api/movie/listmovie';
+            var url='/api/book/listBook';
             console.log("start");
-
+    
             this.$axios.post(
                 url,
                 this.str
@@ -189,7 +189,7 @@ export default {
            // alert(val1+val2);
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
-        }
+        },
         
     },
     
@@ -205,9 +205,9 @@ export default {
     height: 70px;
     text-align: center;
     line-height: 70px;
-    color: #ffffff;
+    color: #097262;
     font-size: 20px;
-    background: url("./images/back1.jpg");
+    background: url("./images/yellow9.jpg");
     background-size: 100%, 100%;
 }
 #crossLine2{ 
@@ -215,7 +215,8 @@ export default {
     text-align: center;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/back2.jpg");
+    color: #097262;
+    background: url("./images/yellow5.jpg");
     background-size: 100%, 100%;
 }
 #images-show .choose-page{
@@ -244,7 +245,7 @@ export default {
  } 
  #images-show .image-page{
      width: 100%;
-     height: 900px;
+     height: 500px;
  }
  #images-show .image-page .item{
      display: block;
@@ -253,8 +254,8 @@ export default {
      text-align: center;
      margin-right: 3%;
      /* margin-bottom: 10px; */
-     width: 30%;
-     height: 290px;
+     width: 20%;
+     height: 240px;
      
  }
  #images-show .image-page .item .image-div{

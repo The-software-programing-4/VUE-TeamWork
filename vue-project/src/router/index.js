@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/user/message',
     name: 'Message',
-    component: () => import('../components/Functional/message.vue')
+    component: () => import('../views/message/message.vue')
   },
   {
     path: '/user/login',
@@ -64,6 +64,12 @@ const routes = [
     path: '/TopicShow',
     name: 'TopicShow',
     component: () => import('../views/TopicShow.vue')
+  },
+  {
+
+    path: '/BookShow',
+    name: 'BookShow',
+    component: () => import('../views/BookShow.vue')
   },
 ]
 

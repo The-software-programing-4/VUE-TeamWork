@@ -5,7 +5,7 @@
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆瓣酱电影</a>
+            <a href="">豆酱图书</a>
         </div>
         <div class="items">
             <ul>
@@ -13,10 +13,10 @@
                     <a href="">精选</a>
                 </li>
                 <li>
-                    <a href="">娱乐</a>
+                    <a href="">畅销</a>
                 </li>
                 <li>
-                    <a href="">时尚</a>
+                    <a href="">文学</a>
                 </li>
                 <li>
                     <a href="">科技</a>
@@ -38,18 +38,19 @@
         </div>
     </div>
     <div id="img-show">
-    <!-- 电影展示 -->
+    <!-- 图书主页展示 -->
     <div v-show="showScene==1">
-        <showIm @change="changeFromShowIm"></showIm>
+        <showbook @change="changeFromShowIm"></showbook>
     </div>
     <!-- 搜索结果展示 -->
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
         <searchImg :msg="searchText" ref="child" @change="changeFromShowIm"></searchImg>
     </div>
-    <!-- 点击后对电影详情页的显示-->
+    <!-- 点击后对图书详情页的显示-->
+    <!-- 子组件的bookname变量的值是从父组件传的 -->
     <div v-show="showScene==2">
-        <MovieInfoCard class="movieCard" :name="toMovieName"></MovieInfoCard>
+        <BookInfoCard class="movieCard" :bookname="toMovieName"></BookInfoCard>
     </div>
     </div>
     <div id="mvlist">
@@ -61,20 +62,19 @@
 </template>
 <script>
 import headTop from "../components/pry_part/headtop.vue"
-import showIm from"../components/pry_part/showIm.vue"
+import showbook from"../components/pry_part/showbook.vue"
 import searchImg from"../components/pry_part/searchResultShow.vue"
 import searchBox from"../components/pry_part/searchBox.vue"
-import MovieInfoCard from "../components/Movies/MovieInfoCard.vue"
+import BookInfoCard from "../components/Books/bookInfoCard.vue"
 import movielist from "../components/PYK-component/movielist.vue"
 import PopularMovieList from "../components/PYK-component/PopularMovieList.vue"
 export default {
   components:{
     headTop,
-    showIm,
+    showbook,
     searchImg,
     searchBox,
-    MovieInfoCard,
-    MovieInfoCard,
+    BookInfoCard,
     movielist,
     PopularMovieList,
 },
@@ -91,14 +91,14 @@ export default {
                 name:"名字2",
                 score:"3分"}
             ]
+
         }
     },
     methods:{
         onSearch(){
-            //alert(this.searchText+this.searching);
-            this.showScene=0;
+           this.showScene=0;
             //alert(this.searchText+this.showScene);
-            var url='/api/movie/moviesearch';
+            var url='/api/book/booksearch';
             this.$axios.post(url,
                 this.searchText,
                  {
@@ -122,7 +122,8 @@ export default {
             this.status=0;
         },
         // 事件处理函数
-        async changeFromShowIm(param1,param2) {//从子组件处获取的值
+       async changeFromShowIm(param1,param2) {//从子组件处获取的值
+       //从子组件获取的图书名字和将要展示的场景
             this.showScene=param2;
             this.toMovieName=param1;
             alert(this.showScene+this.toMovieName);
@@ -137,7 +138,7 @@ export default {
     #db-nav-group{
         position: relative;
         /* background-color: #FFFFcc; */
-        background: url("../components/pry_part/images/back9.jpg");
+        background: url("../components/pry_part/images/yellow1.jpg");
         height: 98px;
         width: 100%;
         margin: 0;

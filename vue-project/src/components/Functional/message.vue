@@ -95,7 +95,7 @@
   text-align: left;
 }
 .message{
-  width: 500px;
+  width: 90%;
 }
 span{
   color: gray;
@@ -151,7 +151,7 @@ export default {
     },
     methods: {
       onSubmit() {
-        var url='http://127.0.0.1:8080/api/user/message_set';
+        var url='api/user/message_set';
         console.log(this.form);
         this.form.l1=this.form.region1[0];
         this.form.l2=this.form.region1[1];

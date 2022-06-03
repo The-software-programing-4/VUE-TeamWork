@@ -5,7 +5,10 @@
       <router-link to="/">Home</router-link> 
       <router-link to="/about"> |About</router-link>
        <router-link to="/MovieShow"> |MovieShow</router-link>
+       <router-link to="/BookShow"> |BookShow</router-link>
        <router-link to="/TopicShow"> |TopicShow</router-link>
+       <router-link to="/user/login"> |Login</router-link>
+       <router-link to="/user/message"> |message</router-link>
     </nav>
     <router-view/>
   </div>

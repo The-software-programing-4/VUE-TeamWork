@@ -88,7 +88,7 @@
         }
         if(res.data.message)
         {
-          this.imageUrl="http://39.105.102.182:8080/"+res.data.message;
+          this.imageUrl=this.$hostURL+"/"+res.data.message;
         }
         console.log(this.imageUrl);
          })

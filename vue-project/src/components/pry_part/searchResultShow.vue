@@ -5,13 +5,13 @@
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="crossLine">{{msg}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="img-show" v-for="img in imageResult.slice(
+    <div id="img-show" v-for="img in imageResult1.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )">
         <div class="item-root">
             <a href="" class="a-img">
-                <img :src="img.path" alt="">
+                <img :src="img.src" alt="">
             </a>
         </div>
         <div class="detail">
@@ -54,7 +54,7 @@
 export default {
    data(){
         return{
-            //msg:'123',
+            //msg:"的",
 
            isClass: false,
             currentPage: 1,
@@ -132,17 +132,23 @@ export default {
         }
     },
     props:{
-        msg:String//从父组件获取的值
+        msg:String,//从父组件获取的值
+        imageResult1:Array
     },
    created(){
-
-    //    axios.post(url,
-    //                 this.msg//提交的是搜索框内容
-    //         ).then(res => {
-    //         console.log(res);
-    //         alert("更新成功！")
-            
-    //     })
+       var url='/api/movie/moviesearch';
+       console.log("have created search");
+       this.$axios.post(url,
+                toString(this.msg),
+                {
+                        headers: {
+                      'Content-Type':'application/text'
+                    }
+                }
+            ).then(res => {
+            console.log(res.data);
+            this.imageResult=res.data.messages;
+        })
    },
    methods:{
        currentChange(val) {
@@ -154,6 +160,9 @@ export default {
            // alert(val1+val2);
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        },
+        getArr(arr){
+            this.imageResult1=arr;
         }
    }
 

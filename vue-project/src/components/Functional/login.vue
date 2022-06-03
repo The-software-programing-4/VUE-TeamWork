@@ -26,14 +26,19 @@ export default {
   methods:{
       login(){
           var url="api/user/login";
-          this.$axios.post(url,this.form, {
+          this.$axios.post(url,this.form
+                    , {
                     headers: {
-                      'Content-Type':'application/json'
+                       'Content-Type': 'application/json',
+                        withCredentials: true
                     }
-                  }).then(res=> {
-                      alert(res.data.message);
+                    }
+                  ).then(res=> {
+                      //alert(res.data.message);
+                      console.log(res.data)
                       if(res.data.success === true)
-                         {   this.$router.push("/user/message");
+                         {   
+                              this.$router.push("/user/message");
                              //store.commit('setGuid',res.data.uid);
                          }
                   })
