@@ -31,7 +31,7 @@
                 </el-rate>
             </div>
             <div>
-                <p>简介：{{img.brief_introduction}}
+                <p>主演：{{img.actors}}
                 </p>
             </div>
         </div>

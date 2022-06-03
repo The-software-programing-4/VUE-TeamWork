@@ -14,19 +14,23 @@
                 <ul>
                     <li>
                         <!-- _blank指跳转页面时，新打开一个 -->
-                        <a href="" target="_blank">主页</a>
+                        <!-- <a href="" target="_blank">主页</a> -->
+                         <router-link to="/">主页</router-link>
                     </li>
                     <li>
-                        <a href="" target="_blank">读书</a>
+                        <!-- <a href="" target="_blank">读书</a> -->
+                         <router-link to="/BookShow">读书</router-link>
                     </li>
                     <li>
-                        <a href="" target="_blank">电影</a>
+                        <!-- <a href="" target="_blank">电影</a> -->
+                        <router-link to="/MovieShow">电影</router-link>
                     </li>
                     <li>
                         <a href="" target="_blank">小组</a>
                     </li>
                     <li>
-                        <a href="../../views/TopicShow.vue" target="_blank">话题</a>
+                        <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
+                        <router-link to="/TopicShow">话题</router-link>
                     </li>
                 </ul>
             </div>
