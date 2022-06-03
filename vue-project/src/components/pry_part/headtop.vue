@@ -26,7 +26,7 @@
                         <a href="" target="_blank">小组</a>
                     </li>
                     <li>
-                        <a href="" target="_blank">话题</a>
+                        <a href="../../views/TopicShow.vue" target="_blank">话题</a>
                     </li>
                 </ul>
             </div>

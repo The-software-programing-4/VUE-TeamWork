@@ -22,6 +22,12 @@
                 <a href="#">关于豆瓣酱小组</a>
             </div>
         </div>
+        <div id="showIm">
+            
+        </div>
+        <div id="list">
+
+        </div>
   </div>
 </template>
 
@@ -39,5 +45,17 @@ export default {
 </script>
 
 <style>
-
+#showIm{
+    width: 65%;
+    /* height: 100px; */
+    float: left;
+    background-color:blue;
+    height: 100px;
+}
+#list{
+    width: 35%;
+    float: left;
+    background-color:green ;
+    height: 100px;
+}
 </style>

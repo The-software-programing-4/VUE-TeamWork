@@ -19,10 +19,10 @@
             <button @click.stop="showbox=3">最新</button>
             <button @click.stop="showbox=4">豆酱高分</button>
              <button @click.stop="showbox=5">冷门佳片</button>
-              <button @click.stop="showbox=5">华语</button>
-               <button @click.stop="showbox=5">欧美</button>
-               <button @click.stop="showbox=5">韩国</button>
-               <button @click.stop="showbox=5">日本</button>
+              <button @click.stop="showbox=6">华语</button>
+               <button @click.stop="showbox=7">欧美</button>
+               <button @click.stop="showbox=8">韩国</button>
+               <button @click.stop="showbox=9">日本</button>
         </div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
           <el-pagination
