@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <headTop></headTop>
+    <!-- <headTop></headTop> -->
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->

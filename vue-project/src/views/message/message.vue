@@ -1,6 +1,6 @@
 <template>
 <div class="outside">
-    <headTop></headTop>
+    <!-- <headTop></headTop> -->
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
@@ -41,10 +41,10 @@ import message from '../../components/Functional/message.vue'
 import DatePicker from '@/components/TimeAndDate/DatePicker.vue'
 export default {
     components:{
-        message,
-        headTop,
-        DatePicker,
-    }
+    message,
+    headTop,
+    DatePicker,
+}
 }
 </script>
 <style scoped>
