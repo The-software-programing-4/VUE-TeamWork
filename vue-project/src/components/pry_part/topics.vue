@@ -118,8 +118,8 @@ export default {
             )
             .then(
                 res=>{
-                    this.topicList=res.data.messages;
-                    console.log(res.data.messages);
+                    this.topicList=res.data.message;
+                    console.log(res.data.message);
                     // for(var i=0;i<res.data.messages.length;i++)
                     // {
                     //     var temp=res.data.messages[i];
