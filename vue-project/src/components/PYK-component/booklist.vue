@@ -10,7 +10,7 @@
     :cell-style="{padding:'1px'}"
   >
     <el-table-column type="index"></el-table-column>
-    <el-table-column label="畅销图书榜" width="110px">
+    <el-table-column label="畅销图书榜" width="">
       <template slot-scope="scope" >
         <el-link 
               :underline="false"
@@ -22,19 +22,15 @@
       </template>
     </el-table-column>
     <el-table-column prop="author">
-
-    </el-table-column>
-    <el-table-column prop="score">
       <template slot-scope="scope" >
-       <el-rate
-                v-model="scope.row.score/2"
-                disabled
-                show-score
-                text-color="#EA7500"
-                score-template="">
-                </el-rate>
-        </template>
+        {{scope.row.author | ellipsis}}
+      </template>
     </el-table-column>
+    <!-- <el-table-column prop="score">
+      <template slot-scope="scope" >
+          评分 {{scope.row.score}}
+        </template>
+    </el-table-column> -->
   </el-table>
   </div>
 </template>
@@ -126,8 +122,8 @@ export default {
     download_booklist() {
       console.log("start rank")
       this.$axios.post("/api/book/listBook").then((res) => {
-        console.log(res.data);
-        this.booktableData = res.data.message;
+        console.log(res.data.messages);
+        this.booktableData = res.data.messages;
       });
       console.log("end rank")
     },
@@ -135,8 +131,8 @@ export default {
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 5) {
-        return value.slice(0, 5) + "...";
+      if (value.length > 10) {
+        return value.slice(0, 10) + "...";
       }
       return value;
     },
