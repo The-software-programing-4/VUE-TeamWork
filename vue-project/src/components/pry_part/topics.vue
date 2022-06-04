@@ -35,9 +35,7 @@
     <!-- 话题展示 -->
         <div id="img-show" v-for="topic in topicList">
             <div class="item-root">
-                <a href="" class="a-img">
                     <img :src="topic.src" alt=""  @click="clickMv(topic.id, 2)">
-                </a>
             </div>
             <div class="detail">
                 <div>
@@ -186,7 +184,7 @@ export default {
   }
 
   .box-card {
-    width: 30%;
+    width: 27%;
     float: left;
     height: 40%;
     margin-bottom:5% ;
@@ -219,14 +217,14 @@ export default {
     /* margin-left: 30px; */
     float: left;
 }
-#img-show .item-root a img{
-    width: 110px;
-    max-height: 180px;
+#img-show .item-root img{
+    width: 50%;
+    max-height: 50%;
     vertical-align: iddle;
-    margin-left: 30px;
+    margin-left: 5%;
 }
 #img-show .detail{
-    margin-top: 4px;
+    margin-top: 1%;
     width: 70%;
     max-height: 100%;
     /* margin-left: 0; */
