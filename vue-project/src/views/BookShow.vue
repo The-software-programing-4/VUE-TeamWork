@@ -50,7 +50,7 @@
     <!-- 点击后对图书详情页的显示-->
     <!-- 子组件的bookname变量的值是从父组件传的 -->
     <div v-show="showScene==2">
-        <BookInfoCard class="movieCard" :book_id="toBookId"></BookInfoCard>
+        <BookInfoCard class="movieCard" ref="child2" :book_id="toBookId"></BookInfoCard>
     </div>
     </div>
     <div id="mvlist">
@@ -126,9 +126,10 @@ export default {
        async changeFromShowIm(param1,param2) {//从子组件处获取的值
        //从子组件获取的图书名字和将要展示的场景
             this.showScene=param2;
-            this.toBookId=param1;
+            this.toBookId=parseInt(param1) ;
             //alert(this.showScene+this.toMovieName);
-            console.log(this.showScene);
+            this.$refs.child2.getData(parseInt(param1));
+            document.documentElement.scrollTop = 0;
         },
     },
 

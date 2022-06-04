@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>bookname:{{bookname}}</span>
+            <span>{{bookname}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -206,23 +206,25 @@ export default {
                 }
             )
         },
-        getData(){
+        getData(id){
             var url='/api/book/message_get';
             this.$axios.post(
                 url,
-                this.book_id
+                id
                 ,{
                     headers: {
-                        'Content-Type':'application/text'
+                        'Content-Type':'application/json'
                     }
                 }
             )
             .then(
                 res=>{
                     console.log(this.book_id+"receive");
+                    console.log(res.data);
                     this.author = res.data.author;
                     this.score = res.data.score;
-                    this.src = res.data.src;
+                    this.src = this.$hostURL+"/"+ res.data.src;
+                    this.bookname=res.data.bookname;
                     this.isbn = res.data.isbn;
                     this.price = res.data.price;
                     this.pages_number = res.data.pages_number;
@@ -263,7 +265,7 @@ export default {
         }
     },
     created(){
-        this.getData();
+        this.getData(0);
         this.getMarks();
     }
 }

@@ -80,6 +80,7 @@ export default {
 },
    data(){
         return{
+            gotop:false,
             searchText:'',
             toMovieID:1,   //点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
@@ -128,6 +129,7 @@ export default {
             console.log("recieve"+this.toMovieID);
             //alert(this.showScene+this.toMovieName);
             this.$refs.child2.getData(parseInt(param1));
+            document.documentElement.scrollTop = 0;
         },
     },
 
