@@ -5,9 +5,12 @@
         <div id="crossLine1">畅销图书</div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
-    <el-carousel :interval="4000" type="card" height="250px" wight="100px">
+    <el-carousel :interval="4000" type="card" height="350px"  wight="200px">
       <el-carousel-item v-for="img in imgList" :key="img.mid">
-        <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+        <img :src="img.src" class="image" style="height:90%;" @click="clickMv(img.book_id, 2)">
+        <div class="picshow">
+        {{img.name}}
+          </div>
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
@@ -41,18 +44,20 @@
         )' href=""  class="item" >
                 <div class="image-div">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
                         :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
                 <p>
-                    当前页{{currentPage}}{{img.name}}
+                    {{img.name}}
                 </p>
             </div>
         </div>
-       
+       <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
+        <div id="crossLine3">最受欢迎的书评</div>
+        <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         
 
     </div>
@@ -158,9 +163,9 @@ export default {
             return require(src);
         },
         getPhoto(){
-            var url='/api/movie/listmovie';
+            var url='/api/book/listBook';
             console.log("start");
-
+    
             this.$axios.post(
                 url,
                 this.str
@@ -188,6 +193,7 @@ export default {
         clickMv(val1, val2){
            // alert(val1+val2);
            console.log(val2);
+           console.log(val1);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },
         
@@ -217,6 +223,15 @@ export default {
     font-size: 20px;
     color: #097262;
     background: url("./images/yellow5.jpg");
+    background-size: 100%, 100%;
+}
+#crossLine3{ 
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 20px;
+    color: #097262;
+    background: url("./images/yellow8.jpg");
     background-size: 100%, 100%;
 }
 #images-show .choose-page{

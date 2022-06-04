@@ -25,7 +25,7 @@
             <form id="form" action="" method="">
                 <div class="input">
                     <!-- for放关联控件id -->
-                    <input type="text" id="search" placeholder="小组 话题" v-model="searchText">
+                    <input type="text" id="search" class="put" placeholder="小组 话题" v-model="searchText">
                 </div>
                 <div class="up">
                     <input  value="搜索一下" @click="onSearch">
@@ -45,15 +45,18 @@ export default{
     },
     methods:{
         onSearch(){
-           // this.$emit("getData", this.searchText);//给父组件传值
+             this.$emit("getData", this.searchText);//给父组件传值
              alert(this.searchText);
-            // //点击跳转到搜索结果页面
-            // this.$router.push({path:"/searchResult"})
+            //点击跳转到搜索结果页面
+            this.$router.push({path:"/searchResult"})
         },
     },
 }
 </script>
 <style scoped>
+    .put{
+        border: 1px solid black;
+    }
     #db-nav-group{
         position: relative;
         background-color: #FFFFcc;
@@ -105,9 +108,11 @@ export default{
     #db-nav-group .nav-search .input input{
         float: left;
         border: transparent;
+        /* border: 1px solid black; */
         width: 70%;
         height: 20px;
         font-size: 15px;
+        border-radius: 30%;
     }
     #db-nav-group .nav-search .up input{
         float: left;

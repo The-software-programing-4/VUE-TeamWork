@@ -1,10 +1,10 @@
 <template>
   <div class="about">
-    <headTop></headTop>
+    <!-- <headTop></headTop> -->
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆瓣酱话题</a>
+            <!-- <a href=""></a> -->
         </div>
         <div class="items">
             <ul>
@@ -95,7 +95,7 @@ export default {
        async changeFromTopicShow(param1,param2) {//从子组件处获取的值
             this.showScene=param2;
             this.toTopicId=param1;
-            alert(this.showScene+this.toTopicId);
+            //alert(this.showScene+this.toTopicId);
             console.log(this.showScene);
         },
     },
@@ -115,12 +115,14 @@ export default {
         background-size: 100%, 100%;
         }
     #db-nav-group .logo{
-        height: 58px;
+        height: 100%;
         width: 145px;
-        margin-top: 30px;
+        margin-top: 0px;
         float: left;
         margin-left: 50px;
         text-align: center;
+        background: url("../components/pry_part/images/logo.jpg");
+        background-size: 100%, 100%;
     }
     #db-nav-group .items{
         margin-top: 20px;

@@ -1,11 +1,11 @@
 <template>
   <div class="about">
-    <headTop></headTop>
+    <!-- <headTop></headTop> -->
     
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆酱图书</a>
+            <!-- <a href="">豆酱图书</a> -->
         </div>
         <div class="items">
             <ul>
@@ -45,16 +45,16 @@
     <!-- 搜索结果展示 -->
     <div v-show="showScene==0" id="search-result">
     <!-- 给子组件的msg变量传值 -->
-        <searchImg :msg="searchText" @change="changeFromShowIm"></searchImg>
+        <searchImg :msg="searchText" ref="child" @change="changeFromShowIm"></searchImg>
     </div>
     <!-- 点击后对图书详情页的显示-->
     <!-- 子组件的bookname变量的值是从父组件传的 -->
     <div v-show="showScene==2">
-        <BookInfoCard class="movieCard" :bookname="toMovieName"></BookInfoCard>
+        <BookInfoCard class="movieCard" ref="child2" :book_id="toBookId"></BookInfoCard>
     </div>
     </div>
     <div id="mvlist">
-        <span>榜单</span>
+
         <PopularMovieList></PopularMovieList>
          <movielist></movielist>
     </div>
@@ -63,7 +63,7 @@
 <script>
 import headTop from "../components/pry_part/headtop.vue"
 import showbook from"../components/pry_part/showbook.vue"
-import searchImg from"../components/pry_part/searchResultShow.vue"
+import searchImg from"../components/pry_part/BookSearchResult.vue"
 import searchBox from"../components/pry_part/searchBox.vue"
 import BookInfoCard from "../components/Books/bookInfoCard.vue"
 import movielist from "../components/PYK-component/movielist.vue"
@@ -81,6 +81,7 @@ export default {
    data(){
         return{
             searchText:'',
+            toBookId: '',
             toMovieName:"",//点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
@@ -96,25 +97,39 @@ export default {
     },
     methods:{
         onSearch(){
-           // alert(this.searchText+this.searching);
-            this.showScene=0;
-            // alert(this.searchText+this.showScene);
-            // var url='http://127.0.0.1:8080/changeMessage';
-            // axios.post(url,
-            //         this.searchText//提交的是搜索框内容
-            // ).then(res => {
-            // console.log(res);
-            // alert("更新成功！")j
-            // })
-            // this.status=0;
+           this.showScene=0;
+            //alert(this.searchText+this.showScene);
+            var url='/api/book/booksearch';
+            this.$axios.post(url,
+                this.searchText,
+                 {
+                    headers: {
+                      'Content-Type':'application/text'
+                    }
+                }//提交的是搜索框内容
+            ).then(res => {
+            
+            this.searchImgResult=res.data.messages;
+
+            for(var i=0;i<res.data.messages.length;i++)
+            {
+                var temp=res.data.messages[i];
+                this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
+            }
+            console.log(this.searchImgResult);
+            console.log("更新成功！");
+            this.$refs.child.getArr(this.searchImgResult);
+            })
+            this.status=0;
         },
         // 事件处理函数
        async changeFromShowIm(param1,param2) {//从子组件处获取的值
        //从子组件获取的图书名字和将要展示的场景
             this.showScene=param2;
-            this.toMovieName=param1;
-            alert(this.showScene+this.toMovieName);
-            console.log(this.showScene);
+            this.toBookId=parseInt(param1) ;
+            //alert(this.showScene+this.toMovieName);
+            this.$refs.child2.getData(parseInt(param1));
+            document.documentElement.scrollTop = 0;
         },
     },
 
@@ -133,12 +148,14 @@ export default {
         background-size: 100%, 100%;
         }
     #db-nav-group .logo{
-        height: 58px;
+        height: 100%;
         width: 145px;
-        margin-top: 30px;
+        margin-top: 0;
         float: left;
         margin-left: 50px;
         text-align: center;
+        background: url("../components/pry_part/images/logo.jpg");
+        background-size: 100%, 100%;
     }
     #db-nav-group .items{
         margin-top: 20px;
@@ -167,6 +184,7 @@ export default {
     #db-nav-group .nav-search{
         height: 30px;
         margin-top: 40px;
+        
         width: 25%;
         float: right;
         margin-right: 10%;
@@ -175,6 +193,7 @@ export default {
     #db-nav-group .nav-search .input input{
         float: left;
         border: transparent;
+        border-radius: 20px;
         width: 70%;
         height: 40px;
         font-size: 15px;
@@ -186,6 +205,7 @@ export default {
         background-color:#339933;
         color: #FFFFcc;
         width: 20%;
+
     }
     #img-show{
         margin-left: 5%;

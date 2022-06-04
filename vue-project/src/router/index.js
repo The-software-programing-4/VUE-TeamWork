@@ -75,6 +75,11 @@ const routes = [
     path: '/WriteReview',
     name: 'WriteReview',
     component: () => import('../views/WriteReview.vue')
+  },
+  {
+    path: '/Group',
+    name: 'Group',
+    component: () => import('../views/Group.vue')
   }
 ]
 

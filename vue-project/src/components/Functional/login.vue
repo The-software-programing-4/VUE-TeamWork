@@ -11,6 +11,7 @@
     width: 30%;
 }
 </style>
+
 <script>
 
 export default {

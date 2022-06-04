@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-
-    <nav>
+    <headTop></headTop>
+    <!-- <nav>
       <router-link to="/">Home</router-link> 
       <router-link to="/about"> |About</router-link>
        <router-link to="/MovieShow"> |MovieShow</router-link>
@@ -9,11 +9,21 @@
        <router-link to="/TopicShow"> |TopicShow</router-link>
        <router-link to="/user/login"> |Login</router-link>
        <router-link to="/user/message"> |message</router-link>
-    </nav>
+    </nav> -->
+    <!-- <nav>
+       <HeadTop></headTop>
+    </nav> -->
     <router-view/>
   </div>
 </template>
-
+<script>
+import headTop from "./components/pry_part/headtop.vue"
+export default{
+  components:{
+    headTop,
+}
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

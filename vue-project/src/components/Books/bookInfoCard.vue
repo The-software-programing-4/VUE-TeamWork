@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>bookname:{{bookname}}</span>
+            <span>{{bookname}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -139,6 +139,9 @@ export default {
                 isthumb: '点赞', 
                 },
             ],
+            bookMessage:[
+
+            ],
             directory: '',
             brief_introduction_of_author: '',
             brief_introduction: '',
@@ -146,11 +149,11 @@ export default {
             src: '',
             isbn: '',
             price: '',
-            book_id: 1,
+            //book_id: 1,
             pages_number: '',
             press: '',
             publish_date: '',
-            // bookname: "",
+            bookname: "",
             author: '',
             stars: [
             {isshow: false },
@@ -170,7 +173,7 @@ export default {
         }
     },
     props:{
-        bookname: String,//从父组件传值
+        book_id: Number,//从父组件传值
     },
     methods: {
         fillStar(index){
@@ -194,7 +197,7 @@ export default {
                 this.marks[index].thumb--;
                 this.marks[index].isthumb = '点赞'
             }
-            var url='/api/mark/thumb';
+            var url='/api/marks/thumb';
             this.$axios.post(
                 url,
                 {
@@ -203,23 +206,25 @@ export default {
                 }
             )
         },
-        getData(){
+        getData(id){
             var url='/api/book/message_get';
             this.$axios.post(
                 url,
-                this.book_id
-                // {
-                //     headers: {
-                //         'Content-Type':'application/text'
-                //     }
-                // }
+                id
+                ,{
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
             )
             .then(
                 res=>{
+                    console.log(this.book_id+"receive");
                     console.log(res.data);
                     this.author = res.data.author;
                     this.score = res.data.score;
-                    this.src = res.data.src;
+                    this.src = this.$hostURL+"/"+ res.data.src;
+                    this.bookname=res.data.bookname;
                     this.isbn = res.data.isbn;
                     this.price = res.data.price;
                     this.pages_number = res.data.pages_number;
@@ -260,7 +265,7 @@ export default {
         }
     },
     created(){
-        this.getData();
+        this.getData(0);
         this.getMarks();
     }
 }

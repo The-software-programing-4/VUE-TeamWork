@@ -1,46 +1,56 @@
 <template>
+<div class="outside">
     <el-table
       :data="movietableData"
       stripe
       highlight-current-row
-      style="width: 100%"
-      :default-sort="{ prop: 'rank', order: 'ascending' }"
-      max-height="800"
+      style="width: 350px"
+      max-height="870"
+      :row-style="{height: '40px'}"
+    :cell-style="{padding:'1px'}"
     >
-      <el-table-column prop="rank" width="40">
-        <template slot-scope="scope"> {{ scope.row.rank }}. </template>
-      </el-table-column>
-      <el-table-column label="一周口碑榜" width="350">
-        <template slot-scope="scope">
-          <el-descriptions :column="2" size="mini" :colon="false">
-            <el-descriptions-item span="2" label="">
-              <el-link
-                :underline="false"
-                :href="scope.row.movie_link"
-                style="font-size: 15px"
-              >
-                {{ scope.row.moviename | ellipsis }}
-              </el-link>
-            </el-descriptions-item>
-            <el-descriptions-item label="">
-              <el-rate
-                v-model="scope.row.movie_score"
+      <el-table-column type="index"></el-table-column>
+      <el-table-column label="一周口碑榜" width="110%" >
+         <template slot-scope="scope">
+        <el-link
+          :underline="false"
+          :href="scope.row.src"
+        >
+          {{ scope.row.name | ellipsis }}
+        </el-link>
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" width="">
+      <template  slot-scope="scope">
+       
+        <el-rate
+                v-model="scope.row.score/2"
                 disabled
                 show-score
-                text-color="#ff9900"
-                @change="rateChange"
-              >
-              </el-rate>
-            </el-descriptions-item>
-            <el-descriptions-item label=""
-              >({{ scope.row.num_of_evaluators }}人评价)</el-descriptions-item
-            >
-          </el-descriptions>
-        </template>
-      </el-table-column>
+                text-color="#EA7500"
+                score-template="">
+                </el-rate>
+
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" width="45%">
+      <template  slot-scope="scope">
+      {{ scope.row.score }}
+      </template>
+    </el-table-column>
     </el-table>
+</div>
 </template>
 <style scoped>
+.outside{
+  /* border: 1px black solid; */
+  margin-left: 15%;
+  margin-top: 30px;
+  /* border: 1px solid; */
+}
+/deep/.el-rate__icon {
+    font-size: 15px;
+}
 </style>
 
 <script>
@@ -48,23 +58,25 @@ export default {
   data() {
     return {
       movietableData: [
-        
+
       ],
     };
   },
   methods: {
     download_movielist() {
-      // this.$axios.get("http://39.105.102.182:8080/api/movie").then((res) => {
-      //   console.log(res.data);
-      //   this.movietableData = res.data.movietableData;
-      // });
+      console.log("start rank")
+      this.$axios.post("/api/movie/listmovie").then((res) => {
+        console.log(res.data.messages);
+        this.movietableData = res.data.messages;
+      });
+      console.log("end rank");
     },
   },
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 30) {
-        return value.slice(0, 30) + "...";
+      if (value.length > 5) {
+        return value.slice(0, 5) + "...";
       }
       return value;
     },
@@ -77,76 +89,3 @@ export default {
   },
 };
 </script>
-
-<!--
-		{
-          rank: 1,
-          moviename: "movieazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-          movie_link: "/",
-          movie_score: 0.7,
-          num_of_evaluators: 10000000000,
-        },
-        {
-          rank: 2,
-          moviename: "moviebaaaaaaaaaaaaaaaaaaaaaaaazzzz",
-          movie_link: "/",
-          movie_score: 3.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 3,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 4,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 5,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 6,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 7,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 8,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 9,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
-        {
-          rank: 10,
-          moviename: "moviec",
-          movie_link: "/",
-          movie_score: 4.7,
-          num_of_evaluators: 1000,
-        },
--->

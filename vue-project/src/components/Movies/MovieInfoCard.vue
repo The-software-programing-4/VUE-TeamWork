@@ -110,8 +110,8 @@ import "@/css/style.css";
 export default {
     data(){
         return{
-            name: '美丽人生',
-            mid:  '',
+            name: '',
+            //mid:  '',
             src: '',
             directors: '',
             writers: '',
@@ -142,7 +142,7 @@ export default {
         }
     },
     props:{
-        name: String,//从父组件传值
+        mid: Number,//从父组件传值
     },
     methods: {
         fillStar(index){
@@ -157,12 +157,13 @@ export default {
             }
             this.starCom = '';
         },
-        getData(){
+        getData(midr){
             var url='/api/movie/message_get';
+            console.log(this.mid+"??");
             this.$axios.post(
                 url,
-                1,
-                {
+                midr
+                ,{
                     headers: {
                       'Content-Type':'application/json'
                     }
@@ -170,8 +171,9 @@ export default {
             )
             .then(
                 res=>{
-                    this.src = res.data.src;
-                    this.mid = res.data.mid;
+                    
+                    this.src = this.$hostURL+"/"+res.data.src;
+                    this.name = res.data.name;
                     this.score = res.data.score;
                     this.actors = res.data.actors;
                     this.IMDb = res.data.IMDb;
@@ -187,10 +189,14 @@ export default {
             .catch(err => {              
                 console.log(err);
             })
+        },
+        getMid(mid){
+            this.mid=mid;
         }
+
     },
     created(){
-        this.getData();
+        this.getData(1);
     }
 }
 </script>
