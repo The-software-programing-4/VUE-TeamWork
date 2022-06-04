@@ -210,7 +210,7 @@ export default {
         float: right;
         width: 30%;
         margin-right: 10%;
-       font-size:20px ;
+        font-size:20px ;
     }
     .movieCard{
     margin-left: 10%;

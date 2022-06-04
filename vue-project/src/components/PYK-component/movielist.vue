@@ -10,7 +10,7 @@
     :cell-style="{padding:'1px'}"
     >
       <el-table-column type="index"></el-table-column>
-      <el-table-column label="一周口碑榜"  >
+      <el-table-column label="一周口碑榜" width="110%" >
          <template slot-scope="scope">
         <el-link
           :underline="false"
@@ -20,9 +20,22 @@
         </el-link>
       </template>
     </el-table-column>
-    <el-table-column prop="score" width="80">
+    <el-table-column prop="score" width="">
       <template  slot-scope="scope">
-        <span>评分:{{ scope.row.score }}</span>
+       
+        <el-rate
+                v-model="scope.row.score/2"
+                disabled
+                show-score
+                text-color="#EA7500"
+                score-template="">
+                </el-rate>
+
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" width="45%">
+      <template  slot-scope="scope">
+      {{ scope.row.score }}
       </template>
     </el-table-column>
     </el-table>
@@ -34,6 +47,9 @@
   margin-left: 15%;
   margin-top: 30px;
   /* border: 1px solid; */
+}
+/deep/.el-rate__icon {
+    font-size: 15px;
 }
 </style>
 
@@ -59,8 +75,8 @@ export default {
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 10) {
-        return value.slice(0, 10) + "...";
+      if (value.length > 5) {
+        return value.slice(0, 5) + "...";
       }
       return value;
     },
