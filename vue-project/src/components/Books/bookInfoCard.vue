@@ -249,15 +249,10 @@ export default {
                 type:1,
                 target:this.book_id
                 }
-                // {
-                //     headers: {
-                //         'Content-Type':'application/text'
-                //     }
-                // }
             )
             .then(
                 res=>{
-                    console.log(res.data)
+                    console.log(res.data.marks)
                     this.marks = res.data.marks;
                 }
             )
@@ -267,7 +262,7 @@ export default {
         }
     },
     created(){
-        this.getData(0);
+        //this.getData(0);
         this.getMarks();
     }
 }
