@@ -1,21 +1,22 @@
 <template>
 <div class="outside">
+  <div class="title">RANK</div>
   <el-table
     :data="PopularMovieListData"
     stripe
     highlight-current-row
-    style="width: 100%"
-    :default-sort="{ prop: 'score', order: 'descending' }"
+    style="width: 120%"
     max-height="1000"
-    :row-style="{height: '20px'}"
+    :row-style="{height: '40px'}"
+    :cell-style="{padding:'1px'}"
   >
+    
     <el-table-column type="index"></el-table-column>
-    <el-table-column label="热门片单" width="auto">
+    <el-table-column label="热门图书" width="auto">
       <template slot-scope="scope">
         <el-link
           :underline="false"
           :href="scope.row.src"
-          style="font-size: 15px"
         >
           {{ scope.row.name | ellipsis }}
         </el-link>
@@ -23,9 +24,7 @@
     </el-table-column>
     <el-table-column prop="score" width="80">
       <template  slot-scope="scope">
-        <el-button type="text" disabled
-          >{{ scope.row.score }}推荐</el-button
-        >
+        <span>评分:{{ scope.row.score }}</span>
       </template>
     </el-table-column>
   </el-table>
@@ -36,6 +35,17 @@
   /* border: 1px black solid; */
   margin-left: 15%;
   margin-top: 30px;
+  /* border: 1px solid; */
+}
+.title{
+    /* margin: 30px; */
+    /* border: 1px solid; */
+    margin-top: 10px;
+    font-size: large;
+    color: green;
+    width: 80%;
+    text-align: center;
+    display: inline-block;
 }
 </style>
 
@@ -50,7 +60,7 @@ export default {
   },
   methods: {
     download_movielists() {
-      this.$axios.post("api/movie/listmovie","123").then((res) => {
+      this.$axios.post("api/movie/listmovie").then((res) => {
         console.log(res.data);
         this.PopularMovieListData = res.data.messages;
       });

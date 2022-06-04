@@ -1,42 +1,40 @@
 <template>
+<div class="outside">
     <el-table
       :data="movietableData"
       stripe
       highlight-current-row
       style="width: 350"
       max-height="870"
+      :row-style="{height: '40px'}"
+    :cell-style="{padding:'1px'}"
     >
       <el-table-column type="index"></el-table-column>
-      <el-table-column label="一周口碑榜"  width="300">
-        <template slot-scope="scope">
-          <el-descriptions :column="2" size="mini" :colon="false">
-            <el-descriptions-item span="2" label="">
-              <el-link
-                :underline="false"
-                :href=""
-                style="font-size: 15px"
-              >
-                {{ scope.row.name | ellipsis }}
-              </el-link>
-            </el-descriptions-item>
-            <el-descriptions-item label="">
-              <el-rate
-                v-model="scope.row.score"
-                disabled
-                text-color="#ff9900"
-                @change="rateChange"
-              >
-              </el-rate>
-            </el-descriptions-item>
-            <el-descriptions-item label=""
-              >({{ scope.row.score }}人评价)</el-descriptions-item
-            >
-          </el-descriptions>
-        </template>
-      </el-table-column>
+      <el-table-column label="一周口碑榜"  >
+         <template slot-scope="scope">
+        <el-link
+          :underline="false"
+          :href="scope.row.src"
+        >
+          {{ scope.row.name | ellipsis }}
+        </el-link>
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" width="80">
+      <template  slot-scope="scope">
+        <span>评分:{{ scope.row.score }}</span>
+      </template>
+    </el-table-column>
     </el-table>
+</div>
 </template>
 <style scoped>
+.outside{
+  /* border: 1px black solid; */
+  margin-left: 15%;
+  margin-top: 30px;
+  /* border: 1px solid; */
+}
 </style>
 
 <script>
@@ -61,8 +59,8 @@ export default {
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 20) {
-        return value.slice(0, 20) + "...";
+      if (value.length > 10) {
+        return value.slice(0, 10) + "...";
       }
       return value;
     },

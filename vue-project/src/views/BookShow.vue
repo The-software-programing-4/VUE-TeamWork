@@ -54,7 +54,7 @@
     </div>
     </div>
     <div id="mvlist">
-        <span>榜单</span>
+
         <PopularMovieList></PopularMovieList>
          <movielist></movielist>
     </div>
