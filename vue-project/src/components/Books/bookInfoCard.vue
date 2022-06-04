@@ -246,8 +246,13 @@ export default {
             this.$axios.post(
                 url,
                 {
-                type:1,
-                target:this.book_id
+                type: parseInt(1),
+                target: parseInt(1)
+                },
+                {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
                 }
             )
             .then(
