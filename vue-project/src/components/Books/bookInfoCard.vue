@@ -24,6 +24,7 @@
                         <div class="ratingNum">193490人评价</div>
                     </span>
                 </div>
+                <div class="star">
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">5星</span>
                     <div class="ratingGradeImg" style="width:64px"></div>
@@ -31,24 +32,25 @@
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">4星</span>
-                    <div class="ratingGradeImg" style="width:57px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">38.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">3星</span>
-                    <div class="ratingGradeImg" style="width:19px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">13.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">2星</span>
-                    <div class="ratingGradeImg" style="width:10px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">7.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">1星</span>
-                    <div class="ratingGradeImg" style="width:0px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">0.0%</span>
                 </li>
+                </div>
             </div>
         </div>
         <div class="bookFav">
@@ -66,15 +68,15 @@
         <div class="bookCommentLink">
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="" >
-                <a href="#" class="bookWriteWord">写笔记</a>
+                <router-link to="/WriteReview" class="bookWriteWord">写笔记</router-link>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <a href="#" class="bookWriteWord">写书评</a>
+                <router-link to="/WriteReview" class="bookWriteWord">写书评</router-link>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/money.gif" alt="">
-                <a href="#" class="bookWriteWord">加入购书单</a>
+                <router-link to="#" class="bookWriteWord">加入购书单</router-link>
             </li>
         </div>
         <div class="relatedInfo">
@@ -197,7 +199,7 @@ export default {
                 this.marks[index].thumb--;
                 this.marks[index].isthumb = '点赞'
             }
-            var url='/api/mark/thumb';
+            var url='/api/marks/thumb';
             this.$axios.post(
                 url,
                 {
@@ -244,18 +246,18 @@ export default {
             this.$axios.post(
                 url,
                 {
-                type:1,
-                target:this.book_id
+                type: parseInt(1),
+                target: parseInt(1)
+                },
+                {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
                 }
-                // {
-                //     headers: {
-                //         'Content-Type':'application/text'
-                //     }
-                // }
             )
             .then(
                 res=>{
-                    console.log(res.data)
+                    console.log(res.data.marks)
                     this.marks = res.data.marks;
                 }
             )
@@ -265,12 +267,24 @@ export default {
         }
     },
     created(){
-        this.getData(0);
+        //this.getData(0);
         this.getMarks();
     }
 }
 </script>
 
 <style>
-  
+    .star{
+      /* border: 1px solid ; */
+        text-align: left;
+  }
+  .star li{
+      border: 1px solid transparent;
+      text-align: left;
+      margin-left: 2px;
+      padding-left: 1px;
+  }
+  .bookInfo{
+      height: 300px;
+  }
 </style>
