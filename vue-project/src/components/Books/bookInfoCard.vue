@@ -66,15 +66,15 @@
         <div class="bookCommentLink">
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="" >
-                <a href="#" class="bookWriteWord">写笔记</a>
+                <router-link to="/WriteReview" class="bookWriteWord">写笔记</router-link>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <a href="#" class="bookWriteWord">写书评</a>
+                <router-link to="/WriteReview" class="bookWriteWord">写书评</router-link>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/money.gif" alt="">
-                <a href="#" class="bookWriteWord">加入购书单</a>
+                <router-link to="#" class="bookWriteWord">加入购书单</router-link>
             </li>
         </div>
         <div class="relatedInfo">

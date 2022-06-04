@@ -71,6 +71,11 @@ const routes = [
     name: 'BookShow',
     component: () => import('../views/BookShow.vue')
   },
+  {
+    path: '/WriteReview',
+    name: 'WriteReview',
+    component: () => import('../views/WriteReview.vue')
+  }
 ]
 
 const router = new VueRouter({
