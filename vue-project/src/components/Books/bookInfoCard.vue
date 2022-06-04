@@ -24,6 +24,7 @@
                         <div class="ratingNum">193490人评价</div>
                     </span>
                 </div>
+                <div class="star">
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">5星</span>
                     <div class="ratingGradeImg" style="width:64px"></div>
@@ -31,24 +32,25 @@
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">4星</span>
-                    <div class="ratingGradeImg" style="width:57px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">38.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">3星</span>
-                    <div class="ratingGradeImg" style="width:19px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">13.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">2星</span>
-                    <div class="ratingGradeImg" style="width:10px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">7.0%</span>
                 </li>
                 <li class="ratingGrade">
                     <span class="ratingGradeStar">1星</span>
-                    <div class="ratingGradeImg" style="width:0px"></div>
+                    <div class="ratingGradeImg" style="width:64px"></div>
                     <span class="ratingGradePerc">0.0%</span>
                 </li>
+                </div>
             </div>
         </div>
         <div class="bookFav">
@@ -272,5 +274,17 @@ export default {
 </script>
 
 <style>
-  
+    .star{
+      /* border: 1px solid ; */
+        text-align: left;
+  }
+  .star li{
+      border: 1px solid transparent;
+      text-align: left;
+      margin-left: 2px;
+      padding-left: 1px;
+  }
+  .bookInfo{
+      height: 300px;
+  }
 </style>

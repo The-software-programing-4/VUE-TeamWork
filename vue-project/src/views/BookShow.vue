@@ -55,7 +55,7 @@
     </div>
     <div id="mvlist">
 
-        <PopularMovieList></PopularMovieList>
+        <!-- <PopularMovieList></PopularMovieList> -->
          <movielist></movielist>
     </div>
   </div>
@@ -66,8 +66,8 @@ import showbook from"../components/pry_part/showbook.vue"
 import searchImg from"../components/pry_part/BookSearchResult.vue"
 import searchBox from"../components/pry_part/searchBox.vue"
 import BookInfoCard from "../components/Books/bookInfoCard.vue"
-import movielist from "../components/PYK-component/movielist.vue"
-import PopularMovieList from "../components/PYK-component/PopularMovieList.vue"
+import movielist from "../components/PYK-component/booklist.vue"
+import PopularMovieList from "../components/PYK-component/HotBookTopics.vue"
 export default {
   components:{
     headTop,

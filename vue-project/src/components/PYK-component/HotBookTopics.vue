@@ -33,6 +33,22 @@
 .el-tag + .el-tag {
   margin-left: 10px;
 }
+.outside{
+  /* border: 1px black solid; */
+  margin-left: 15%;
+  margin-top: 30px;
+  /* border: 1px solid; */
+}
+.title{
+    /* margin: 30px; */
+    /* border: 1px solid; */
+    margin-top: 10px;
+    font-size: large;
+    color: green;
+    width: 80%;
+    text-align: center;
+    display: inline-block;
+}
 </style>
 <script>
 export default {
