@@ -49,13 +49,13 @@
     </div>
     <!-- 点击后对电影详情页的显示-->
     <div v-show="showScene==2">
-        <MovieInfoCard class="movieCard" :name="toMovieName"></MovieInfoCard>
+        <MovieInfoCard :mid="toMovieID" class="movieCard" ref="child2" ></MovieInfoCard>
     </div>
     </div>
     <div id="mvlist">
 
         <PopularMovieList></PopularMovieList>
-         <movielist></movielist>
+        <movielist></movielist>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ export default {
    data(){
         return{
             searchText:'',
-            toMovieName:"",//点击跳转到的电影页面名称
+            toMovieID:1,   //点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
                 {path:require("../components/pry_part/images/one.jpg"),
@@ -124,9 +124,10 @@ export default {
         // 事件处理函数
         async changeFromShowIm(param1,param2) {//从子组件处获取的值
             this.showScene=param2;
-            this.toMovieName=param1;
-            alert(this.showScene+this.toMovieName);
-            console.log(this.showScene);
+            this.toMovieID=parseInt(param1);
+            console.log("recieve"+this.toMovieID);
+            //alert(this.showScene+this.toMovieName);
+            this.$refs.child2.getData(parseInt(param1));
         },
     },
 
@@ -159,7 +160,7 @@ export default {
         height: 58px;
         float: left;
         margin-left: 20px;
-        width: 40%;
+        width: 30%;
     }
     #db-nav-group .items ul{
         list-style: none;
@@ -181,7 +182,7 @@ export default {
     #db-nav-group .nav-search{
         height: 30px;
         margin-top: 40px;
-        width: 25%;
+        width: 30%;
         float: right;
         margin-right: 10%;
 
@@ -189,17 +190,18 @@ export default {
     #db-nav-group .nav-search .input input{
         float: left;
         border: transparent;
+        border-radius: 20px;
         width: 70%;
         height: 40px;
         font-size: 15px;
-        
     }
     #db-nav-group .nav-search .up input{
-        float: left;
+
         border: none;
         background-color:#339933;
         color: #FFFFcc;
-        width: 20%;
+        width: 10%;
+        display: inline-block;
     }
     #img-show{
         margin-left: 5%;

@@ -50,7 +50,7 @@
     <!-- 点击后对图书详情页的显示-->
     <!-- 子组件的bookname变量的值是从父组件传的 -->
     <div v-show="showScene==2">
-        <BookInfoCard class="movieCard" :bookname="toMovieName"></BookInfoCard>
+        <BookInfoCard class="movieCard" :book_id="toBookId"></BookInfoCard>
     </div>
     </div>
     <div id="mvlist">
@@ -81,6 +81,7 @@ export default {
    data(){
         return{
             searchText:'',
+            toBookId: '',
             toMovieName:"",//点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
@@ -125,8 +126,8 @@ export default {
        async changeFromShowIm(param1,param2) {//从子组件处获取的值
        //从子组件获取的图书名字和将要展示的场景
             this.showScene=param2;
-            this.toMovieName=param1;
-            alert(this.showScene+this.toMovieName);
+            this.toBookId=param1;
+            //alert(this.showScene+this.toMovieName);
             console.log(this.showScene);
         },
     },
@@ -182,6 +183,7 @@ export default {
     #db-nav-group .nav-search{
         height: 30px;
         margin-top: 40px;
+        
         width: 25%;
         float: right;
         margin-right: 10%;
@@ -190,6 +192,7 @@ export default {
     #db-nav-group .nav-search .input input{
         float: left;
         border: transparent;
+        border-radius: 20px;
         width: 70%;
         height: 40px;
         font-size: 15px;
@@ -201,6 +204,7 @@ export default {
         background-color:#339933;
         color: #FFFFcc;
         width: 20%;
+
     }
     #img-show{
         margin-left: 5%;

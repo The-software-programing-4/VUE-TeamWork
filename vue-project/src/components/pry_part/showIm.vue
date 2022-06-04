@@ -5,9 +5,13 @@
         <div id="crossLine1">最新热映</div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
-    <el-carousel :interval="4000" type="card" height="250px" wight="100px">
+    <el-carousel :interval="4000" type="card" height="350px" wight="200px">
       <el-carousel-item v-for="img in imgList" :key="img.mid">
-        <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+          
+        <img :src="img.src" class="image" style="height:90%;" @click="clickMv(img.mid, 2)"> 
+        <div class="picshow">
+        {{img.name}}
+          </div>
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
@@ -42,7 +46,7 @@
         )' href=""  class="item" >
                 <div class="image-div">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+                     <img :src="img.src" class="image" @click="clickMv(img.mid, 2)">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
@@ -67,7 +71,7 @@ export default {
             // showClass:"imsrc1",
             isClass: false,
             currentPage: 1,
-            pageSize: 9,
+            pageSize: 8,
             url:"",
             // 轮播图使用的图片列表
             imgList:[
@@ -187,7 +191,7 @@ export default {
         },
         clickMv(val1, val2){
            // alert(val1+val2);
-           console.log(val2);
+            console.log("send"+val1+" "+val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         }
         
@@ -209,6 +213,14 @@ export default {
     font-size: 20px;
     background: url("./images/back1.jpg");
     background-size: 100%, 100%;
+}
+.picshow{
+    width: 120px;
+    margin: auto;
+    /* border: 1px solid black;; */
+}
+.image-div{
+    margin: 5px 5px;
 }
 #crossLine2{ 
     height: 70px;
@@ -244,17 +256,17 @@ export default {
  } 
  #images-show .image-page{
      width: 100%;
-     height: 900px;
+     height: 100px;
  }
  #images-show .image-page .item{
      display: block;
      float: left;
-     font-size: 15px;
+     /* font-size: 15px; */
      text-align: center;
-     margin-right: 3%;
+     margin: 10px;
      /* margin-bottom: 10px; */
-     width: 30%;
-     height: 290px;
+     width: 20%;
+     height: 250%;
      
  }
  #images-show .image-page .item .image-div{

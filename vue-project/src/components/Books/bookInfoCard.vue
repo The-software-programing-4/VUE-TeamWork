@@ -139,6 +139,9 @@ export default {
                 isthumb: '点赞', 
                 },
             ],
+            bookMessage:[
+
+            ],
             directory: '',
             brief_introduction_of_author: '',
             brief_introduction: '',
@@ -146,11 +149,11 @@ export default {
             src: '',
             isbn: '',
             price: '',
-            book_id: 1,
+            //book_id: 1,
             pages_number: '',
             press: '',
             publish_date: '',
-            // bookname: "",
+            bookname: "",
             author: '',
             stars: [
             {isshow: false },
@@ -170,7 +173,7 @@ export default {
         }
     },
     props:{
-        bookname: String,//从父组件传值
+        book_id: Number,//从父组件传值
     },
     methods: {
         fillStar(index){
@@ -208,15 +211,15 @@ export default {
             this.$axios.post(
                 url,
                 this.book_id
-                // {
-                //     headers: {
-                //         'Content-Type':'application/text'
-                //     }
-                // }
+                ,{
+                    headers: {
+                        'Content-Type':'application/text'
+                    }
+                }
             )
             .then(
                 res=>{
-                    console.log(res.data);
+                    console.log(this.book_id+"receive");
                     this.author = res.data.author;
                     this.score = res.data.score;
                     this.src = res.data.src;

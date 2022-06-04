@@ -5,9 +5,12 @@
         <div id="crossLine1">畅销图书</div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
-    <el-carousel :interval="4000" type="card" height="250px" wight="100px">
+    <el-carousel :interval="4000" type="card" height="350px"  wight="200px">
       <el-carousel-item v-for="img in imgList" :key="img.mid">
-        <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+        <img :src="img.src" class="image" style="height:90%;" @click="clickMv(img.book_id, 2)">
+        <div class="picshow">
+        {{img.name}}
+          </div>
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
@@ -41,7 +44,7 @@
         )' href=""  class="item" >
                 <div class="image-div">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
+                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
@@ -190,6 +193,7 @@ export default {
         clickMv(val1, val2){
            // alert(val1+val2);
            console.log(val2);
+           console.log(val1);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },
         

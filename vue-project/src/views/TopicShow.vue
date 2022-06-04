@@ -95,7 +95,7 @@ export default {
        async changeFromTopicShow(param1,param2) {//从子组件处获取的值
             this.showScene=param2;
             this.toTopicId=param1;
-            alert(this.showScene+this.toTopicId);
+            //alert(this.showScene+this.toTopicId);
             console.log(this.showScene);
         },
     },

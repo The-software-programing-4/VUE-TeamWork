@@ -18,7 +18,6 @@
 </template>
 <script>
 import headTop from "./components/pry_part/headtop.vue"
-import Headtop from "./components/pry_part/headtop.vue"
 export default{
   components:{
     headTop,
