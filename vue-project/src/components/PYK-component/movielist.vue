@@ -4,7 +4,7 @@
       :data="movietableData"
       stripe
       highlight-current-row
-      style="width: 350"
+      style="width: 350px"
       max-height="870"
       :row-style="{height: '40px'}"
     :cell-style="{padding:'1px'}"
@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       movietableData: [
-        
+
       ],
     };
   },
