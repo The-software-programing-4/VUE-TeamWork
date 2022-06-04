@@ -10,7 +10,7 @@
         )' >
             <div slot="header" class="clearfix">
                 <span>话题卡片</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.id, 2)">加入话题</el-button>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button>
             </div>
             <div class="text item">
                话题名称{{topic.name}}，第{{currentPage}}页
@@ -33,7 +33,7 @@
         <div id="crossLine2">我关注的话题的动态</div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
     <!-- 话题展示 -->
-        <div id="img-show" v-for="topic in topicList">
+        <div id="img-show" v-for="topic in topic1List">
             <div class="item-root">
                     <img :src="topic.src" alt=""  @click="clickMv(topic.id, 2)">
             </div>
@@ -63,8 +63,9 @@ export default {
             isClass: false,
             currentPage: 1,
             pageSize: 6,
+            topicList:[],
             // 轮播图使用的图片列表
-            topicList:[
+            topic1List:[
                 {id:1,
     src:require('./images/one.jpg'),
                 name:"pic1",
@@ -107,21 +108,29 @@ export default {
         }
     },
     methods:{
-        // getPhoto(){
-        //      var url='/api/movie/listmovie';
-        //     this.$axios.post(
-        //         url,
-        //         "123"
-        //     )
-        //     .then(
-        //         res=>{
-        //             this.imgList=res.data.messages
-        //         }
-        //     )
-        //     .catch(err => {              
-        //         console.log(err);
-        //     })
-        // },
+        getTopic(){
+            var url='/api/topic/listtopic';
+            console.log("starttopic");
+
+            this.$axios.post(
+                url,
+                this.str
+            )
+            .then(
+                res=>{
+                    this.topicList=res.data.messages;
+                    console.log(res.data.messages);
+                    // for(var i=0;i<res.data.messages.length;i++)
+                    // {
+                    //     var temp=res.data.messages[i];
+                    //     // this.topicList[i].src=this.$hostURL+'/'+temp.src;
+                    // }
+                }
+            )
+            // .catch(err => {              
+            //     console.log(err);
+            // })
+        },
         currentChange(val){
         // alert(val)
         this.currentPage = val;
@@ -135,10 +144,10 @@ export default {
         
     },
     
-    // created(){
-    //     //请求初始化图片链接
-    //     this.getPhoto();
-    // },
+    created(){
+        //请求初始化图片链接
+        this.getTopic();
+    },
     
 }
 </script>
