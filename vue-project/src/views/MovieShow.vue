@@ -54,7 +54,7 @@
     </div>
     <div id="mvlist">
 
-        <PopularMovieList></PopularMovieList>
+        <PopularMovieList @change="changeFromRank"></PopularMovieList>
         <movielist></movielist>
     </div>
   </div>
@@ -131,7 +131,15 @@ export default {
             this.$refs.child2.getData(parseInt(param1));
             document.documentElement.scrollTop = 0;
         },
-    },
+        async changeFromRank(param1,param2) {//从子组件处获取的值
+            this.showScene=param2;
+            this.toMovieID=parseInt(param1);
+            console.log("recieve"+this.toMovieID);
+            //alert(this.showScene+this.toMovieName);
+            this.$refs.child2.getData(parseInt(param1));
+            document.documentElement.scrollTop = 0;
+        },
+    },  
 
 }
 </script>
