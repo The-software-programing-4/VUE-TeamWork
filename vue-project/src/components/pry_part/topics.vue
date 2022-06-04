@@ -13,7 +13,7 @@
                 <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button>
             </div>
             <div class="text item">
-               话题名称{{topic.introduction}}，第{{currentPage}}页
+               话题名称：{{topic.introduction}}，第{{currentPage}}页
             </div>
             </el-card>
         </div>
