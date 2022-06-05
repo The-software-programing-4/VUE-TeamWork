@@ -77,9 +77,22 @@ const routes = [
     component: () => import('../views/WriteReview.vue')
   },
   {
-    path: '/Group',
-    name: 'Group',
-    component: () => import('../views/Group.vue')
+    path: '/group',
+    name: 'group',
+    component: () => import('../views/group/mygroup.vue'),
+    children: [
+      {
+        path: '/group/main',
+        name: 'list',
+        component: () => import('../views/group/groupmain.vue'),
+      },
+      {
+        path: '/group/search',
+        name: 'list2',
+        component: () => import('../components/group/searchlist.vue'),
+      },
+      
+    ]
   }
 ]
 

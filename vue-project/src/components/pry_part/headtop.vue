@@ -29,7 +29,7 @@
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">小组</a> -->
-                        <router-link to="/Group">小组</router-link>
+                        <router-link to="/group">小组</router-link>
                     </li>
                     <li>
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
