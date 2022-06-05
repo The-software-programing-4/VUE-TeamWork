@@ -9,8 +9,8 @@
       highlight-current-row
       style="width: 100%"
       max-height="870"
-      :row-style="{height: '35px'}"
-    :cell-style="{padding:'1px'}"
+      :row-style="{height: '80px'}"
+    :cell-style="{padding:'4px'}"
     >
       <el-table-column>
           <template slot-scope="scope">
@@ -26,6 +26,8 @@
         >
           {{ scope.row.name | ellipsis }}
         </el-link>
+        <div>{{scope.row.number}}个成员</div>
+        <div>{{scope.row.introduction | ellipsis}}</div>
       </template>
     </el-table-column>
 
@@ -57,8 +59,8 @@
 <style scoped>
 .outside{
   /* border: 1px black solid; */
-  width: 50%;
-  margin-left: 20%;
+  width: 100%;
+
   /* border: 1px solid; */
 }
 .title{
@@ -80,7 +82,34 @@ export default {
           respose: 100,
           number:10,
           src: "https://img2.doubanio.com/icon/g95772-1.jpg",
-          introduction:"I love this group",
+          introduction:"I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,",
+          leader: "selmissL", 
+          time: "5.20"
+        },
+        {
+          name:"小组名称",
+          respose: 100,
+          number:10,
+          src: "https://img2.doubanio.com/icon/g95772-1.jpg",
+          introduction:"I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,",
+          leader: "selmissL", 
+          time: "5.20"
+        },
+        {
+          name:"小组名称",
+          respose: 100,
+          number:10,
+          src: "https://img2.doubanio.com/icon/g95772-1.jpg",
+          introduction:"I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,",
+          leader: "selmissL", 
+          time: "5.20"
+        },
+        {
+          name:"小组名称",
+          respose: 100,
+          number:10,
+          src: "https://img2.doubanio.com/icon/g95772-1.jpg",
+          introduction:"I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,I love this group,",
           leader: "selmissL", 
           time: "5.20"
         },
@@ -108,8 +137,8 @@ export default {
   filters: {
     ellipsis: function (value) {
       if (!value) return "";
-      if (value.length > 10) {
-        return value.slice(0, 10) + "...";
+      if (value.length > 100) {
+        return value.slice(0, 100) + "...";
       }
       return value;
     },

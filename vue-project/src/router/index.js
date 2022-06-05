@@ -83,13 +83,18 @@ const routes = [
     children: [
       {
         path: '/group/main',
-        name: 'list',
+        name: 'main',
         component: () => import('../views/group/groupmain.vue'),
       },
       {
         path: '/group/search',
-        name: 'list2',
-        component: () => import('../components/group/searchlist.vue'),
+        name: 'search',
+        component: () => import('../views/group/search.vue'),
+      },
+      {
+        path: '/group/info',
+        name: 'search',
+        component: () => import('../views/group/info.vue'),
       },
       
     ]
