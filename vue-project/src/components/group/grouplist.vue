@@ -1,56 +1,75 @@
 <template>
 <div class="outside">
     <div class="title">
-      <b>我的讨论 </b>
+      <b>我的小组 </b>
     </div>
-    <el-table
-      :data="groupData"
-      stripe
-      highlight-current-row
-      style="width: 100%"
-      max-height="870"
-      :row-style="{height: '35px'}"
-    :cell-style="{padding:'1px'}"
-    >
+    <div class="group-list group-cards">
 
-      <el-table-column label="" width="300px" >
-         <template slot-scope="scope">
-        <el-link
-          :underline="false"
-          @click="totext(scope.row.tid)"
-          type="primary"
-        >
-          {{ scope.row.name | ellipsis }}
-        </el-link>
-      </template>
-    </el-table-column>
-
-    <el-table-column prop="score" width="">
-      <template  slot-scope="scope">
-      {{ scope.row.respose }}回应
-      </template>
-    </el-table-column>
-     <el-table-column prop="score" width="">
-      <template  slot-scope="scope">
-      {{scope.row.time}}
-      </template>
-    </el-table-column>
-    <el-table-column prop="score" width="">
-      <template  slot-scope="scope">
-        <el-link
-          :underline="false"
-          @click="toinfo(scope.row.gid)"
-          type="primary"
-        >
-          {{scope.row.leader}}
-        </el-link>
-      
-      </template>
-    </el-table-column>
-    </el-table>
+        <ul>
+          
+          <li class="" v-for="item in groupData">
+          <div class="pic">
+            <a href="https://www.douban.com/group/lovearashi/">
+              <img :src="item.src" alt="悠长假期" class="">
+            </a>
+          </div>
+          <div class="info">
+            <div class="title">
+              <a title="悠长假期" href="https://www.douban.com/group/lovearashi/" class="">{{item.name}}</a><br>
+            </div>
+            <span class="num">{{item.number}}</span><br>
+          </div>
+          </li>
+          
+      </ul>
+      </div>
 </div>
 </template>
 <style scoped>
+.group-list {
+overflow: hidden;
+width: 540px;
+  font-size: 13px;
+}
+.group-list ul{
+  float: left;
+}
+.group-list a{
+  font-size: 13px;
+}
+a:visited {
+color: #666699;
+text-decoration: none;
+}
+.group-cards .info {
+color: #aaa;
+}
+.group-cards .title {
+margin-top: -1px;
+line-height: 1.25;
+}
+a img {
+border-width: 0;
+vertical-align: middle;
+}
+.group-list li .pic {
+float: left;
+margin-right: 10px;
+width: 48px;
+height: 48px;
+line-height: 0;
+position: relative;
+}
+.group-cards li {
+  float: left;
+margin: 15px 20px 0 0;
+width: 198px;
+padding: 10px;
+border: 1px solid #eee;
+}
+li{
+  width: 100px;
+}
 .outside{
   /* border: 1px black solid; */
   display: inline-block;
@@ -69,7 +88,27 @@
 export default {
   data() {
     return {
-      groupData: [
+      groupData:[
+        {
+          gid:0,
+          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
+          number:91,
+          name:'悠长假期'
+        },
+        {
+          gid:0,
+          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
+          number:91,
+          name:'悠长假期'
+        },
+        {
+          gid:0,
+          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
+          number:91,
+          name:'悠长假期'
+        },
+      ],
+      discussData: [
         {
           id:0,
           name:"小组名称",
@@ -139,7 +178,7 @@ export default {
       console.log("start rank")
       this.$axios.post("/api/movie/listmovie").then((res) => {
         console.log(res.data.messages);
-        this.groupData = res.data.messages;
+        this.discussData = res.data.messages;
       });
       console.log("end rank");
     },
