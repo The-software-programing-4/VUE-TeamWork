@@ -6,7 +6,7 @@
             <h4>最热讨论</h4>
         </div>
         <div class="title" style="float:right;">
-            <el-button type="success" plain size="mini">+发言</el-button>
+            <el-button type="success" plain size="mini" @click="this.toedit">+发言</el-button>
         </div>
         <discuss></discuss>
         </div>
@@ -24,7 +24,20 @@ export default {
         card,
         member,
         discuss
+    },
+    data(){
+        return {
+
+        }
+    },
+    methods:{
+        toedit(){
+            this.$router.push({
+                path:"/group/editor"
+            })
+        }
     }
+
 }
 </script>
 <style scoped>

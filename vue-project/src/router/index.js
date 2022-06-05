@@ -93,12 +93,22 @@ const routes = [
       },
       {
         path: '/group/info',
-        name: 'search',
+        name: 'info',
         component: () => import('../views/group/info.vue'),
+      },
+      {
+        path: '/group/showtext',
+        name: 'text',
+        component: () => import('../views/group/showText.vue'),
       },
       
     ]
-  }
+  },
+  {
+    path: '/group/editor',
+    name: 'editor',
+    component: () => import('../views/group/editor.vue'),
+  },
 ]
 
 const router = new VueRouter({

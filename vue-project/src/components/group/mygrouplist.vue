@@ -17,7 +17,7 @@
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="totext(scope.row.tid)"
           type="primary"
         >
           {{ scope.row.name | ellipsis }}
@@ -39,7 +39,7 @@
       <template  slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="toinfo(scope.row.gid)"
           type="primary"
         >
           {{scope.row.leader}}
@@ -71,60 +71,61 @@ export default {
     return {
       groupData: [
         {
+          id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {
+        {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-         {
+         {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-         {
+         {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-         {
+         {id:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
@@ -146,7 +147,22 @@ export default {
            // alert(val1+val2);
             console.log("send"+val1+" "+val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
-        }
+        },
+    totext(tid)
+    {
+      console.log("toinfo")
+      this.$router.push({
+        path:"/group/showtext"
+      })
+    },
+    toinfo(gid)
+    {
+      console.log("toinfo")
+      this.$router.push({
+        path:"/group/info"
+      })
+    }
+
   },
   filters: {
     ellipsis: function (value) {
