@@ -105,6 +105,9 @@ export default {
                 score:3},
             //imagebox是assets下一个放图片的文件夹
             ],
+            str:'1',
+            tid0:1,
+            try:[{len:3}, {pid:2}, {pid:3}]
         }
     },
     methods:{
@@ -114,23 +117,59 @@ export default {
 
             this.$axios.post(
                 url,
-                this.str
             )
             .then(
                 res=>{
                     this.topicList=res.data.message;
-                    console.log(res.data.message);
-                    // for(var i=0;i<res.data.messages.length;i++)
-                    // {
-                    //     var temp=res.data.messages[i];
-                    //     // this.topicList[i].src=this.$hostURL+'/'+temp.src;
-                    // }
+                    console.log("listtopic", res.data.message);
                 }
             )
             console.log("endtopic");
-            // .catch(err => {              
-            //     console.log(err);
-            // })
+        },
+        SearchTid2Pid(){
+            var url='/api/topic/tid2pid';
+            var midr = this.tid0;
+            this.$axios.post(
+                url,
+                midr
+                ,{
+                    headers: {
+                      'Content-Type':'application/json'
+                    }
+                }
+            ).then(res => {
+                console.log("topic tid2pid", res.data.message)
+            })
+        },
+        searchPid2src(){
+            var url='/api/post/userPost';
+            var midr = this.tid0;
+            this.$axios.post(
+                url,
+                midr
+                ,{
+                    headers: {
+                      'Content-Type':'application/json'
+                    }
+                }
+            ).then(res => {
+                console.log("topic pid2src", res.data.message)
+            })
+        },
+        messageGet(){
+            var url='/api/topic/message_get';
+            var midr = this.tid0;
+            this.$axios.post(
+                url,
+                midr
+                ,{
+                    headers: {
+                      'Content-Type':'application/json'
+                    }
+                }
+            ).then(res => {
+                console.log("message_get", res.data.posts)
+            })
         },
         currentChange(val){
         // alert(val)
@@ -141,13 +180,18 @@ export default {
            // alert(val1+val2);
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
-        }
+        },
         
     },
-    
     created(){
         //请求初始化图片链接
         this.getTopic();
+        this.SearchTid2Pid();
+        this.searchPid2src();
+        this.messageGet();
+        // this.getTid2pid();
+        // console.log("try");
+        // console.log(this.try[1]);
     },
     
 }
