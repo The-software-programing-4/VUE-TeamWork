@@ -107,7 +107,8 @@ export default {
             ],
             str:'1',
             tid0:1,
-            try:[{len:3}, {pid:2}, {pid:3}]
+            try:[{len:3}, {pid:2}, {pid:3}],
+            tid:[],//查找得到该用户关注的tid
         }
     },
     methods:{

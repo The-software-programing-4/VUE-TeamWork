@@ -142,7 +142,7 @@ export default {
         this.forums[index].thumb--;
         this.forums[index].isthumb = '点赞'
       }
-      // 点赞后需要更新发布的赞数，传会话题id， 发布id， 新的点赞数
+      // 点赞后需要更新发布的赞数，传输数据为话题id， 点赞人id， 新的点赞总数
       var post_data = {tid:this.topicId, fid:this.forums[index].id, thumb:this.forums[index].thumb}
       this.$axios({
         method:'post', 
@@ -163,7 +163,7 @@ export default {
       }
     },
     concern(){
-    //关注话题功能， 向后端传会用户id， 被关注的话题id
+    //关注话题功能， 向后端传：正在登录用户id， 被关注的话题id, 绑定
     var post_data={uid:this.$store.state.Guid, tid:this.topicId}
     this.$axios({
         method:'post', 
@@ -184,10 +184,12 @@ export default {
     handlePreview(file) {
           console.log("preview",file);
     },
+    // 提交的用户发布帖子，文本和图片
     submitUpload() {
+      //这个是用的element ui的upload功能完成的，他包含了上传功能，具体传可再商量
           this.$refs.upload.submit();
           console.log(this.fileList)
-          var post_data={uid:this.$store.state.Guid, text:this.writeText};
+          var post_data={uid:this.$store.state.Guid, text:this.writeText};//发布用户id和文本
           this.$axios({
             method:'post', 
             url:'/api',
