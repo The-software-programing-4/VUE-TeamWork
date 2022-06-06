@@ -2,7 +2,7 @@
     <div class="out">
         <div class="title">
             <div class="img">
-            <img :src="this.src"></div>
+            <img :src="this.src" width="50px" height="50px"></div>
             <div class="name">在 {{this.name}} 小组中发起讨论</div>
         </div>
         <div class="biaoti">
@@ -92,13 +92,14 @@ export default Vue.extend({
     components: { Editor, Toolbar },
     data() {
         return {
+            gid:'',
             status:0,
             src:"https://img2.doubanio.com/view/group/sqxs/public/d07b495448be651.jpg",
             name:'村庄爱好者',
             editor: null,
             textarea: "",
             html: '<p>hello</p>',
-
+            time:'',
             toolbarConfig: { },
             editorConfig: { placeholder: '请输入内容...',
                              MENU_CONF: {
@@ -124,8 +125,38 @@ export default Vue.extend({
         submit()
         {
             if(this.status===0)
-        this.status=1;
-        else this.status=0;
+            this.status=1;
+            else this.status=0;
+             var _this = this;
+        let yy = new Date().getFullYear();
+        let mm = new Date().getMonth()+1;
+        let dd = new Date().getDate();
+        let hh = new Date().getHours();
+        let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+        let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+        
+        var time=yy+'-'+mm+'-'+dd+' '+hh+':'+mf+':'+ss;
+        console.log(time);
+        this.time=time;
+            var url='/api/group/adddiscuss'
+            this.$axios.post(url,{
+                gid:parseInt(this.gid),
+                content:this.html,
+                title:this.textarea,
+                time:this.time,
+            }).then(res=>{
+                console.log(res.data)
+            })
+        },
+        getData()
+        {
+            console.log("搜索"+this.gid)
+            this.$axios.post("/api/group/getgroup",{gid:parseInt(this.gid)}).then((res) => {
+                console.log(res.data);
+                this.src = res.data.groupData.src;
+                this.name = res.data.groupData.name;
+                this.src=this.$hostURL+'/'+this.src;
+            });
         }
     },
     mounted() {
@@ -139,6 +170,10 @@ export default Vue.extend({
         if (editor == null) return
         editor.destroy() // 组件销毁时，及时销毁编辑器
     },
+    created(){
+        this.gid=this.$route.query.gid;
+        this.getData();
+    }
     
 })
 </script>

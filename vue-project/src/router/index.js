@@ -101,7 +101,11 @@ const routes = [
         name: 'text',
         component: () => import('../views/group/showText.vue'),
       },
-      
+      {
+        path: '/group/manage',
+        name: 'manage',
+        component: () => import('../views/group/manage.vue'),
+      },
     ]
   },
   {

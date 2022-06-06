@@ -1,32 +1,26 @@
 <template>
     <div class="outside">
         <div class="left">
-        <card @getgid="getgid"> </card>
-        <div class="title">
-            <h4>最热讨论</h4>
+            <list @c2p="c2p"></list>
+        <card @getgid="getgid" ref="child2"></card>
+        
+        
         </div>
-
-        <div class="title" style="float:right;">
-            <el-button type="success" plain size="mini" @click="this.toedit">+发言</el-button>
-        </div>
-        <div class="list">
-        <discuss></discuss>
-        </div>
-        </div>
-        <div class="right">
+        <!-- <div class="right">
             <member></member>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
-import card from "../../components/group/infocard.vue"
+import card from "../../components/group/infocard2.vue"
 import member from "../../components/group/member.vue"
-import discuss from "../../components/group/discuss.vue"
+
+import list from "../../components/group/Mgrouplist.vue"
 export default {
     components:{
         card,
         member,
-        discuss
+        list
     },
     data(){
         return {
@@ -34,6 +28,12 @@ export default {
         }
     },
     methods:{
+        c2p(p1)
+        {
+            this.gid=p1;
+            console.log("re"+p1)
+            this.$refs.child2.getData(p1);
+        },
         toedit(){
             this.$router.push({
                 path:"/group/editor",

@@ -78,6 +78,7 @@ word-spacing: normal;
 export default {
     data(){
         return {
+            gid:'',
             memberData:[
                 {
                     src:"https://img2.doubanio.com/icon/up179164772-1.jpg",
@@ -101,6 +102,26 @@ export default {
                 }
             ]
         }
+    },
+    methods:{
+        getData(gid){
+            this.$axios.post("/api/group/getmember",{
+            gid:parseInt(gid)
+            }).then((res) => {
+            console.log(res.data);
+         this.memberData = res.data.memberData;
+         for(var i=0;i<this.memberData.length;i++)
+         {
+             this.memberData[i].src=this.$hostURL+'/'+this.memberData[i].src;
+         }
+        
+      });
+        }
+    },
+    created(){
+        this.gid=this.$route.query.gid;
+        console.log("member收到:"+this.gid)
+        this.getData(this.gid)
     }
 }
 </script>

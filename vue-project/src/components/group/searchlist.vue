@@ -14,14 +14,14 @@
     >
       <el-table-column>
           <template slot-scope="scope">
-            <img :src="scope.row.src">
+            <img :src="scope.row.src" @click="toinfo(scope.row.gid)" width="70px" height="70px">
           </template>
       </el-table-column>
       <el-table-column label="" width="300px" >
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="toinfo(scope.row.gid)"
           type="primary"
         >
           {{ scope.row.name | ellipsis }}
@@ -78,6 +78,7 @@ export default {
       searchText:'搜索内容',
       groupData: [
         {
+          gid:'',
           name:"小组名称",
           respose: 100,
           number:10,
@@ -128,6 +129,15 @@ export default {
       });
       console.log("end rank");
     },
+    toinfo(gid)
+    {
+      console.log("toinfo")
+      this.$router.push({
+        path:"/group/info",
+        query:{gid: gid}
+      })
+      console.log("传出："+gid)
+    },
     clickMv(val1, val2){
            // alert(val1+val2);
             console.log("send"+val1+" "+val2);
@@ -144,10 +154,23 @@ export default {
     },
   },
   created() {
+    this.searchText=this.$route.query.searchText;
+    console.log(this.groupData)
     //this.download_movielist();
-  },
-  rateChange(value) {
-    console.log(value);
-  },
-};
+    var url='/api/group/groupsearch';
+            console.log("have created search");
+            this.$axios.post(url,
+                        {searchtext:this.searchText},
+            ).then(res => {
+            console.log(res.data.listGroup);
+            this.groupData=res.data.listGroup;
+            for(var i=0;i<this.groupData.length;i++)
+            {
+                this.groupData[i].src=this.$hostURL+'/'+this.groupData[i].src
+            }})
+  }
+  // rateChange(value) {
+  //   console.log(value);
+  // },
+}
 </script>

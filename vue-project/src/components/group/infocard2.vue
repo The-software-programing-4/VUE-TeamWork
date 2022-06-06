@@ -1,6 +1,6 @@
 <template>
     <div class="outside">
-        <div class="title">
+        <div class="title" v-if="status===1">
             <div class="ttt1">
             <img :src="this.groupData.src" width="48px" height="48px">
             </div>
@@ -14,23 +14,37 @@
             <el-button type="info" plain size="small" @click="drop">退出小组</el-button>
             </div>
         </div>
-        <div class="message">
+        <div class="message" v-if="status===1">
             <div class="leader">
                 <b>组长</b> : {{this.groupData.leader}} &nbsp;&nbsp;  <b>创建日期</b> : {{this.groupData.time}}
             </div>
             <div class="intro">
-                {{this.groupData.introduction}}
+                <el-input v-model="this.groupData.introduction" :placeholder="this.groupData.introduction"></el-input>
+                
             </div>
             <div class="intro">
-                {{this.groupData.introduction}}
+                <el-input v-model="this.groupData.introduction" :placeholder="this.groupData.introduction"></el-input>
             </div>
             <div class="qian">
-              <b>小组标签</b> : {{this.groupData.leader}}
+              <b>小组标签</b> : <el-input v-model="this.groupData.leader" style="width:80px;" :placeholder="this.groupData.introduction"></el-input>
+              <span style="margin-left:20px;"> </span>
+                  <el-button type="primary" icon="el-icon-edit" circle></el-button>
             </div>
         </div>
+        <div class="title" v-if="status===1"><h2>组内讨论</h2></div>
+        <div class="list" v-if="status===1">
+        <discuss1 ref="child"></discuss1>
+        </div>
+        <div v-if="status===0" class="none"><h2>请选择小组</h2></div>
     </div>
 </template>
 <style scoped>
+.list{
+    margin-left: 30px;
+}
+.none{
+    margin-top: 30px;
+}
 .intro{
     padding: 4%;
     text-align: left;
@@ -75,10 +89,14 @@ text-align: left;
 }
 </style>
 <script>
+import discuss1 from "./discuss2.vue"
 export default {
+    components:{
+        discuss1
+    },
     data(){
         return {
-        
+        status:0,
         groupData:
         {
             join:1,
@@ -94,14 +112,16 @@ export default {
         }
     },
     methods:{
-        getData()
+        getData(gid)
         {
-            console.log("搜索"+this.groupData.gid)
-            this.$axios.post("/api/group/getgroup",{gid:parseInt(this.groupData.gid)}).then((res) => {
+            this.status=1;
+            console.log("搜索"+gid)
+            this.$axios.post("/api/group/getgroup",{gid:parseInt(gid)}).then((res) => {
                 console.log(res.data);
                 this.groupData = res.data.groupData;
                 this.groupData.src=this.$hostURL+'/'+this.groupData.src;
             });
+            this.$refs.child.download_movielist(gid);
         },
         addInto()
         {
@@ -122,7 +142,7 @@ export default {
     {
         this.groupData.gid=this.$route.query.gid;
         console.log("收到:"+this.groupData.gid)
-        this.getData();
+        //this.getData(this.groupData.gid);
         this.$emit('getgid', this.groupData.gid);
         console.log("组件发送"+this.groupData.gid)
     }

@@ -9,13 +9,13 @@
           
           <li class="" v-for="item in groupData">
           <div class="pic">
-            <a href="https://www.douban.com/group/lovearashi/">
-              <img :src="item.src" alt="悠长假期" class="">
+            <a @click="toGroup(item.gid)">
+              <img :src="item.src" alt="悠长假期" width="48px" height="48px" class="">
             </a>
           </div>
           <div class="info">
             <div class="title">
-              <a title="悠长假期" href="https://www.douban.com/group/lovearashi/" class="">{{item.name}}</a><br>
+              <a @click="toGroup(item.gid)" class="">{{item.name}}</a><br>
             </div>
             <span class="num">{{item.number}}</span><br>
           </div>
@@ -175,12 +175,16 @@ export default {
   },
   methods: {
     download_movielist() {
-      console.log("start rank")
-      this.$axios.post("/api/movie/listmovie").then((res) => {
-        console.log(res.data.messages);
-        this.discussData = res.data.messages;
+
+      this.$axios.post("/api/group/listgroup").then((res) => {
+        console.log(res.data);
+        this.groupData = res.data.listGroup;
+        for(var i=0;i<res.data.listGroup.length;i++)
+        {
+          this.groupData[i].src=this.$hostURL+'/'+this.groupData[i].src;
+        }
       });
-      console.log("end rank");
+
     },
     clickMv(val1, val2){
            // alert(val1+val2);
@@ -194,12 +198,14 @@ export default {
         path:"/group/showtext"
       })
     },
-    toinfo(gid)
+    toGroup(gid)
     {
       console.log("toinfo")
       this.$router.push({
-        path:"/group/info"
+        path:"/group/info",
+        query:{gid: gid}
       })
+      console.log("传出："+gid)
     }
 
   },
@@ -213,7 +219,7 @@ export default {
     },
   },
   created() {
-    //this.download_movielist();
+    this.download_movielist();
   },
   rateChange(value) {
     console.log(value);

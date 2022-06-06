@@ -3,7 +3,7 @@
         <div class="left">
             <list2></list2>
         <list></list>
-        
+        <list3></list3>
         </div>
         <div class="right">
             <mainr></mainr>
@@ -13,12 +13,14 @@
 <script>
 import list from "../../components/group/mygrouplist.vue"
 import list2 from "../../components/group/grouplist.vue"
+import list3 from "../../components/group/groupIT.vue"
 import mainr from "../../components/group/mainr.vue"
 export default {
     components:{
         list,
         mainr,
-        list2
+        list2,
+        list3
 
     }
 }
