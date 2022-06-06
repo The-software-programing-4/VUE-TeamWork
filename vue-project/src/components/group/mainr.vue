@@ -5,7 +5,7 @@
   <a href="/group/people/255870596/"><img src="https://img2.doubanio.com/icon/up255870596-2.jpg"></a>
   </div>
   <div class="info">
-    <a href="/group/people/255870596/"><b>我的小组主页</b></a>
+    <a @click="tomanage"><b>管理我的小组</b></a>
     <p><a href="/group/people/255870596/publish">发起(0)</a> &nbsp;
     | &nbsp; <a href="/group/people/255870596/reply">回应(0)</a>
   </p></div>
@@ -25,7 +25,17 @@
       <ul>
           <li class="">
           <a href="https://www.douban.com/group/villages/">
-            <img src="https://img2.doubanio.com/view/group/sqxs/public/d07b495448be651.jpg" title="村庄爱好者" alt="村庄爱好者" class="">
+            <img :src="this.$hostURL+'/templates/groupHead/1.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
+          </a>
+          </li>
+          <li class="">
+          <a href="https://www.douban.com/group/villages/">
+            <img :src="this.$hostURL+'/templates/groupHead/2.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
+          </a>
+          </li>
+          <li class="">
+          <a href="https://www.douban.com/group/villages/">
+            <img :src="this.$hostURL+'/templates/groupHead/3.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
           </a>
           </li>
       </ul>
@@ -46,7 +56,21 @@
     </div>
 
 </template>
+<script>
+export default {
+  methods:{
+    tomanage()
+    {
+      this.$router.push('/group/manage')
+    }
+  }
+}
+</script>
 <style scoped>
+li{
+display: inline-block;
+margin-right: 10px;
+}
  .aside {
 width: 280px;
 display: inline-block;

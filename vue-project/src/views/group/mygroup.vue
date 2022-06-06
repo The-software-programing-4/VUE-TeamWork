@@ -45,8 +45,27 @@ import grouplist from "../../components/group/mygrouplist.vue"
 export default{
     components:{
         grouplist,
+    },
+    data(){
+        return{
+            searchText:'',
+            searchResult:[]
+        }
+    },
+    methods:{
+        onSearch(){
+             
+            console.log("search"+this.searchResult)
+            this.$router.push(
+                {
+                    path:"/group/search",
+                    query:{searchText:this.searchText}
+                }
+            )
+        }
+        }
     }
-}
+
 </script>
 <style scoped>
  #db-nav-group{

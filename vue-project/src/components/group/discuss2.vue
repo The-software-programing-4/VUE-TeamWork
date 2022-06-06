@@ -1,8 +1,6 @@
 <template>
 <div class="outside">
-    <div class="title">
-      <b>我的讨论 </b>
-    </div>
+
     <el-table
       :data="groupData"
       stripe
@@ -13,7 +11,7 @@
     :cell-style="{padding:'1px'}"
     >
 
-      <el-table-column label="" width="300px" >
+      <el-table-column label="" width="200px" label="题目">
          <template slot-scope="scope">
         <el-link
           :underline="false"
@@ -24,18 +22,7 @@
         </el-link>
       </template>
     </el-table-column>
-
-    <el-table-column prop="score" width="">
-      <template  slot-scope="scope">
-      {{ scope.row.respose }}回应
-      </template>
-    </el-table-column>
-     <el-table-column prop="score" width="130px">
-      <template  slot-scope="scope">
-      {{scope.row.time | ellipsis_time}}
-      </template>
-    </el-table-column>
-    <el-table-column prop="score" width="">
+  <el-table-column prop="score" label="作者" width="">
       <template  slot-scope="scope">
         <el-link
           :underline="false"
@@ -45,6 +32,22 @@
           {{scope.row.leader}}
         </el-link>
       
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" label="回应" width="">
+      <template  slot-scope="scope">
+      {{ scope.row.respose }}
+      </template>
+    </el-table-column>
+     <el-table-column prop="score" label="发表日期" width="100px">
+      <template  slot-scope="scope">
+      {{scope.row.time }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="score" label="置顶/删除" width="150px">
+      <template>
+    <el-button type="warning" icon="el-icon-star-off" size="mini" circle></el-button>
+  <el-button type="danger" icon="el-icon-delete" size="mini" circle></el-button>
       </template>
     </el-table-column>
     </el-table>
@@ -135,10 +138,12 @@ export default {
     };
   },
   methods: {
-    download_movielist() {
-      this.$axios.post("/api/group/listdiscuss").then((res) => {
+    download_movielist(gid) {
+      this.$axios.post("/api/group/listdiscussingroup",{
+        gid:parseInt(gid)
+      }).then((res) => {
         console.log(res.data);
-        this.groupData = res.data.listDiscuss;
+        this.groupData = res.data.discussData;
         
       });
     },
@@ -183,7 +188,9 @@ export default {
     },
   },
   created() {
-    this.download_movielist();
+    this.gid=this.$route.query.gid;
+        console.log("list收到:"+this.groupData.gid)
+    //this.download_movielist(this.gid);
   },
   rateChange(value) {
     console.log(value);
