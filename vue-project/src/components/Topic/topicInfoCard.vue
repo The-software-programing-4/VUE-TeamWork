@@ -99,35 +99,13 @@ export default {
       classHot: 'topicNow',
       classNew: 'topicWait',
       state: 0,
+      tid:0,
       title: '中国文学史上最激动人心的相遇',
       contentNum: 2,
       followerNum: 2,
       content:'闻一多称，李白、杜甫的相遇，是日月相会。“四千年的历史里，除了孔子见老子，没有比这两人的会面，更重大，更神圣，更可纪念的。”',
       forums: [
-        {
-          id: 1,//帖子id
-          username: 'ando',//发布者姓名
-          topicname:'abc',//所属话题名字
-          uid:"创建人名字",
-          tid:"话题名字",
-          content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
-          thumb: 0,//点赞数量
-          // thumbId:[1, 2, 3],//存储点赞用户id
-          day: '2022.5.21 15:36:01', 
-          isthumb: '点赞', 
-          imgList:["src", "src", "src"]
-
-        },
-        {
-          id: 2,
-          username: 'ando',
-          content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
-          thumb: 0,
-          reply: 0,
-          day: '2022.5.21 15:36:01',
-          isthumb: '点赞', 
-
-        },
+        
       ],
       scene:0,//跳转到写评论,
       writeText:"",//绑定写的评论内容
@@ -140,7 +118,8 @@ export default {
     topicId:0
   },
   created(){
-    this.getData();
+    this.tid=this.$route.query.tid;
+    this.getData(this.tid);
   }
   ,
   methods: {
@@ -165,20 +144,33 @@ export default {
         data:qs.stringify(post_data)
       }).then(res=>{
         console.log(res.data)//打印返回数据
+        
       })
     },
-    getData()
+    getData(tid)
     { 
-      var url="/api/group/listdiscuss"
-        this.$axios.post(url).then
+        var url="/api/topic/message_get"
+        
+        console.log("tid"+tid);
+        this.$axios.post(url,{tid:parseInt(tid)}).then
         (res=>{
-          this.forums=res.data.listDiscuss;
+          
+          this.tid=res.data.topic.id;
+          this.content=res.data.topic.introduction;
+          this.title=res.data.topic.title
+          console.log(this.forums)
+        });
+
+        var url2="/api/group/listdiscuss"
+        this.$axios.post(url2,{tid:parseInt(tid)}).then
+        (res=>{
+            this.forums=res.data.listDiscuss;
           for(var i=0;i<this.forums.length;i++)
           {
             this.forums[i].src=this.$hostURL+'/'+this.forums[i].src
           }
-          console.log(this.forums)
-        })
+        }
+        )
     },
     change(opt){
       if(opt == 0){
@@ -236,7 +228,7 @@ li{
   display: inline-block;
 }
 .content ::v-deep img{
-  width: 200px;
+  width: 60%;
 }
 .content ::v-deep {
   height: 100px;

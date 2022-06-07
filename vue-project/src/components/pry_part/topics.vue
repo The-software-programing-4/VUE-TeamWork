@@ -12,11 +12,12 @@
                 <el-badge :value="topic.focus" class="item" type="warning" style="float:left;height: 10px;">
                 <el-button size="small" @click="clickMv(topic.tid, 2)">关注</el-button>
                 </el-badge>
-                <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button> -->
+                <div style="display:inline-block;">{{topic.name | ellipsis}}</div>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="toinfo(topic.tid)">进入话题</el-button>
 
             </div>
-            <p class="text item" style="font-size:12px; overflow:hidden; text-overflow: ellipsis;white-space:nowrap; -webkit-line-clamp:2;">
-               {{topic.introduction}}
+            <p class="text item" style="margin-left:100px; font-size:12px;  ">
+               {{topic.introduction | ellipsis2}}
             </p>
             </el-card>
         </div>
@@ -37,23 +38,27 @@
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
     <!-- 话题展示 -->
         <div class="topicComment">
-        <ul>
-          <li v-for="(item, index) in forums" class="commentItem">
-            <div class="commentNav">
-              <a href="#" class="commentUser">{{item.username}}</a>
-              <span class="commentThumb">{{item.thumb}}
-                <a @click="thumb(index)">点赞</a>
-              </span>
-              <span class="commentDate">{{item.day}}</span>
-            </div>
-            <div>{{item.content}}</div>
-          </li>
-        </ul>
+            <ul>
+            <li  v-for="(item, index) in forums" class="commentItem">
+                <div class="img"><img :src="item.src" width="30px" height="30px"></div>
+                <div class="commentNav">
+                
+                <a href="#" class="commentUser" style="margin-right:20px;"> {{item.writer}} </a>
+                <span class="commentThumb">{{item.thumb}}
+                    <a @click="thumb(index)">{{item.isthumb}}</a>
+                </span>
+                <span class="commentDate"> {{item.time}} </span>
+                </div>
+                <div :id="item.id" class="content" v-html="item.content"></div>
+                <a v-if="item.id>0" @click="changeheight(item.id);item.id=0">(展开…)</a>
+            </li>
+            </ul>
       </div>
     </div>
 
 </template>
 <script>
+import "@/css/style.css";
 export default {
     data(){
         return{
@@ -64,6 +69,9 @@ export default {
             topicList:[],
             str:'1',
             tid0:1,
+            forums: [
+        
+            ],
             try:[{len:3}, {pid:2}, {pid:3}],
             tid:[],//查找得到该用户关注的tid
             forms:[{
@@ -81,7 +89,33 @@ export default {
         },]
         }
     },
+    filters: {
+    ellipsis: function (value) {
+      if (!value) return "";
+      if (value.length > 8) {
+        return value.slice(0, 8) + "...";
+      }
+      return value;
+    },
+     ellipsis2: function (value) {
+      if (!value) return "";
+      if (value.length > 30) {
+        return value.slice(0, 30) + "...";
+      }
+      return value;
+    },
+  },
     methods:{
+        
+        toinfo(tid)
+        {
+            this.$router.push(
+                {
+                    path: "/topic/info",
+                    query: {tid:tid}
+                }
+            )
+        },
         getTopic(){
             var url='/api/topic/listtopic';
             var str0="a";
@@ -97,7 +131,24 @@ export default {
                 }
             )
             console.log("endtopic");
+            var url2="/api/group/listdiscuss"
+                this.$axios.post(url2).then
+                (res=>{
+                    this.forums=res.data.listDiscuss;
+                for(var i=0;i<this.forums.length;i++)
+                {
+                    this.forums[i].src=this.$hostURL+'/'+this.forums[i].src
+                }
+                }
+                )
         },
+        changeheight(id)
+    {
+      console.log("show")
+        var li=document.getElementById(id);
+        li.style.height="auto"
+
+    },
         SearchTid2Pid(){
             var url='/api/topic/tid2pid';
             var midr = this.tid0;
@@ -168,7 +219,19 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
+li{
+  vertical-align: middle;
+}
+.content ::v-deep img{
+  width: 300px;
+}
+.content ::v-deep {
+    width: 300px;
+  height: 100px;
+  overflow: hidden;
+
+}
 #topic{ 
     width: 100%;
     margin-top:30px ;
@@ -195,9 +258,9 @@ export default {
     font-size: 14px;
   }
 
-  .item {
-    margin-bottom: 18px;
-  }
+.img{
+  display: inline-block;
+}
 
   .clearfix:before,
   .clearfix:after {
