@@ -113,6 +113,11 @@ const routes = [
     name: 'editor',
     component: () => import('../views/group/editor.vue'),
   },
+  {
+    path:'/group/create',
+    name:'create',
+    component:()=>import("../components/group/creategroup.vue")
+  }
 ]
 
 const router = new VueRouter({
