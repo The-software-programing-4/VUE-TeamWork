@@ -35,6 +35,10 @@
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
                         <router-link to="/TopicShow">话题</router-link>
                     </li>
+                    <li>
+                        <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
+                        <router-link to="/group/create">创建小组</router-link>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -39,7 +39,7 @@
             </div>
             <div class="detail">
                 <div>
-                    <a href="">话题名字:{{topic.name}}</a>
+                    <button @click="clickMv(topic.id, 2)" id="nameButton">话题名字：{{topic.name}}</button>
                 </div>
                 <div>
                     <p>话题简介：
@@ -114,15 +114,16 @@ export default {
     methods:{
         getTopic(){
             var url='/api/topic/listtopic';
+            var str0="a";
             console.log("starttopic");
-
             this.$axios.post(
                 url,
+                str0
             )
             .then(
                 res=>{
                     this.topicList=res.data.message;
-                    console.log("listtopic", res.data.message);
+                    console.log("listtopic", res.data);
                 }
             )
             console.log("endtopic");
@@ -190,7 +191,7 @@ export default {
         this.SearchTid2Pid();
         this.searchPid2src();
         this.messageGet();
-        // this.getTid2pid();
+        this.getTid2pid();
         // console.log("try");
         // console.log(this.try[1]);
     },
@@ -295,5 +296,9 @@ export default {
 #img-show .detail div a{
     text-decoration: none;
         color: #339933;
+}
+#nameButton{
+    border-color: transparent;
+    background: transparent;
 }
 </style>

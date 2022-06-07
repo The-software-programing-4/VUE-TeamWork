@@ -20,12 +20,12 @@
         <ul class="topicFoot">
           <li class="topicFootItem">
             <img src="../../assets/write@2x.png" class="topicFootCommentIcon">
-            <el-button plain id="button1">写点什么</el-button>
+            <el-button plain id="button1" @click="write">写点什么</el-button>
           </li>
           <li class="topicFootItem">
             <img src="../../assets/pic.png" class="topicFootCommentIcon">
             <!-- <a href="#" class="topicFootCommentTag">发图片</a> -->
-            <el-button plain id="button1">发图片</el-button>
+            <el-button plain id="button1" @click="write">发图片</el-button>
           </li>
           <li class="topicFootItem topicFootLast">
             <img src="../../assets/diary@2x.png" class="topicFootCommentIcon">
@@ -122,7 +122,7 @@ export default {
 
         },
       ],
-      scene:1,//跳转到写评论,
+      scene:0,//跳转到写评论,
       writeText:"",//绑定写的评论内容
       fileList:[{name:'a', url:'*'}],
       resData:{uid:this.$store.state.Guid},
