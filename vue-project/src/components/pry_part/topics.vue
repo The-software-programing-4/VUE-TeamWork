@@ -158,10 +158,10 @@ export default {
     created(){
         //请求初始化图片链接
         this.getTopic();
-        this.SearchTid2Pid();
-        this.searchPid2src();
-        this.messageGet();
-        this.getTid2pid();
+        // this.SearchTid2Pid();
+        // this.searchPid2src();
+        // this.messageGet();
+        // this.getTid2pid();
         // console.log("try");
         // console.log(this.try[1]);
     },
