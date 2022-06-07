@@ -108,12 +108,13 @@ export default {
           id: 1,//帖子id
           username: 'ando',//发布者姓名
           topicname:'abc',//所属话题名字
-          uid:"",
-          tid:"",
+          uid:"创建人名字",
+          tid:"话题名字",
           content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
           thumb: 0,//点赞数量
           // thumbId:[1, 2, 3],//存储点赞用户id
           day: '2022.5.21 15:36:01', 
+          isthumb: '点赞', 
           imgList:["src", "src", "src"]
 
         },
@@ -155,14 +156,7 @@ export default {
         else this.scene=1;
     },
     thumb(index){
-      if(this.forums[index].isthumb == "点赞"){
-        this.forums[index].thumb++;
-        this.forums[index].isthumb = '已点赞'
-      }
-      else{
-        this.forums[index].thumb--;
-        this.forums[index].isthumb = '点赞'
-      }
+      this.forums[index].thumb++;
       // 点赞后需要更新发布的赞数，传输数据为话题id， 点赞人id， 新的点赞总数
       var post_data = {tid:this.topicId, fid:this.forums[index].id, thumb:this.forums[index].thumb}
       this.$axios({
