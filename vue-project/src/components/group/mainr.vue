@@ -2,12 +2,12 @@
     <div class="aside">
   <div class="mod profile-entry">
   <div class="pic">
-  <a href="/group/people/255870596/"><img src="https://img2.doubanio.com/icon/up255870596-2.jpg"></a>
+  <img :src="this.src">
   </div>
   <div class="info">
     <a @click="tomanage"><b>管理我的小组</b></a>
-    <p><a href="/group/people/255870596/publish">发起(0)</a> &nbsp;
-    | &nbsp; <a href="/group/people/255870596/reply">回应(0)</a>
+    <p><a href="/group/people/255870596/publish">发起(3)</a> &nbsp;
+    | &nbsp; <a href="/group/people/255870596/reply">回应(110)</a>
   </p></div>
 </div>
 
@@ -58,11 +58,29 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      src:'',
+    }
+  },
   methods:{
+    display_photo(){
+        this.$axios.get("/api/user/getimg").then(res=>{
+        console.log(res.data);
+        if(res.data.message)
+        {
+          this.src=this.$hostURL+"/"+res.data.message;
+        }
+        console.log("rout"+this.src);
+         })
+      },
     tomanage()
     {
       this.$router.push('/group/manage')
     }
+  },
+  created(){
+    this.display_photo();
   }
 }
 </script>

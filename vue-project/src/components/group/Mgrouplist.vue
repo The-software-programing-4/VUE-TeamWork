@@ -1,7 +1,10 @@
 <template>
 <div class="outside">
     <div class="title">
-      <b>我创建的小组 </b>
+      <b>我管理的小组 </b>
+    </div>
+    <div class="have" v-if="have===0">
+      <h6>很遗憾，您没有管理的小组</h6>
     </div>
     <div class="group-list group-cards">
 
@@ -26,6 +29,12 @@
 </div>
 </template>
 <style scoped>
+.have{
+  margin-top: 20px;
+  font-size: 20px;
+  color: green;
+
+}
 .group-list {
 overflow: hidden;
 width: 540px;
@@ -87,7 +96,9 @@ li{
 <script>
 export default {
   data() {
+    
     return {
+      have:1,
       groupData:[
         {
           gid:0,
@@ -176,13 +187,15 @@ export default {
   methods: {
     download_movielist() {
 
-      this.$axios.post("/api/group/listgroup").then((res) => {
+      this.$axios.post("/api/group/listgroupmy").then((res) => {
         console.log(res.data);
         this.groupData = res.data.listGroup;
         for(var i=0;i<res.data.listGroup.length;i++)
         {
           this.groupData[i].src=this.$hostURL+'/'+this.groupData[i].src;
         }
+        if(this.groupData.length===0)
+        this.have=0;
       });
 
     },

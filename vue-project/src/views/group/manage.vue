@@ -6,14 +6,14 @@
         
         
         </div>
-        <!-- <div class="right">
-            <member></member>
-        </div> -->
+        <div class="right" v-if="status===1">
+            <member :gid="gid" ref="childr"></member>
+        </div>
     </div>
 </template>
 <script>
 import card from "../../components/group/infocard2.vue"
-import member from "../../components/group/member.vue"
+import member from "../../components/group/member2.vue"
 
 import list from "../../components/group/Mgrouplist.vue"
 export default {
@@ -25,6 +25,7 @@ export default {
     data(){
         return {
             gid:'',
+            status:0,
         }
     },
     methods:{
@@ -32,8 +33,18 @@ export default {
         {
             this.gid=p1;
             console.log("re"+p1)
+            this.status=1;
             this.$refs.child2.getData(p1);
+            //this.$refs.childr.getData(p1);
         },
+        sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
         toedit(){
             this.$router.push({
                 path:"/group/editor",
