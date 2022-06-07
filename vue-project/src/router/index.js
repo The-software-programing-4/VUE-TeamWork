@@ -84,7 +84,7 @@ const routes = [
     component: () => import('../views/BookShow.vue')
   },
   {
-    path: '/WriteReview',
+    path: '/WriteReview/:type/:target',
     name: 'WriteReview',
     component: () => import('../views/WriteReview.vue')
   },
@@ -126,9 +126,9 @@ const routes = [
     component: () => import('../views/group/editor.vue'),
   },
   {
-    path:'/group/create',
-    name:'create',
-    component:()=>import("../components/group/creategroup.vue")
+    path: '/group/create',
+    name: 'create',
+    component: () => import("../components/group/creategroup.vue")
   }
 ]
 

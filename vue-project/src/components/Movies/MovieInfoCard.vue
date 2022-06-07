@@ -56,29 +56,36 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="bookFav">
-           
-        </div> -->
+
         <div class="bookCommentLink">
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="" >
-                <a href="#" class="bookWriteWord">写短评</a>
+                <a @click="write" class="bookWriteWord">写短评</a>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <a href="#" class="bookWriteWord">写影评</a>
+                <a @click="write" class="bookWriteWord">写影评</a>
             </li>
-             <span class="bookFavComment">评价：</span>
-            <span class="bookFavStar">
-                <ul>
-                    <li v-for="(item, index) in stars" class="bookFavStarList">
-                        <img v-if="item.isshow" src="../../assets/fullStar.png" class="bookFavImg" @mouseleave="emptyStar">
-                        <img v-else="!item.isshow" src="../../assets/emptyStar.png" class="bookFavImg" @mouseover="fillStar(index)">
-                    </li>
-                </ul>
-            </span>
-            <span class="rateWord">{{starCom}}</span>
         </div>
+
+        <div v-if="showWrite" class="writeWrap">
+            <div class="bookFav">
+            <span class="bookFavComment">评价：</span>
+            <span class="bookFavStar">
+                <div class="block">
+                    <el-rate v-model="score" :colors="colors"> </el-rate>
+                </div>
+            </span>
+            </div>
+
+            <div class="writeContent">
+            <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 10}" placeholder="请输入评论" v-model="content">
+            </el-input>
+            <div style="margin: 20px 0;"></div>
+            <el-button @click="addmark" type="success">提交评论</el-button>
+            </div>
+        </div>
+
         <div class="relatedInfo">
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">剧情简介</div>
@@ -113,8 +120,12 @@ import "@/css/style.css";
 export default {
     data(){
         return{
+            colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
+            movieid:1,
+            moviescore: 0,
+            content: '',
             name: '',
-            //mid:  '',
+            showWrite: 0,
             src: '',
             directors: '',
             writers: '',
@@ -125,29 +136,49 @@ export default {
             date: '',
             position: '',
             IMDb: '',
-            score: 0.0,
+            score: 0,
             brief_introduction: '',
-            stars: [
-            {isshow: false },
-            {isshow: false },
-            {isshow: false },
-            {isshow: false },
-            {isshow: false }
-            ],
-            starCom: '',
-            com: [
-                '很差',
-                '较差',
-                '还行',
-                '推荐',
-                '力荐'
-            ]
         }
     },
     props:{
         mid: Number,//从父组件传值
     },
     methods: {
+        write(){
+            this.showWrite = 1 - this.showWrite;
+        },
+        addmark(){
+            var url='/api/marks/addmark';
+
+            var now = new Date();
+            var year = now.getFullYear().toString(); //得到年份
+            var month = (now.getMonth()+1).toString();//得到月份
+            var date = now.getDate().toString();//得到日期
+            var hour = now.getHours().toString();
+            var minute = now.getMinutes().toString();
+            var second = now.getSeconds().toString();
+            var totdate = year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
+            var fscore = parseFloat(this.score);
+
+            this.$axios.post(
+                url,
+                {
+                    type: 2,
+                    target: this.movieid,
+                    uid:this.$store.state.Guid,
+                    content: this.content,
+                    day: totdate,
+                    score: fscore,
+                    thumb: 0,
+                    reply: 0,
+                },
+                {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
+            )
+        },
         fillStar(index){
             for(let i = 0; i <= index; i++){
                 this.stars[i].isshow = true;
@@ -177,7 +208,7 @@ export default {
                     
                     this.src = this.$hostURL+"/"+res.data.src;
                     this.name = res.data.name;
-                    this.score = res.data.score;
+                    this.score = res.data.moviescore;
                     this.actors = res.data.actors;
                     this.IMDb = res.data.IMDb;
                     this.category = res.data.category;

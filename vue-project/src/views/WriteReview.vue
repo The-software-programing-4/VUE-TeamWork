@@ -44,15 +44,14 @@ export default {
             var hour = now.getHours().toString();
             var minute = now.getMinutes().toString();
             var second = now.getSeconds().toString();
-
             var totdate = year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
-            console.log(totdate);
+    
             this.$axios.post(
                 url,
                 {
-                    type: 1,
-                    target: 1,
-                    uid: 1,
+                    type: this.$route.params.type,
+                    target: this.$route.params.target,
+                    uid:this.$store.state.Guid,
                     content: this.content,
                     day: totdate,
                     score: this.value,
@@ -65,6 +64,7 @@ export default {
                     }
                 }
             )
+            
         }        
     }
 }

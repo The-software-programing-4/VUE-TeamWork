@@ -53,31 +53,37 @@
                 </div>
             </div>
         </div>
-        <div class="bookFav">
-            <span class="bookFavComment">评价：</span>
-            <span class="bookFavStar">
-                <ul>
-                    <li v-for="(item, index) in stars" class="bookFavStarList">
-                        <img v-if="item.isshow" src="../../assets/fullStar.png" class="bookFavImg" @mouseleave="emptyStar">
-                        <img v-else="item.isshow" src="../../assets/emptyStar.png" class="bookFavImg" @mouseover="fillStar(index)">
-                    </li>
-                </ul>
-            </span>
-            <span class="rateWord">{{starCom}}</span>
-        </div>
+        
         <div class="bookCommentLink">
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="" >
-                <router-link to="/WriteReview" class="bookWriteWord">写笔记</router-link>
+                <router-link :to="`/WriteReview/1/${bookid}`" class="bookWriteWord">写书评</router-link>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <router-link to="/WriteReview" class="bookWriteWord">写书评</router-link>
+                <a @click="write" class="bookWriteWord">写书评</a>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/money.gif" alt="">
                 <router-link to="#" class="bookWriteWord">加入购书单</router-link>
             </li>
+        </div>
+        <div v-if="showWrite" class="writeWrap">
+            <div class="bookFav">
+            <span class="bookFavComment">评价：</span>
+            <span class="bookFavStar">
+                <div class="block">
+                <el-rate v-model="score" :colors="colors"> </el-rate>
+                </div> 
+            </span>
+            </div>
+
+            <div class="writeContent">
+            <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 10}" placeholder="请输入评论" v-model="content">
+            </el-input>
+            <div style="margin: 20px 0;"></div>
+            <el-button @click="addmark" type="success">提交评论</el-button>
+            </div>
         </div>
         <div class="relatedInfo">
             <div class="relatedInfoBlock">
@@ -118,8 +124,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        
+        </div>        
     </div>
 </template>
 
@@ -144,40 +149,64 @@ export default {
             bookMessage:[
 
             ],
+            content: '',
+            colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
             directory: '',
             brief_introduction_of_author: '',
             brief_introduction: '',
-            score: 0.0,
+            score: 0,
             src: '',
             isbn: '',
             price: '',
-            //book_id: 1,
+            showWrite: 0,
             pages_number: '',
             press: '',
             publish_date: '',
             bookname: "",
             author: '',
-            stars: [
-            {isshow: false },
-            {isshow: false },
-            {isshow: false },
-            {isshow: false },
-            {isshow: false }
-            ],
+            bookid: 1,
             starCom: '',
-            com: [
-                '很差',
-                '较差',
-                '还行',
-                '推荐',
-                '力荐'
-            ]
         }
     },
     props:{
         book_id: Number,//从父组件传值
     },
     methods: {
+        write(){
+            this.showWrite = 1 - this.showWrite;
+        },
+        addmark(){
+            var url='/api/marks/addmark';
+
+            var now = new Date();
+            var year = now.getFullYear().toString(); //得到年份
+            var month = (now.getMonth()+1).toString();//得到月份
+            var date = now.getDate().toString();//得到日期
+            var hour = now.getHours().toString();
+            var minute = now.getMinutes().toString();
+            var second = now.getSeconds().toString();
+            var totdate = year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
+            var fscore = parseFloat(this.score);
+
+            this.$axios.post(
+                url,
+                {
+                    type: 1,
+                    target: this.bookid,
+                    uid:this.$store.state.Guid,
+                    content: this.content,
+                    day: totdate,
+                    score: fscore,
+                    thumb: 0,
+                    reply: 0,
+                },
+                {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
+            )
+        },
         fillStar(index){
             for(let i = 0; i <= index; i++){
                 this.stars[i].isshow = true;
@@ -248,7 +277,7 @@ export default {
                 {
                 type: parseInt(1),
                 target: parseInt(1)
-                },
+                }, 
                 {
                     headers: {
                         'Content-Type':'application/json'

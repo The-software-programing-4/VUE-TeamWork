@@ -5,13 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    Guid: null,
+    Guid: 1,
   },
   getters: {
   },
   mutations: {
-    setGuid(state,uid){
-      state.Guid=uid;
+    setGuid(state, uid) {
+      state.Guid = uid;
     }
   },
   actions: {
