@@ -36,15 +36,15 @@
             </form>
         </div>
     </div>
-        <div id="topic-show" >
+        <!-- <div id="topic-show" >
             <topics @change="changeFromTopicShow" v-show="showScene==1"></topics>
             <topicInfoCard class="topicCard" v-show="showScene==2"> </topicInfoCard>
         </div>
         <div id="topiclist">
-            <span>榜单</span>
             <PopularMovieList></PopularMovieList>
             <movielist></movielist>
-        </div>
+        </div> -->
+        <router-view></router-view>
   </div>
 </template>
 <script>

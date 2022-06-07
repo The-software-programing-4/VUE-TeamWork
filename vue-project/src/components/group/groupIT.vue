@@ -1,7 +1,7 @@
 <template>
 <div class="outside">
     <div class="title">
-      <b>你可能感兴趣的小组 </b>
+      <b>推荐小组 </b>
     </div>
     <div class="group-list group-cards">
 
@@ -89,87 +89,10 @@ export default {
   data() {
     return {
       groupData:[
-        {
-          gid:0,
-          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
-          number:91,
-          name:'悠长假期'
-        },
-        {
-          gid:0,
-          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
-          number:91,
-          name:'悠长假期'
-        },
-        {
-          gid:0,
-          src:'https://img2.doubanio.com/icon/g245017-3.jpg',
-          number:91,
-          name:'悠长假期'
-        },
+       
       ],
       discussData: [
-        {
-          id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {id:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        }
+        
       ],
     };
   },

@@ -61,9 +61,21 @@ const routes = [
   },
   {
 
-    path: '/TopicShow',
+    path: '/topic',
     name: 'TopicShow',
-    component: () => import('../views/TopicShow.vue')
+    component: () => import('../views/TopicShow.vue'),
+    children: [
+      {
+        path: '/topic/main',
+        name: 'main',
+        component: () => import('../views/topic/topicmain.vue'),
+      },
+      {
+        path: '/topic/info',
+        name: 'info',
+        component: () => import('../components/Topic/topicInfoCard.vue'),
+      },
+    ]
   },
   {
 
