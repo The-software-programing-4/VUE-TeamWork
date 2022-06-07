@@ -73,7 +73,7 @@ export default {
         
             ],
             try:[{len:3}, {pid:2}, {pid:3}],
-            tid:[],//查找得到该用户关注的tid
+            // tid:[],//查找得到该用户关注的tid
             forms:[{
           id: 1,//帖子id
           username: 'ando',//发布者姓名
@@ -112,7 +112,7 @@ export default {
             this.$router.push(
                 {
                     path: "/topic/info",
-                    query: {tid:tid}
+                    query: {tid:parseInt(tid)}
                 }
             )
         },
@@ -227,7 +227,7 @@ li{
   width: 300px;
 }
 .content ::v-deep {
-    width: 300px;
+    width: 70%;
   height: 100px;
   overflow: hidden;
 
