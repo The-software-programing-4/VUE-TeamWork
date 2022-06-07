@@ -101,7 +101,7 @@ export default {
     {
       console.log("toinfo")
       this.$router.push({
-        path:"/topic/topicInfo",
+        path:"/topic/info",
         query:{tid: tid}
       })
       console.log("传出："+tid)
