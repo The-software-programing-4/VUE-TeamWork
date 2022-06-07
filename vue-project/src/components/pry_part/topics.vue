@@ -10,9 +10,9 @@
         )' >
             <div slot="header" class="clearfix" >
                 <el-badge :value="topic.focus" class="item" type="warning" style="float:left;height: 10px;">
-                <el-button size="small">关注</el-button>
+                <el-button size="small" @click="clickMv(topic.tid, 2)">关注</el-button>
                 </el-badge>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button>
+                <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button> -->
             </div>
             <p class="text item" style="font-size:12px; overflow:hidden; text-overflow: ellipsis;white-space:nowrap; -webkit-line-clamp:2;">
                {{topic.introduction}}
@@ -32,7 +32,7 @@
       </el-pagination>
         </div>
         <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2">我关注的话题的动态</div>
+        <div id="crossLine2">我关注的话题动态</div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
     <!-- 话题展示 -->
         <div class="topicComment">
@@ -176,18 +176,17 @@ export default {
     height: 70px;
     text-align: center;
     line-height: 70px;
-    color: #ffffff;
     font-size: 20px;
-    background: url("./images/blue2.jpg");
+    background: url("./images/card2.jpg");
     background-size: 100%, 100%;
 }
 #crossLine2{ 
-    height: 70px;
+    height: 80px;
     text-align: center;
-    line-height: 50px;
-    color: #ffffff;
+    /* line-height: 100%; */
+    /* color: #ffffff; */
     font-size: 20px;
-    background: url("./images/blue5.jpg");
+    background: url("./images/card1.jpg");
     background-size: 100%, 100%;
 }
  /* card样式 */
@@ -211,17 +210,16 @@ export default {
   .box-card {
     width: 45%;
     float: left;
-    height: 30%;
+    height: 27%;
     margin-bottom:5% ;
     margin-right:3% ;
-    background:url("./images/back4.jpg");
+    background:url("./images/card5.jpg");
     background-size: 100%, 100%;
-    color: #ffffff;
   }
   /* card样式结束 */
 .topic-page{
     width: 100%;
-    height: 400px;
+    height: 460px;
     /* background-color:#474747 ; */
 }
 .pages-div{ 
@@ -233,24 +231,8 @@ export default {
     height: 100px;
     float: left;
 }
-#img-show{
-    margin-top:30px;
-    margin-bottom: 30px;
-    width: 100%;
-    height: 200px;
-}
-#img-show .item-root{
-     width: 30%;
-    max-height: 100%;
-    /* margin-left: 30px; */
-    float: left;
-}
-#img-show .item-root img{
-    width: 50%;
-    max-height: 50%;
-    vertical-align: iddle;
-    margin-left: 5%;
-}
+
+
 #img-show .detail{
     margin-top: 1%;
     width: 70%;

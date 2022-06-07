@@ -107,7 +107,7 @@ export default {
     #db-nav-group{
         position: relative;
         /* background-color: #FFFFcc; */
-        background: url("../components/pry_part/images/blue1.jpg");
+        background: url("../components/pry_part/images/card3.jpg");
         height: 98px;
         width: 100%;
         margin: 0;
