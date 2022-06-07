@@ -13,6 +13,7 @@
                 <el-button size="small" @click="clickMv(topic.tid, 2)">关注</el-button>
                 </el-badge>
                 <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button> -->
+
             </div>
             <p class="text item" style="font-size:12px; overflow:hidden; text-overflow: ellipsis;white-space:nowrap; -webkit-line-clamp:2;">
                {{topic.introduction}}
