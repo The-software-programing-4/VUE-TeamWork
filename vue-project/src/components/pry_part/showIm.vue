@@ -171,6 +171,7 @@ export default {
             )
             .then(
                 res=>{
+                    console.log("movie",res.data.messages)
                     this.imgList=res.data.messages;
                     console.log(res.data.messages);
                     for(var i=0;i<res.data.messages.length;i++)
