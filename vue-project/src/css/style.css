@@ -303,6 +303,10 @@ h1 {
 
 .commentNav {
     height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+    width: 80%;
 }
 
 .commentThumb {
@@ -340,11 +344,15 @@ h1 {
 
 /* Topics */
 .topicContent {
-    padding: 20px 24px 20px;
+    padding: 24px 24px;
     border-radius: 2px;
     border: solid 1px rgba(0, 0, 0, 0.15);
 }
+.topicContent2 {
+    margin-top: 30px;
+    border-radius: 2px;
 
+}
 .topicIcon {
     width: 35px;
     height: 35px;

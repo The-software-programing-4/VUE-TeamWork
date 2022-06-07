@@ -70,67 +70,6 @@ export default {
   data() {
     return {
       groupData: [
-        {
-          gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        }
       ],
     };
   },

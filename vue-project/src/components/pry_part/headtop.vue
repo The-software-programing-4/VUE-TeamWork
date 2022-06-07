@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
-                        <router-link to="/TopicShow">话题</router-link>
+                        <router-link to="/topic/main">话题</router-link>
                     </li>
                     <li>
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->

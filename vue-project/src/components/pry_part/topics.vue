@@ -8,13 +8,16 @@
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )' >
-            <div slot="header" class="clearfix">
-                <span>话题卡片</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button>
+            <div slot="header" class="clearfix" >
+                <el-badge :value="topic.focus" class="item" type="warning" style="float:left;height: 10px;">
+                <el-button size="small" @click="clickMv(topic.tid, 2)">关注</el-button>
+                </el-badge>
+                <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="clickMv(topic.tid, 2)">加入话题</el-button> -->
+
             </div>
-            <div class="text item">
-               话题名称：{{topic.introduction}}，第{{currentPage}}页
-            </div>
+            <p class="text item" style="font-size:12px; overflow:hidden; text-overflow: ellipsis;white-space:nowrap; -webkit-line-clamp:2;">
+               {{topic.introduction}}
+            </p>
             </el-card>
         </div>
         <div class="pages-div">
@@ -30,28 +33,23 @@
       </el-pagination>
         </div>
         <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2">我关注的话题的动态</div>
+        <div id="crossLine2">我关注的话题动态</div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
     <!-- 话题展示 -->
-        <div id="img-show" v-for="topic in topic1List">
-            <div class="item-root">
-                    <img :src="topic.src" alt=""  @click="clickMv(topic.id, 2)">
+        <div class="topicComment">
+        <ul>
+          <li v-for="(item, index) in forums" class="commentItem">
+            <div class="commentNav">
+              <a href="#" class="commentUser">{{item.username}}</a>
+              <span class="commentThumb">{{item.thumb}}
+                <a @click="thumb(index)">点赞</a>
+              </span>
+              <span class="commentDate">{{item.day}}</span>
             </div>
-            <div class="detail">
-                <div>
-                    <button @click="clickMv(topic.id, 2)" id="nameButton">话题名字：{{topic.name}}</button>
-                </div>
-                <div>
-                    <p>话题简介：
-                        简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                        简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                        简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                        简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                        简介：123456789asdfghj从那时的擦的撒谎曾经我饿了能吃三餐都是你出生到成年的赛道你问
-                    </p>
-                </div>
-            </div>
-        </div>
+            <div>{{item.content}}</div>
+          </li>
+        </ul>
+      </div>
     </div>
 
 </template>
@@ -64,51 +62,23 @@ export default {
             currentPage: 1,
             pageSize: 6,
             topicList:[],
-            // 轮播图使用的图片列表
-            topic1List:[
-                {id:1,
-    src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {id:2,
-    src:require('./images/back8.jpg'),
-                name:"pic2",
-                score:2},
-                {id:3,
-    src:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {id:5,
-        src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {id:7,
-    src:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {
-                id:8,
-    src:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {id:9,
-    src:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {id:11,
-    src:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {id:13,
-    src:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
-            //imagebox是assets下一个放图片的文件夹
-            ],
             str:'1',
             tid0:1,
             try:[{len:3}, {pid:2}, {pid:3}],
             tid:[],//查找得到该用户关注的tid
+            forms:[{
+          id: 1,//帖子id
+          username: 'ando',//发布者姓名
+          topicname:'abc',//所属话题名字
+          uid:"创建人名字",
+          tid:"话题名字",
+          content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
+          thumb: 0,//点赞数量
+          // thumbId:[1, 2, 3],//存储点赞用户id
+          day: '2022.5.21 15:36:01', 
+          imgList:["src", "src", "src"]
+
+        },]
         }
     },
     methods:{
@@ -188,10 +158,10 @@ export default {
     created(){
         //请求初始化图片链接
         this.getTopic();
-        this.SearchTid2Pid();
-        this.searchPid2src();
-        this.messageGet();
-        this.getTid2pid();
+        // this.SearchTid2Pid();
+        // this.searchPid2src();
+        // this.messageGet();
+        // this.getTid2pid();
         // console.log("try");
         // console.log(this.try[1]);
     },
@@ -207,18 +177,17 @@ export default {
     height: 70px;
     text-align: center;
     line-height: 70px;
-    color: #ffffff;
     font-size: 20px;
-    background: url("./images/blue2.jpg");
+    background: url("./images/card2.jpg");
     background-size: 100%, 100%;
 }
 #crossLine2{ 
-    height: 70px;
+    height: 80px;
     text-align: center;
-    line-height: 50px;
-    color: #ffffff;
+    /* line-height: 100%; */
+    /* color: #ffffff; */
     font-size: 20px;
-    background: url("./images/blue5.jpg");
+    background: url("./images/card1.jpg");
     background-size: 100%, 100%;
 }
  /* card样式 */
@@ -240,16 +209,18 @@ export default {
   }
 
   .box-card {
-    width: 27%;
+    width: 45%;
     float: left;
-    height: 40%;
+    height: 27%;
     margin-bottom:5% ;
     margin-right:3% ;
+    background:url("./images/card5.jpg");
+    background-size: 100%, 100%;
   }
   /* card样式结束 */
 .topic-page{
     width: 100%;
-    height: 400px;
+    height: 460px;
     /* background-color:#474747 ; */
 }
 .pages-div{ 
@@ -261,24 +232,8 @@ export default {
     height: 100px;
     float: left;
 }
-#img-show{
-    margin-top:30px;
-    margin-bottom: 30px;
-    width: 100%;
-    height: 200px;
-}
-#img-show .item-root{
-     width: 30%;
-    max-height: 100%;
-    /* margin-left: 30px; */
-    float: left;
-}
-#img-show .item-root img{
-    width: 50%;
-    max-height: 50%;
-    vertical-align: iddle;
-    margin-left: 5%;
-}
+
+
 #img-show .detail{
     margin-top: 1%;
     width: 70%;
