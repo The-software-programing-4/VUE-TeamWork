@@ -1,7 +1,7 @@
 <template>
 <div class="outside">
 
-    <el-table
+    <el-table v-if="this.status===1"
       :data="groupData"
       stripe
       highlight-current-row
@@ -13,15 +13,22 @@
 
       <el-table-column label="" width="200px" label="题目">
          <template slot-scope="scope">
+           <i v-if="scope.row.star===1" class="el-icon-star-on"></i>
         <el-link
           :underline="false"
           @click="totext(scope.row.id)"
           type="primary"
         >
-          {{ scope.row.name | ellipsis }}
+          
+          {{ scope.row.name | ellipsis }} <i v-if="scope.row.top===1" class="el-icon-upload2"></i>
         </el-link>
       </template>
     </el-table-column>
+    <!-- <el-table-column prop="score" label="" width="30px" v-if="scope.row.top===1">
+      <template>
+    <i class="el-icon-upload2"></i>
+      </template>
+    </el-table-column> -->
   <el-table-column prop="score" label="作者" width="">
       <template  slot-scope="scope">
         <el-link
@@ -44,10 +51,11 @@
       {{scope.row.time }}
       </template>
     </el-table-column>
-    <el-table-column prop="score" label="置顶/删除" width="150px">
-      <template>
-    <el-button type="warning" icon="el-icon-star-off" size="mini" circle></el-button>
-  <el-button type="danger" icon="el-icon-delete" size="mini" circle></el-button>
+    <el-table-column prop="score" label="置顶/精华/删除" width="150px">
+      <template slot-scope="scope">
+        <el-button type="primary" @click="totop(scope.row.id)"  size="mini" circle><i class="el-icon-upload2"></i></el-button>
+    <el-button type="warning" @click="tostar(scope.row.id)" icon="el-icon-star-off" size="mini" circle></el-button>
+    <el-button type="danger" @click="delet(scope.row.id)" icon="el-icon-delete" size="mini" circle></el-button>
       </template>
     </el-table-column>
     </el-table>
@@ -72,80 +80,78 @@
 export default {
   data() {
     return {
+      
+      status:1,
       groupData: [
         {
+          top:0,
+          star:0,
+          id:0,
           gid:0,
           name:"小组名称",
           respose: 100,
           leader: "selmissL", 
           time: "5.20"
         },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-        {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        },
-         {gid:0,
-          name:"小组名称",
-          respose: 100,
-          leader: "selmissL", 
-          time: "5.20"
-        }
+
       ],
     };
   },
+  props: {
+    gid:Number
+  },
   methods: {
+     sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
     download_movielist(gid) {
+      this.gid=gid;
       this.$axios.post("/api/group/listdiscussingroup",{
         gid:parseInt(gid)
       }).then((res) => {
         console.log(res.data);
+
         this.groupData = res.data.discussData;
         
       });
+    },
+    totop(id)
+    {
+      this.$axios.post("/api/group/totop",{
+        id:parseInt(id)
+      }).then(res=>{
+        console.log(res.data);
+        
+      })
+      this.sleep1(200)
+     this.download_movielist(this.gid);
+    },
+    tostar(id)
+    {
+      this.$axios.post("/api/group/tostar",{
+        id:parseInt(id)
+      }).then(res=>{
+        console.log(res.data);
+        
+      })
+      this.sleep1(200)
+     this.download_movielist(this.gid);
+    },
+    delet(id)
+    {
+      this.$axios.post("/api/group/delet",{
+        id:parseInt(id)
+      }).then(res=>{
+        console.log(res.data);
+      })
+      this.sleep1(200)
+      this.download_movielist(this.gid);
+
     },
     clickMv(val1, val2){
            // alert(val1+val2);
@@ -188,9 +194,9 @@ export default {
     },
   },
   created() {
-    this.gid=this.$route.query.gid;
-        console.log("list收到:"+this.groupData.gid)
-    //this.download_movielist(this.gid);
+    //this.gid=this.$route.query.gid;
+    console.log("list收到:"+this.groupData.gid)
+    this.download_movielist(this.gid);
   },
   rateChange(value) {
     console.log(value);

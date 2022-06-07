@@ -6,7 +6,7 @@
             <h4>最热讨论</h4>
         </div>
 
-        <div class="title" style="float:right;">
+        <div class="title" style="float:right;" v-if="this.speak===1">
             <el-button type="success" plain size="mini" @click="this.toedit">+发言</el-button>
         </div>
         <div class="list">
@@ -31,6 +31,7 @@ export default {
     data(){
         return {
             gid:'',
+            speak:0,
         }
     },
     methods:{
@@ -41,10 +42,11 @@ export default {
             })
             console.log("主页发送"+this.gid)
         },
-        async getgid(param1)
+        async getgid(param1,p2)
         {
             this.gid=parseInt(param1);
-            console.log("组件传值"+this.gid)
+            this.speak=parseInt(p2);
+            console.log("组件传值"+this.gid+" "+this.speak)
         }
     }
 

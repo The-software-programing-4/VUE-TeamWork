@@ -3,6 +3,7 @@
         <div class="left">
         <showtext></showtext>
         </div>
+        
         <div class="right">
             <mainr></mainr>
         </div>
@@ -31,6 +32,15 @@ export default {
     components:{
         showtext,
         mainr
+    },
+    data(){
+        return{
+            speak:0,
+        }
+    },
+    methods:{
+       
     }
+
 }
 </script>

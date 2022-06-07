@@ -13,6 +13,12 @@
             <div class="ttt2" v-if="this.groupData.join===1">
             <el-button type="info" plain size="small" @click="drop">退出小组</el-button>
             </div>
+            <div class="ttt2" v-if="this.groupData.ismanager===0 && this.groupData.join===1">
+            <el-button type="success" plain size="small" @click="tomanager">申请成为管理员</el-button>
+            </div>
+            <div class="ttt2" v-if="this.groupData.ismanager===2 && this.groupData.join===1">
+            <el-button type="succuss" plain size="small" @click="groupData.ismanager=0">申请已发送</el-button>
+            </div>
         </div>
         <div class="message">
             <div class="leader">
@@ -81,6 +87,7 @@ export default {
         
         groupData:
         {
+            ismanager:0,
             join:1,
             gid:1,
           name:"小组名称",
@@ -94,6 +101,22 @@ export default {
         }
     },
     methods:{
+        tomanager()
+        {
+            this.groupData.ismanager=2;
+            this.$axios.post("/api/group/tomanager",
+                {gid:parseInt(this.groupData.gid)}).then((res) => {
+                    console.log(res.data);
+                })
+        },
+        sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
         getData()
         {
             console.log("搜索"+this.groupData.gid)
@@ -101,6 +124,8 @@ export default {
                 console.log(res.data);
                 this.groupData = res.data.groupData;
                 this.groupData.src=this.$hostURL+'/'+this.groupData.src;
+                this.$emit('getgid', this.groupData.gid,this.groupData.join);
+                console.log("组件发送"+this.groupData.gid)
             });
         },
         addInto()
@@ -108,6 +133,8 @@ export default {
             this.$axios.post("/api/group/addmember",{gid:parseInt(this.groupData.gid),role:1}).then((res) => {
                 console.log(res.data);
             });
+            this.$emit('getgid', this.groupData.gid,this.groupData.join);
+            this.sleep1(200)
             this.$router.go(0)
         },
         drop()
@@ -115,6 +142,8 @@ export default {
             this.$axios.post("/api/group/dropmember",{gid:parseInt(this.groupData.gid)}).then((res) => {
                 console.log(res.data);
             });
+            this.$emit('getgid', this.groupData.gid,this.groupData.join);
+            this.sleep1(200)
             this.$router.go(0)
         }
     },
@@ -123,8 +152,7 @@ export default {
         this.groupData.gid=this.$route.query.gid;
         console.log("收到:"+this.groupData.gid)
         this.getData();
-        this.$emit('getgid', this.groupData.gid);
-        console.log("组件发送"+this.groupData.gid)
+        
     }
 }
 </script>

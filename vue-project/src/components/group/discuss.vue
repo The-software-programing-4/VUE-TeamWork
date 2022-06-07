@@ -18,7 +18,7 @@
           @click="totext(scope.row.id)"
           type="primary"
         >
-          {{ scope.row.name | ellipsis }}
+          {{ scope.row.name | ellipsis }}<i v-if="scope.row.top===1" class="el-icon-upload2"></i>
         </el-link>
       </template>
     </el-table-column>

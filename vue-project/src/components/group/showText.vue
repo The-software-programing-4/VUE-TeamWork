@@ -1,6 +1,10 @@
 <template>
     <div class="outside" >
-        <div class="title"><h2>{{this.title}}</h2></div>
+        <div class="title"><h2>{{this.title}}</h2>
+
+            <el-button type="success" style="float:right;" plain size="small" @click="this.toedit">+我也来发言</el-button>
+
+        </div>
         <div class="message">
             <div class="word"><img :src="this.src" width="48px" height="48px"></div>
             <div class="word">来自:  {{this.name}}</div>
@@ -39,6 +43,7 @@ export default {
     
     data(){
         return {
+            gid:0,
             id:'',
             title:'',
             src:'',
@@ -48,6 +53,13 @@ export default {
         }
     },
     methods:{
+         toedit(){
+            this.$router.push({
+                path:"/group/info",
+                query:{gid:this.gid}
+            })
+            console.log("主页发送"+this.gid)
+        },
         getData()
         {
             var url='/api/group/getdiscuss'
@@ -61,6 +73,7 @@ export default {
                 this.time=res.data.time;
                 this.content=res.data.content;
                 this.title=res.data.title;
+                this.gid=res.data.gid;
             })
         }
     },

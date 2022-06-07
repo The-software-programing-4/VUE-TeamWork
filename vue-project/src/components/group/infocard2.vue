@@ -33,7 +33,7 @@
         </div>
         <div class="title" v-if="status===1"><h2>组内讨论</h2></div>
         <div class="list" v-if="status===1">
-        <discuss1 ref="child"></discuss1>
+        <discuss1 :gid="gid" ref="child"></discuss1>
         </div>
         <div v-if="status===0" class="none"><h2>请选择小组</h2></div>
     </div>
@@ -86,6 +86,9 @@
 .title{
     margin-top: 30px;
 text-align: left;
+vertical-align: middle;
+display: inline-block;
+margin-right: 30px;
 }
 </style>
 <script>
@@ -96,6 +99,7 @@ export default {
     },
     data(){
         return {
+        gid:0,
         status:0,
         groupData:
         {
@@ -114,6 +118,8 @@ export default {
     methods:{
         getData(gid)
         {
+            
+            this.gid=gid
             this.status=1;
             console.log("搜索"+gid)
             this.$axios.post("/api/group/getgroup",{gid:parseInt(gid)}).then((res) => {
@@ -121,8 +127,23 @@ export default {
                 this.groupData = res.data.groupData;
                 this.groupData.src=this.$hostURL+'/'+this.groupData.src;
             });
+            this.getData2(gid)
+            
+        },
+        getData2(gid)
+        {
+
+            console.log("send"+gid)
             this.$refs.child.download_movielist(gid);
         },
+        sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
         addInto()
         {
             this.$axios.post("/api/group/addmember",{gid:parseInt(this.groupData.gid),role:1}).then((res) => {
