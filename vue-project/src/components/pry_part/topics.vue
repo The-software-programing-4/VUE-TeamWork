@@ -243,6 +243,7 @@ li{
     font-size: 20px;
     background: url("./images/card2.jpg");
     background-size: 100%, 100%;
+    color: black;
 }
 #crossLine2{ 
     height: 80px;
@@ -274,8 +275,8 @@ li{
   .box-card {
     width: 45%;
     float: left;
-    height: 27%;
-    margin-bottom:5% ;
+    height: 24%;
+    margin-bottom:4% ;
     margin-right:3% ;
     background:url("./images/card5.jpg");
     background-size: 100%, 100%;
@@ -283,7 +284,7 @@ li{
   /* card样式结束 */
 .topic-page{
     width: 100%;
-    height: 460px;
+    height: 500px;
     /* background-color:#474747 ; */
 }
 .pages-div{ 

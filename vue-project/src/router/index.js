@@ -75,6 +75,11 @@ const routes = [
         name: 'info',
         component: () => import('../views/topic/topicinfo.vue'),
       },
+      {
+        path: '/topic/search',
+        name: 'search',
+        component: () => import("../components/Topic/searchresult.vue")
+      },
     ]
   },
   {
@@ -129,7 +134,7 @@ const routes = [
     path: '/group/create',
     name: 'create',
     component: () => import("../components/group/creategroup.vue")
-  }
+  },
 ]
 
 const router = new VueRouter({
