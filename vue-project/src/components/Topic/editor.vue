@@ -80,6 +80,7 @@ export default Vue.extend({
     data() {
         return {
             gid:'',
+
             status:0,
             src:"https://img2.doubanio.com/view/group/sqxs/public/d07b495448be651.jpg",
             name:'村庄爱好者',
@@ -105,6 +106,9 @@ export default Vue.extend({
             mode: 'default', // or 'simple'
         }
     },
+    props:{
+        tid:Number
+    },
     methods: {
         onCreated(editor) {
             this.editor = Object.seal(editor) // 一定要用 Object.seal() ，否则会报错
@@ -125,9 +129,9 @@ export default Vue.extend({
         var time=yy+'-'+mm+'-'+dd+' '+hh+':'+mf+':'+ss;
         console.log(time);
         this.time=time;
-            var url='/api/group/adddiscuss'
+            var url='/api/topic/adddiscusst'
             this.$axios.post(url,{
-                gid:parseInt(this.gid),
+                tid:parseInt(this.tid),
                 content:this.html,
                 title:this.textarea,
                 time:this.time,

@@ -73,7 +73,7 @@ const routes = [
       {
         path: '/topic/info',
         name: 'info',
-        component: () => import('../components/Topic/topicInfoCard.vue'),
+        component: () => import('../views/topic/topicinfo.vue'),
       },
     ]
   },

@@ -8,7 +8,8 @@
           </div>
           <div class="topicTitle"><h2>{{title}}</h2></div>
           <div class="topicFollow">
-            <el-button type="success" plain @click="concern()">关注话题</el-button>
+            <el-button v-if="this.concern===0" type="success" plain @click="tconcern(tid)">关注话题</el-button>
+            <el-button v-if="this.concern===1" type="info" plain @click="tconcern(tid)">取消关注</el-button>
           </div>
         </div>
         <div class="topicCounter">
@@ -17,7 +18,7 @@
         <div class="topicWord">
           {{content}}
         </div>
-        <ul class="topicFoot">
+        <ul v-if="this.concern===1" class="topicFoot">
           <li class="topicFootItem">
             <img src="../../assets/write@2x.png" class="topicFootCommentIcon">
             <el-button plain id="button1" @click="write">写点什么</el-button>
@@ -37,29 +38,7 @@
       <!-- 点击写点什么 发图片 写日记 就跳转到此页面 -->
       <div v-show="scene==1" class="topicContent2">
 
-          <!-- <el-form ref="form" :model="form" label-width="80px">
-              <el-form-item label="写点什么">
-                <el-input type="textarea" v-model="writeText"></el-input>
-                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">发布</el-button>
-              </el-form-item>
-              </el-form>
-
-         <el-upload
-        class="upload-demo"
-        ref="upload"
-        headers="token"
-        action="http://39.105.102.182:8080/api/topic"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :file-list="fileList"
-        :auto-upload="false"
-        :data="resData"
-        list-type="picture-card"
-        >
-        <el-button slot="trigger" size="small" type="primary" >选取文件</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-      </el-upload> -->
-      <editor2></editor2>
+      <editor2 :tid="this.tid"></editor2>
 
       </div>
       <div class="topicTransition">
@@ -96,38 +75,17 @@ export default {
   components: { editor,editor2 },
   data(){
     return {
+      concern:0,
       classHot: 'topicNow',
       classNew: 'topicWait',
       state: 0,
+      tid:0,
       title: '中国文学史上最激动人心的相遇',
       contentNum: 2,
       followerNum: 2,
       content:'闻一多称，李白、杜甫的相遇，是日月相会。“四千年的历史里，除了孔子见老子，没有比这两人的会面，更重大，更神圣，更可纪念的。”',
       forums: [
-        {
-          id: 1,//帖子id
-          username: 'ando',//发布者姓名
-          topicname:'abc',//所属话题名字
-          uid:"创建人名字",
-          tid:"话题名字",
-          content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
-          thumb: 0,//点赞数量
-          // thumbId:[1, 2, 3],//存储点赞用户id
-          day: '2022.5.21 15:36:01', 
-          isthumb: '点赞', 
-          imgList:["src", "src", "src"]
-
-        },
-        {
-          id: 2,
-          username: 'ando',
-          content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
-          thumb: 0,
-          reply: 0,
-          day: '2022.5.21 15:36:01',
-          isthumb: '点赞', 
-
-        },
+        
       ],
       scene:0,//跳转到写评论,
       writeText:"",//绑定写的评论内容
@@ -140,7 +98,9 @@ export default {
     topicId:0
   },
   created(){
-    this.getData();
+    this.tid=parseInt(this.$route.query.tid);
+    this.getData(this.tid);
+    console.log(this.tid+"::tid")
   }
   ,
   methods: {
@@ -155,6 +115,7 @@ export default {
         if(this.scene===1) this.scene=0;
         else this.scene=1;
     },
+
     thumb(index){
       this.forums[index].thumb++;
       // 点赞后需要更新发布的赞数，传输数据为话题id， 点赞人id， 新的点赞总数
@@ -165,20 +126,44 @@ export default {
         data:qs.stringify(post_data)
       }).then(res=>{
         console.log(res.data)//打印返回数据
+        
+
       })
     },
-    getData()
+    sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
+    getData(tid)
     { 
-      var url="/api/group/listdiscuss"
-        this.$axios.post(url).then
+        var url="/api/topic/message_get"
+        
+        console.log("tid"+tid);
+        this.$axios.post(url,{tid:parseInt(tid)}).then
         (res=>{
-          this.forums=res.data.listDiscuss;
+          
+          this.tid=res.data.topic.id;
+          this.content=res.data.topic.introduction;
+          this.title=res.data.topic.title
+          this.concern=res.data.topic.concern;
+        });
+
+        var url2="/api/topic/listdiscussintopic"
+        console.log("find discuss:"+tid)
+        this.$axios.post(url2,{tid:parseInt(tid)}).then
+        (res=>{
+            this.forums=res.data.discussData;
           for(var i=0;i<this.forums.length;i++)
           {
             this.forums[i].src=this.$hostURL+'/'+this.forums[i].src
           }
-          console.log(this.forums)
-        })
+          console.log(res.data)
+        }
+        )
     },
     change(opt){
       if(opt == 0){
@@ -190,16 +175,19 @@ export default {
         this.classNew = 'topicNow';
       }
     },
-    concern(){
+    tconcern(tid){
     //关注话题功能， 向后端传：正在登录用户id， 被关注的话题id, 绑定
-    var post_data={uid:this.$store.state.Guid, tid:this.topicId}
-    this.$axios({
-        method:'post', 
-        url:'/api',
-        data:qs.stringify(post_data)
-      }).then(res=>{
+    console.log("concern send:"+tid)
+    this.$axios.post(
+        '/api/topic/concer',
+        {
+          tid:parseInt(tid)
+        }
+      ).then(res=>{
         console.log(res.data)//打印返回数据
       })
+      this.sleep1(200)
+      this.getData(tid)
     },
     
     //查看图片处理结果
@@ -236,7 +224,7 @@ li{
   display: inline-block;
 }
 .content ::v-deep img{
-  width: 200px;
+  width: 60%;
 }
 .content ::v-deep {
   height: 100px;
