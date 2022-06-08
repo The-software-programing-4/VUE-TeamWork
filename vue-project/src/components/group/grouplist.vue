@@ -1,5 +1,5 @@
 <template>
-<div class="outside">
+<div class="outside" v-if="this.$store.state.Login===true">
     <div class="title">
       <b>我的小组 </b>
     </div>
@@ -110,7 +110,7 @@ export default {
 
     },
     clickMv(val1, val2){
-           // alert(val1+val2);
+
             console.log("send"+val1+" "+val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },

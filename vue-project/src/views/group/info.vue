@@ -7,7 +7,7 @@
         </div>
 
         <div class="title" style="float:right;" v-if="this.speak===1">
-            <el-button type="success" plain size="mini" @click="this.toedit">+发言</el-button>
+            <el-button type="success" plain size="mini" v-if="this.$store.state.Login==true" @click="this.toedit">+发言</el-button>
         </div>
         <div class="list">
         <discuss></discuss>

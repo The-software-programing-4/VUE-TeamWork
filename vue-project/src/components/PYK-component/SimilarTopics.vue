@@ -76,9 +76,8 @@ ul li{
     margin-top: 20px;
     margin-bottom: 40px;
 }
-/deep/.el-rate__icon {
-  font-size: 15px;
-}
+
+
 </style>
 <script>
 export default {
@@ -137,7 +136,7 @@ export default {
     },
     beauty()
     {
-      alert("你真好看~");
+      this.$message("你真好看~");
     },
     to0()
     {

@@ -7,17 +7,20 @@
             <div class="ttt3">
             <h2>{{this.groupData.name}}</h2>
             </div>
-            <div class="ttt2" v-if="this.groupData.join===0">
+            <div class="ttt2" v-if="this.groupData.join===0 && this.$store.state.Login===true">
             <el-button type="success" plain size="small" @click="addInto">加入小组</el-button>
             </div>
-            <div class="ttt2" v-if="this.groupData.join===1">
+            <div class="ttt2" v-if="this.groupData.join===1 && this.$store.state.Login===true">
             <el-button type="info" plain size="small" @click="drop">退出小组</el-button>
             </div>
-            <div class="ttt2" v-if="this.groupData.ismanager===0 && this.groupData.join===1">
+            <div class="ttt2" v-if="this.groupData.ismanager===0 && this.groupData.join===1 && this.$store.state.Login===true">
             <el-button type="success" plain size="small" @click="tomanager">申请成为管理员</el-button>
             </div>
-            <div class="ttt2" v-if="this.groupData.ismanager===2 && this.groupData.join===1">
+            <div class="ttt2" v-if="this.groupData.ismanager===2 && this.groupData.join===1 && this.$store.state.Login===true">
             <el-button type="succuss" plain size="small" @click="groupData.ismanager=0">申请已发送</el-button>
+            </div>
+            <div class="ttt2" v-if="this.$store.state.Login===false">
+            <el-button type="succuss" plain size="small" @click="tologin">登陆后可加入小组</el-button>
             </div>
         </div>
         <div class="message">
@@ -101,6 +104,10 @@ export default {
         }
     },
     methods:{
+    tologin()
+    {
+      this.$router.push('/')
+    },
         tomanager()
         {
             this.groupData.ismanager=2;
