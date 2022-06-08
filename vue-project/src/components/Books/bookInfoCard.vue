@@ -220,7 +220,7 @@ export default {
                     uid:this.$store.state.uid,
                     content: this.content,
                     day: this.day,
-                    score: fscore,
+                    score: this.commentScore,
                     thumb:0,
                     reply:0
                 },
