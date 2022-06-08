@@ -35,9 +35,6 @@
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
                         <router-link to="/topic/main">话题</router-link>
                     </li>
-                    <li>
-                        <router-link to="/group/create">创建小组</router-link>
-                    </li>
                 </ul>
             </div>
         </div>
