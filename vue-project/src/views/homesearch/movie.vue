@@ -2,12 +2,15 @@
 <template>
 <div>
     <!-- {{msg}} -->
-
+    <el-collapse accordion>
+  <el-collapse-item>
+    <template slot="title">
     <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关电影内容</div>
     <div style="font-size:18x;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
     <el-button class="share-button" icon="el-icon-share"  style="border: transparent;font-size:18px;color: blue;" @click="jump">去主页看看</el-button>
     </div>
-    <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
+    </template>
+    <!-- <el-divider><i class="el-icon-mobile-phone"></i></el-divider> -->
     <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
@@ -35,6 +38,8 @@
             </div>
         </div>
     </div>
+     </el-collapse-item>
+</el-collapse>
 </div>
 </template>
 <script>

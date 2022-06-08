@@ -123,19 +123,16 @@ export default {
   },
   created() {
     this.searchText=this.$route.query.searchText;
-    console.log(this.groupData)
-    //this.download_movielist();
-    var url='/api/group/groupsearch';
+    console.log(this.searchText)
+    var url='/api/topic/topicsearch';
             console.log("have created search");
             this.$axios.post(url,
                         {searchtext:this.searchText},
             ).then(res => {
-            console.log(res.data.listGroup);
-            this.groupData=res.data.listGroup;
-            for(var i=0;i<this.groupData.length;i++)
-            {
-                this.groupData[i].src=this.$hostURL+'/'+this.groupData[i].src
-            }})
+            console.log("话题搜索结果："+res.data.messages);
+            this.topicData=res.data.messages;
+            console.log("话题"+this.topicData);
+            })
   }
   // rateChange(value) {
   //   console.log(value);
