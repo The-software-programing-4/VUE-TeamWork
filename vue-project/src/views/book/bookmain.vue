@@ -4,8 +4,8 @@
         <books style="width:100%"></books>
        </div>
     <div style="width: 300px;float: left; margin-left:30px ;">
-    <HotBookTopicsVue></HotBookTopicsVue>
-    <booklistvue></booklistvue>
+    <!-- <HotBookTopicsVue></HotBookTopicsVue> -->
+    <booklistVue></booklistVue>
     </div>
     </div>
 </template>
