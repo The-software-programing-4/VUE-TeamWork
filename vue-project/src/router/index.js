@@ -75,6 +75,11 @@ const routes = [
         name: 'info',
         component: () => import('../views/topic/topicinfo.vue'),
       },
+      {
+        path: '/topic/search',
+        name: 'search',
+        component: () => import("../components/Topic/searchresult.vue")
+      },
     ]
   },
   {
@@ -84,7 +89,7 @@ const routes = [
     component: () => import('../views/BookShow.vue')
   },
   {
-    path: '/WriteReview',
+    path: '/WriteReview/:type/:target',
     name: 'WriteReview',
     component: () => import('../views/WriteReview.vue')
   },
@@ -126,10 +131,10 @@ const routes = [
     component: () => import('../views/group/editor.vue'),
   },
   {
-    path:'/group/create',
-    name:'create',
-    component:()=>import("../components/group/creategroup.vue")
-  }
+    path: '/group/create',
+    name: 'create',
+    component: () => import("../components/group/creategroup.vue")
+  },
 ]
 
 const router = new VueRouter({

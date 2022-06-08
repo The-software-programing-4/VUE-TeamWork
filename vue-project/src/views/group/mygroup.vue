@@ -40,11 +40,11 @@
     
 </template>
 <script>
-import grouplist from "../../components/group/mygrouplist.vue"
+// import grouplist from "../../components/group/mygrouplist.vue"
 
 export default{
     components:{
-        grouplist,
+        // grouplist,
     },
     data(){
         return{

@@ -91,6 +91,7 @@ export default {
       writeText:"",//绑定写的评论内容
       fileList:[{name:'a', url:'*'}],
       resData:{uid:this.$store.state.Guid},
+      tid:0,
       
     }
   },
