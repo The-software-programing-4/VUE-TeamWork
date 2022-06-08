@@ -230,6 +230,7 @@ export default {
                     }
                 }
             )
+            this.getMarks();
         },
         fillStar(index){
             for(let i = 0; i <= index; i++){
