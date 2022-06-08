@@ -207,13 +207,13 @@ export default {
             var second = now.getSeconds().toString();
             var totdate = year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
             var fscore = parseFloat(this.score);
-
+            console.log("日期:"+totdate)
             this.$axios.post(
                 url,
                 {
                     type: 1,
-                    target: this.bookid,
-                    uid:this.$store.state.Guid,
+                    target:parseInt(this.bookid),
+                    uid:this.$store.state.uid,
                     content: this.content,
                     day: totdate,
                     score: fscore,
