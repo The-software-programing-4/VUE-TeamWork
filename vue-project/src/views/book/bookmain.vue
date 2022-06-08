@@ -12,7 +12,7 @@
 <script>
 import books from '../../components/Books/showbook.vue';
 import HotBookTopicsVue from '@/components/PYK-component/HotBookTopics.vue';
-import booklistVue from '@/components/group/booklist.vue';
+import booklistVue from '../../components/PYK-component/booklist.vue'
 export default {
     components:{
         books,
