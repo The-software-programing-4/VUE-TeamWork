@@ -49,12 +49,12 @@ export default {
             this.$axios.post(
                 url,
                 {
-                    type: this.$route.params.type,
-                    target: this.$route.params.target,
-                    uid:this.$store.state.Guid,
-                    content: this.content,
+                    type:parseInt( this.$route.params.type),
+                    target: parseInt(this.$route.params.target),
+                    uid: parseInt(this.$store.state.uid),
+                    content: parseInt(this.content),
                     day: totdate,
-                    score: this.value,
+                    score:parseFloat (this.value),
                     thumb: 0,
                     reply: 0,
                 },
