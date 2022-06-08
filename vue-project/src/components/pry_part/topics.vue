@@ -17,7 +17,7 @@
 
             </div>
             <p class="text item" style="margin-left:100px; font-size:12px;  ">
-               {{topic.introduction | ellipsis2}}
+               {{topic.introduction | ellipsis2 }}
             </p>
             </el-card>
         </div>
@@ -99,8 +99,8 @@ export default {
     },
      ellipsis2: function (value) {
       if (!value) return "";
-      if (value.length > 30) {
-        return value.slice(0, 30) + "...";
+      if (value.length > 45) {
+        return value.slice(0, 45) + "...";
       }
       return value;
     },
@@ -271,11 +271,14 @@ li{
   .clearfix:after {
     clear: both
   }
-
+.el-card ::v-deep .el-card__body{
+padding: 10px;
+}
   .box-card {
     width: 45%;
     float: left;
-    height: 24%;
+    height: 26%;
+
     margin-bottom:4% ;
     margin-right:3% ;
     background:url("./images/card5.jpg");

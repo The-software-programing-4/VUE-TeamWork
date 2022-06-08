@@ -6,14 +6,14 @@
         </div>
     <div id="topiclist">
             <PopularMovieList></PopularMovieList>
-            <movielist></movielist>
+
         </div>
 </div>
 </template>
 <script>
 import topics from "../../components/pry_part/topics.vue"
 import movielist from "../../components/PYK-component/movielist.vue"
-import PopularMovieList from "../../components/PYK-component/PopularMovieList.vue"
+import PopularMovieList from "../../components/PYK-component/SimilarTopics.vue"
 
 export default {
     components:{

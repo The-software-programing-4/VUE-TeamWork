@@ -1,7 +1,7 @@
 <template>
   <div class="outside">
       <div class="intro">
-        话题是豆友们针对具体的主题展开讨论的沙龙。你可以在此发现豆友的精彩言论，也可以写日记、发广播来分享你的观点和故事。为了高效地呈现最佳内容，我们欢迎你为高质量的内容点赞（喜欢），并反馈低质量及低相关性内容，这将优化内容列表的排序。
+        话题是酱友们针对具体的主题展开讨论的沙龙。你可以在此发现豆友的精彩言论，也可以写日记、发广播来分享你的观点和故事。为了高效地呈现最佳内容，我们欢迎你为高质量的内容点赞（喜欢），并反馈低质量及低相关性内容，这将优化内容列表的排序。
         </div>
         <h2>相似话题&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·</h2>
         <ul class="bd related_topics">
@@ -10,7 +10,7 @@
                 <el-link
             type="primary"
             icon="el-icon-chat-line-round"
-            :href="item.topic_link"
+            @click="beauty"
             style="font-size: 15px "
           >
             {{ item.topic | ellipsis }}
@@ -23,7 +23,7 @@
           <li class="more_topics">
             <el-link
             type="primary"
-            :href="SimilarTopicsData.TopicSquare_link"
+            @click="to0"
             style="font-size: 13px "
           >&gt; 去话题广场</el-link>
         </li>
@@ -135,14 +135,14 @@ export default {
     gotopurchaselink(index, row) {
       this.$router.push(row.purchase_link);
     },
-    download_SimilarTopicsData() {
-      console.log("start rank");
-      this.$axios.post("/api/book/???").then((res) => {
-        console.log(res.data.messages);
-        this.SimilarTopicsData = res.data.messages;
-      });
-      console.log("end rank");
+    beauty()
+    {
+      alert("你真好看~");
     },
+    to0()
+    {
+      this.$router.go(0)
+    }
   },
   filters: {
     ellipsis: function (value) {
@@ -168,7 +168,7 @@ export default {
     },
   },
   created() {
-    this.download_SimilarTopicsData();
+    
   },
 };
 </script>

@@ -21,7 +21,7 @@ export default {
     margin-top: 30px;
         margin-left: 5%;
         width: 55%;
-        float: left;
+    margin-left:20% ;
     }
     #topiclist{
         float: right;
