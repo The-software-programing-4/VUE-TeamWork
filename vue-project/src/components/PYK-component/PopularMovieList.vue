@@ -61,7 +61,7 @@ export default {
   methods: {
     download_movielists() {
       this.$axios.post("api/movie/listmovie").then((res) => {
-        console.log(res.data);
+        console.log("畅销电影："+res.data);
         this.PopularMovieListData = res.data.messages;
       });
     },
