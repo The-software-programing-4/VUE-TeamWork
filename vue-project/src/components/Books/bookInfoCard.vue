@@ -221,6 +221,8 @@ export default {
                     content: this.content,
                     day: this.day,
                     score: fscore,
+                    thumb:0,
+                    reply:0
                 },
                 {
                     headers: {
@@ -323,7 +325,7 @@ export default {
                 url,
                 {
                 type: parseInt(1),
-                target: parseInt(1)
+                target: parseInt(this.bookid)
                 }, 
                 {
                     headers: {
