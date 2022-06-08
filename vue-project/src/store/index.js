@@ -5,14 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    Guid: 1,
+    uid: 1,
+    username:"未登陆000",
     Login:false,
   },
   getters: {
   },
   mutations: {
-    setGuid(state, uid) {
-      state.Guid = uid;
+    setMessage(state, uid,username,Login) {
+      state.uid = uid;
+      state.username=username;
+      state.Login=Login;
     },
     setLogin(state, log)
     {

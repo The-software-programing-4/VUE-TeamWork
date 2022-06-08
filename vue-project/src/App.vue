@@ -18,12 +18,30 @@
 </template>
 <script>
 import headTop from "./components/pry_part/headtop.vue"
+import axios from 'axios';
 export default{
   components:{
     headTop,
 },
 created(){
-  this.$message("created");
+  //this.$message("created");
+  var url='/api/user/check'
+  this.$axios.post(url).then(res=>{
+    console.log(res.data)
+    console.log("收到cookie")
+    if(res.data.success==true)
+    {
+      this.$store.state.uid=res.data.uid;
+      this.$store.state.username=res.data.username;
+      this.$store.state.Login=res.data.success;
+      console.log("yes")
+    }
+    else{
+      this.$store.commit('setLogin',false);
+      console.log("no")
+    }
+    console.log(this.$store.state.Login+" "+this.$store.state.uid+" "+ this.$store.state.username)
+  })
 }
 }
 </script>

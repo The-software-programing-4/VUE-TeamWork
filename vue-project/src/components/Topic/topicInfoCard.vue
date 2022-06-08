@@ -12,7 +12,7 @@
             <el-button v-if="this.concern===1" type="info" plain @click="tconcern(tid)">取消关注</el-button>
           </div>
           <div class="topicFollow" v-if="this.login===false">
-            <el-button  type="info" plain @click="">登录后可关注话题</el-button>
+            <el-button  type="info" plain @click="$router.push('/')">登录后可关注话题</el-button>
           </div>
         </div>
         <div class="topicCounter">

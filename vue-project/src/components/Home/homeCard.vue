@@ -9,7 +9,7 @@
                 
                 <el-button type="primary" @click="register">注册</el-button>
             </div>
-            <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:green;"><h2>{{user}} 已登陆</h2>
+            <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:green;"><h2>{{this.$store.state.username}} 已登陆</h2>
             <el-button type="info" @click="logout">退出登陆</el-button></div>
         </div>
         <div class="homeNavLogin">
@@ -40,7 +40,7 @@
                 <br>
                 网络从业者不良行为举报：jubao@doubanjiang.com
                 <br>
-                <a href="#">关于豆瓣酱小组</a>
+                <a href="#">关于豆酱小组</a>
             </div>
         </div>
   </div>
@@ -89,9 +89,12 @@ export default {
                              //store.commit('setGuid',res.data.uid);
                              this.status=1;
                              this.user=this.form.username
+                             this.$store.state.username=this.user;
                              this.$store.commit('setLogin',true);
+
                          }
                   })
+                  //this.$router.go(0);
             
             
       },

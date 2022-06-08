@@ -99,8 +99,8 @@ export default {
     },
      ellipsis2: function (value) {
       if (!value) return "";
-      if (value.length > 45) {
-        return value.slice(0, 45) + "...";
+      if (value.length > 40) {
+        return value.slice(0, 40) + "...";
       }
       return value;
     },
