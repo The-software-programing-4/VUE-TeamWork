@@ -152,6 +152,7 @@ import axios from 'axios';
 export default {
     data(){
         return{
+            day:'',
             marks:[
                 {
                 id: 1,
@@ -209,6 +210,7 @@ export default {
             var time=yy+'-'+mm+'-'+dd+' '+hh+':'+mf+':'+ss;
             var fscore = parseFloat(this.score);
             console.log("日期:"+time)
+            this.day=time;
             this.$axios.post(
                 url,
                 {
@@ -216,7 +218,7 @@ export default {
                     target:parseInt(this.bookid),
                     uid:this.$store.state.uid,
                     content: this.content,
-                    day: time,
+                    day: this.day,
                     score: fscore,
                     thumb: 0,
                     reply: 0,
