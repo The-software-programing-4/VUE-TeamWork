@@ -71,7 +71,7 @@ export default {
     },
   },
   created() {
-    this.download_HotBookTopics();
+    //this.download_HotBookTopics();
   },
 };
 </script>

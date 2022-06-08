@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>{{bookname}}书的id:{{bookid}}</span>
+            <span>{{bookname}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -295,7 +295,8 @@ export default {
     },
     created(){
         //this.getData(0);
-         this.bookid=this.$route.query.bookid;
+        this.bookid=this.$route.query.bookid;
+        this.getData(this.bookid);
         this.getMarks();
     }
 }
