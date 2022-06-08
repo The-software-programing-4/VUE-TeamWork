@@ -4,10 +4,10 @@
        <bookInfoCard class="bookCard" style="">
     </bookInfoCard>
     </div>
-     <div style="width: 100px;display:inline-block; margin-left:0px ;">
+     <!-- <div style="width: 100px;display:inline-block; margin-left:0px ;">
     <HotBookTopicsVue></HotBookTopicsVue>
     <movielistVue></movielistVue>
-    </div>
+    </div> -->
   </div>
 </template>
 

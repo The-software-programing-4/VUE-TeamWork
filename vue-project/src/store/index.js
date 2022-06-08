@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     uid: 1,
-    username:"未登陆000",
+    username:"未登陆",
     Login:false,
   },
   getters: {
