@@ -2,7 +2,7 @@
 <div >
   <!-- <headtop></headtop> -->
   <homeCard></homeCard>
-  <booklistVue></booklistVue>
+
 </div>
 </template>
 
