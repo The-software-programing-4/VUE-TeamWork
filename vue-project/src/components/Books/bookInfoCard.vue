@@ -198,16 +198,16 @@ export default {
         addmark(){
             var url='/api/marks/addmark';
 
-            var now = new Date();
-            var year = now.getFullYear().toString(); //得到年份
-            var month = (now.getMonth()+1).toString();//得到月份
-            var date = now.getDate().toString();//得到日期
-            var hour = now.getHours().toString();
-            var minute = now.getMinutes().toString();
-            var second = now.getSeconds().toString();
-            var totdate = year+'-'+month+'-'+date+' '+hour+':'+minute+':'+second;
+
+           let yy = new Date().getFullYear();
+            let mm = new Date().getMonth()+1;
+            let dd = new Date().getDate();
+            let hh = new Date().getHours();
+            let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+            let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+            var time=yy+'-'+mm+'-'+dd+' '+hh+':'+mf+':'+ss;
             var fscore = parseFloat(this.score);
-            console.log("日期:"+totdate)
+            console.log("日期:"+time)
             this.$axios.post(
                 url,
                 {
@@ -215,7 +215,7 @@ export default {
                     target:parseInt(this.bookid),
                     uid:this.$store.state.uid,
                     content: this.content,
-                    day: totdate,
+                    day: time,
                     score: fscore,
                     thumb: 0,
                     reply: 0,
