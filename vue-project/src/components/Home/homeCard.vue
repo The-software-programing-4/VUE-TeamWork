@@ -1,17 +1,20 @@
 <template>
     <div>
         <div class="homeNav">
-            <div class="homeNavLogin">
-                <el-input class="homeLoginIn" v-model="input" placeholder="请输入用户名"></el-input>
-                <el-input class="homeLoginIn" placeholder="请输入密码" v-model="pwd" show-password></el-input>
-                <el-button type="success">登录</el-button>
-                <el-button type="primary">注册</el-button>
+            <div class="homeNavLogin" v-if="status===0">
+                <div style="margin:20px;"><h2>登陆/注册</h2></div>
+                <el-input class="homeLoginIn" v-model="form.username" placeholder="请输入用户名"></el-input>
+                <el-input class="homeLoginIn" v-model="form.password" placeholder="请输入密码" show-password></el-input>
+                <el-button type="success" @click="login">登录</el-button>
+                
+                <el-button type="primary" @click="register">注册</el-button>
             </div>
+            <div class="homeNavLogin" v-if="status===1" style="color:green;"><h2>{{user}} 已登陆</h2>
+            <el-button type="info" @click="logout">退出登陆</el-button></div>
         </div>
-        <div class="homeContent">
-            <div id="showIm">
-            <!-- 屏幕右侧65% -->
-            <!-- 电影 -->
+        <div class="homeNavLogin">
+            <!-- <div id="showIm">
+            
              <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
                <el-carousel :interval="4000" type="card" height="250px" wight="100px">
                 <el-carousel-item v-for="img in mvList" :key="img.mid">
@@ -26,12 +29,10 @@
                 </el-carousel-item>
                 </el-carousel>
              <router-link to="/BookShow">点击查看更多图书</router-link>
+        </div> -->
+        
         </div>
-        <div id="list">
-            <!-- 屏幕左侧35% 放置榜单等数据 -->
-        </div>
-        </div>
-        <div class="homeFoot">
+        <div class="homeFoot" style="margin-top:-1500px">
             <div class="homeICP">
                 © 2022-2022 doubanjiang.com, all rights reserved BUAA豆瓣酱小组
                 <br>
@@ -51,17 +52,71 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            status:0,
+            user:'',
+            form:{
+                username:'',
+                password:''
+            },
             input: '',
             pwd: '',
             str:'a',
             mvList:[{mid:13,
-    src:require('../pry_part/images/blue1.jpg'),
+            src:require('../pry_part/images/blue1.jpg'),
                 name:"pic3",
                 score:3},],
             bookList:[],
         }
     },
     methods:{
+        login(){
+          var url="api/user/login";
+          this.$axios.post(url,this.form
+                    , {
+                    headers: {
+                       'Content-Type': 'application/json',
+                        withCredentials: true
+                    }
+                    }
+                  ).then(res=> {
+                      //alert(res.data.message);
+                      console.log(res.data)
+                      alert(res.data.message)
+                      if(res.data.success === true)
+                         {   
+                              //this.$router.push("/user/message");
+                             //store.commit('setGuid',res.data.uid);
+                             this.status=1;
+                             this.user=this.form.username
+                         }
+                  })
+            
+            
+      },
+      logout()
+      {
+         var url="api/user/logout";
+          this.$axios.post(url).then(res=>{
+              console.log(res.data);
+          })
+          alert("注销成功")
+          this.status=0;
+      },
+      register()
+      {
+         var url="api/user/register";
+          this.$axios.post(url,this.form).then(res=>{
+              console.log(res.data);
+              alert(res.data.message)
+              if(res.data.success)
+              {
+                  this.status=1;
+                this.user=this.form.username
+              }
+          })
+   
+          
+      },
         getMovie(){
             var url='/api/movie/listmovie';
             console.log("start");
@@ -107,8 +162,8 @@ export default {
         }
     },
     created(){
-        this.getMovie()
-        this.getBook()
+        //this.getMovie()
+        //this.getBook()
     }
 }
 </script>
@@ -129,6 +184,6 @@ export default {
     height: 100px;
 }
 .homeContent{
-    height: 700px;
+    height: 100px;
 }
 </style>

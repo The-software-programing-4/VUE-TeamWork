@@ -1,5 +1,5 @@
 <template>
-<div>
+<div >
   <!-- <headtop></headtop> -->
   <homeCard></homeCard>
 </div>

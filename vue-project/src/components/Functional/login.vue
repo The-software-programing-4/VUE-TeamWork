@@ -1,14 +1,15 @@
 <template>
 <div class="login">
-    <el-input v-model="form.username" placeholder="用户名"></el-input>
-    <el-input v-model="form.password" placeholder="密码"></el-input>
+    <div style="margin:20px;"><h2>登陆</h2></div>
+    <el-input style="margin:10px" v-model="form.username" placeholder="用户名"></el-input>
+    <el-input style="margin:10px" v-model="form.password" placeholder="密码"></el-input>
     <el-button type="success" @click="login">登陆</el-button>
 </div>
 </template>
 <style scoped>
 .login{
     margin: auto;
-    width: 30%;
+    width: 300px;
 }
 </style>
 
