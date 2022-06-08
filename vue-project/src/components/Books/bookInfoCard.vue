@@ -73,27 +73,27 @@
             <span class="bookFavComment">评价：</span>
             <span class="bookFavStar">
                 <div class="block">
-                <el-rate v-model="score" :colors="colors"> </el-rate>
+                <el-rate v-model="commentScore" :colors="colors"> </el-rate>
                 </div> 
             </span>
             </div>
 
             <div class="writeContent">
-           <el-input
+           <el-input style="width:40%;margin-right: 60%;float: left;height: 50px;"
   type="textarea"
   autosize
   placeholder="请输入标题"
   v-model="title">
 </el-input>
-<div style="margin: 20px 0;"></div>
-<el-input
+<el-input style="width: 40%;margin-right: 60%;float: left;height: 70px;"
   type="textarea"
   :autosize="{ minRows: 2, maxRows: 4}"
   placeholder="请输入内容"
   v-model="content">
 </el-input>
             <div style="margin: 20px 0;"></div>
-            <el-button @click="addmark" type="success">提交评论</el-button>
+            <el-button style="margin-top:30px;margin-right:70%;" @click="addmark" type="success">提交评论</el-button>
+            <div style="margin: 30px 0;"></div>
             </div>
         </div>
         <div class="relatedInfo">
@@ -175,6 +175,7 @@ export default {
             directory: '',
             brief_introduction_of_author: '',
             brief_introduction: '',
+            commentScore: 0,
             score: 0,
             src: '',
             isbn: '',
