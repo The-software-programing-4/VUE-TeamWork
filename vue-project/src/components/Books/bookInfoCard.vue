@@ -126,6 +126,9 @@
                                 <span class="commentThumb">
                                 <a @click="report(index)">举报</a>
                                 </span>
+                                <span class="commentThumb">
+                                <a @click="reComment(index)">评论</a>
+                                </span>
                                 <span class="commentThumb">{{item.disag}}
                                 <a @click="disag(index)">{{item.isdisag}}</a>
                                 </span>
@@ -212,14 +215,13 @@ export default {
             this.$axios.post(
                 url,
                 {
+                    title: '',
                     type: 1,
                     target:parseInt(this.bookid),
                     uid:this.$store.state.uid,
                     content: this.content,
                     day: totdate,
                     score: fscore,
-                    thumb: 0,
-                    reply: 0,
                 },
                 {
                     headers: {
@@ -227,6 +229,9 @@ export default {
                     }
                 }
             )
+        },
+        reComment(index){
+
         },
         fillStar(index){
             for(let i = 0; i <= index; i++){
