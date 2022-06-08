@@ -1,13 +1,12 @@
 <!-- 图书搜索结果 -->
 <template>
 <div>
-    <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{searchText}}的搜索结果</div>
-    <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="img-show" v-for="img in imageResult.slice(
-          (currentPage - 1) * pageSize,
-          currentPage * pageSize
-        )">
+    <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关图书内容</div>
+    <div style="font-size:18px;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
+    <el-button class="share-button" icon="el-icon-share"  style="border: transparent;font-size:18px;color: blue;" @click="jump">去主页看看</el-button>
+    </div>
+    <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
+    <div id="img-show" v-for="img in imageResult">
         <div class="item-root">
             <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
         </div>
@@ -32,15 +31,6 @@
             </div>
         </div>
     </div>
-    <el-pagination
-        background
-        layout="prev, pager, next"
-        :page-size="pageSize"
-        :current-page="currentPage"
-        @current-change="currentChange"
-        :total="imageResult.length"
-         >
-      </el-pagination>
 </div>
 </template>
 <script>
@@ -55,6 +45,7 @@ export default {
             imageResult:[
 
             ],
+            len:0,
 
         }
     },
@@ -77,7 +68,9 @@ export default {
                 this.imageResult[i].src=this.$hostURL+'/'+this.imageResult[i].src
                 console.log(this.$hostURL)
             }
-        })
+        });
+        len=this.imageResult.length;
+        console.log("长度："+this.len);
    },
    methods:{
        currentChange(val) {
@@ -85,13 +78,24 @@ export default {
         this.currentPage = val;
 
         },
-        clickMv(val1, val2){
-
-           console.log(val2);
-            this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        clickMv(val1){
+            console.log("bookId:"+val1);
+           this.$router.push(
+                {
+                    path:"/book/bookInfo",
+                    query:{bookid:val1}
+                }
+            )
         },
         getArr(arr){
             this.imageResult1=arr;
+        },
+        jump(){
+            this.$router.push(
+                {
+                    path:"/book/main",
+                }
+            )
         }
    }
 
@@ -105,7 +109,7 @@ export default {
     color: aliceblue;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/back1.jpg");
+    /* background: url("./images/back1.jpg"); */
     background-size: 100%, 100%;
 }
 #img-show{

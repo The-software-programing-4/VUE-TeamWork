@@ -1,20 +1,24 @@
-<!-- 图书搜索结果 -->
+<!-- 电影搜索结果 -->
 <template>
 <div>
-    <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{searchText}}的搜索结果</div>
-    <el-divider class="line"><i class="el-icon-search"></i></el-divider>
+    <!-- {{msg}} -->
+
+    <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关电影内容</div>
+    <div style="font-size:18x;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
+    <el-button class="share-button" icon="el-icon-share"  style="border: transparent;font-size:18px;color: blue;" @click="jump">去主页看看</el-button>
+    </div>
+    <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
     <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )">
         <div class="item-root">
-            <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
+            <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
         </div>
         <div class="detail">
             <div>
 
-                <div @click="clickMv(img.bookname, 2)">名字:{{img.bookname}}</div>
+                <div @click="clickMv(img.name, 2)">名字:{{img.name}}</div>
             </div>
             <div>
                 <el-rate
@@ -26,21 +30,11 @@
                 </el-rate>
             </div>
             <div>
-                <p>作者：{{img.author}}
+                <p>主演：{{img.actors}}
                 </p>
-                <p>出版社：{{img.press}}</p>
             </div>
         </div>
     </div>
-    <el-pagination
-        background
-        layout="prev, pager, next"
-        :page-size="pageSize"
-        :current-page="currentPage"
-        @current-change="currentChange"
-        :total="imageResult.length"
-         >
-      </el-pagination>
 </div>
 </template>
 <script>
@@ -48,19 +42,19 @@ export default {
    data(){
         return{
             //msg:"的",
-            searchText:'',
+
            isClass: false,
+           searchText:'123',
             currentPage: 1,
             pageSize: 9,
             imageResult:[
-
             ],
 
         }
     },
    created(){
+       var url='/api/movie/moviesearch';
         this.searchText=this.$route.query.searchText;
-       var url='/api/book/booksearch';
        console.log("have created search"+this.searchText);
        this.$axios.post(url,
                 this.searchText,
@@ -70,7 +64,7 @@ export default {
                     }
                 }
             ).then(res => {
-            console.log("图书搜索结果"+res.data.messages);
+            console.log("电影搜索结果："+res.data.messages);
             this.imageResult=res.data.messages;
             for(var i=0;i<this.imageResult.length;i++)
             {
@@ -81,33 +75,32 @@ export default {
    },
    methods:{
        currentChange(val) {
-
+        // alert(val)
         this.currentPage = val;
-
+        // alert(this.currentPage);
         },
         clickMv(val1, val2){
-
+           // alert(val1+val2);
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },
         getArr(arr){
             this.imageResult1=arr;
+        },
+        jump(){
+            this.$router.push(
+                {
+                    path:"/movie/main",
+                }
+            )
         }
-   }
+   },
 
 }
 </script>
 <style>
 
-#crossLine{ 
-    height: 70px;
-    text-align: center;
-    color: aliceblue;
-    line-height: 70px;
-    font-size: 20px;
-    background: url("./images/back1.jpg");
-    background-size: 100%, 100%;
-}
+
 #img-show{
     margin-top:30px;
     margin-bottom: 30px;

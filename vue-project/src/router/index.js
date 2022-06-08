@@ -8,7 +8,19 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    children:[
+      {
+        path: '/main',
+        name: 'main',
+        component: () => import('../components/Home/homeCard.vue')
+      },
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import('../views/homesearch/searchAll.vue')
+      },
+    ]
   },
   {
     path: '/about',
