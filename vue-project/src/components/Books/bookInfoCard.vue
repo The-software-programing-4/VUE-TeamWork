@@ -126,9 +126,6 @@
                                 <span class="commentThumb">
                                 <a @click="report(index)">举报</a>
                                 </span>
-                                <span class="commentThumb">
-                                <a @click="reComment(index)">评论</a>
-                                </span>
                                 <span class="commentThumb">{{item.disag}}
                                 <a @click="disag(index)">{{item.isdisag}}</a>
                                 </span>
@@ -203,7 +200,7 @@ export default {
             var url='/api/marks/addmark';
 
 
-           let yy = new Date().getFullYear();
+            let yy = new Date().getFullYear();
             let mm = new Date().getMonth()+1;
             let dd = new Date().getDate();
             let hh = new Date().getHours();
@@ -229,9 +226,6 @@ export default {
                     }
                 }
             )
-        },
-        reComment(index){
-
         },
         fillStar(index){
             for(let i = 0; i <= index; i++){
