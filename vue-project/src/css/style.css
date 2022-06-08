@@ -305,12 +305,12 @@ h1 {
     height: 30px;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 20px;
-    width: 80%;
+    width: 100%;
 }
 
 .commentThumb {
     float: right;
+    margin-right: 10px;
 }
 
 .commentUser {
