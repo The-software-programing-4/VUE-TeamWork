@@ -4,7 +4,7 @@
     <!-- {{msg}} -->
 
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{msg}}搜索结果</div>
+    <div id="crossLine">{{searchText}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="img-show" v-for="img in imageResult1.slice(
           (currentPage - 1) * pageSize,
@@ -54,6 +54,7 @@ export default {
             //msg:"的",
 
            isClass: false,
+           searchText:'123',
             currentPage: 1,
             pageSize: 9,
             imageResult:[
@@ -72,6 +73,7 @@ export default {
     },
    created(){
        var url='/api/movie/moviesearch';
+        this.searchText=this.$route.query.searchText;
        console.log("have created search");
        this.$axios.post(url,
                 toString(this.msg),
@@ -99,7 +101,7 @@ export default {
         getArr(arr){
             this.imageResult1=arr;
         }
-   }
+   },
 
 }
 </script>

@@ -295,6 +295,7 @@ export default {
     },
     created(){
         //this.getData(0);
+         this.bookid=this.$route.query.bookid;
         this.getMarks();
     }
 }

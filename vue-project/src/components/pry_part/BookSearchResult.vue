@@ -63,6 +63,7 @@ export default {
         }
     },
    created(){
+        this.searchText=this.$route.query.searchText;
     //    var url='/api/movie/moviesearch';
     //    console.log("have created search");
     //    this.$axios.post(url,
