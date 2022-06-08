@@ -48,15 +48,11 @@ export default {
    data(){
         return{
             //msg:"的",
-            // searchText:'',
+            searchText:'',
            isClass: false,
             currentPage: 1,
             pageSize: 9,
             imageResult:[
-                {path:require('./images/one.jpg'),
-                name:"pic1",
-                score:1,
-                message:"123"},
 
             ],
 
@@ -64,19 +60,24 @@ export default {
     },
    created(){
         this.searchText=this.$route.query.searchText;
-    //    var url='/api/movie/moviesearch';
-    //    console.log("have created search");
-    //    this.$axios.post(url,
-    //             toString(this.searchText),
-    //             {
-    //                     headers: {
-    //                   'Content-Type':'application/text'
-    //                 }
-    //             }
-    //         ).then(res => {
-    //         console.log(res.data);
-    //         this.imageResult=res.data.messages;
-    //     })
+       var url='/api/book/booksearch';
+       console.log("have created search"+this.searchText);
+       this.$axios.post(url,
+                this.searchText,
+                {
+                        headers: {
+                      'Content-Type':'application/text'
+                    }
+                }
+            ).then(res => {
+            console.log(res.data.messages);
+            this.imageResult=res.data.messages;
+            for(var i=0;i<this.imageResult.length;i++)
+            {
+                this.imageResult[i].src=this.$hostURL+'/'+this.imageResult[i].src
+                console.log(this.$hostURL)
+            }
+        })
    },
    methods:{
        currentChange(val) {
