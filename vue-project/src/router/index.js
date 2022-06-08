@@ -165,6 +165,11 @@ const routes = [
     name: 'create',
     component: () => import("../components/group/creategroup.vue")
   },
+  {
+    path: '/group/imgchange',
+    name: 'changeimg',
+    component: () => import("../components/group/headImg.vue")
+  },
 ]
 
 const router = new VueRouter({
