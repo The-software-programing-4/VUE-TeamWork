@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>{{name}}</span>
+            <span>{{name}}, 电影id:{{mid}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -230,6 +230,7 @@ export default {
 
     },
     created(){
+        this.mid=this.$route.query.movieid
         this.getData(1);
     }
 }

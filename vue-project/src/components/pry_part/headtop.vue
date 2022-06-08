@@ -25,7 +25,7 @@
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">电影</a> -->
-                        <router-link to="/MovieShow">电影</router-link>
+                        <router-link to="/movie/main">电影</router-link>
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">小组</a> -->
@@ -34,9 +34,6 @@
                     <li>
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
                         <router-link to="/topic/main">话题</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/group/create">创建小组</router-link>
                     </li>
                 </ul>
             </div>
