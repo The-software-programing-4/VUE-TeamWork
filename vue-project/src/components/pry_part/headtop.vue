@@ -18,7 +18,7 @@
                     <li>
                         <!-- _blank指跳转页面时，新打开一个 -->
                         <!-- <a href="" target="_blank">主页</a> -->
-                         <router-link to="/">主页</router-link>
+                         <router-link to="/main">主页</router-link>
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">读书</a> -->

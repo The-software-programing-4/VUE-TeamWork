@@ -2,7 +2,7 @@
 <template>
 <div>
     <!-- {{msg}} -->
-
+    
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="crossLine">{{searchText}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
@@ -75,7 +75,7 @@ export default {
                     }
                 }
             ).then(res => {
-            console.log(res.data.messages);
+            console.log("电影搜索结果："+res.data.messages);
             this.imageResult=res.data.messages;
             for(var i=0;i<this.imageResult.length;i++)
             {
