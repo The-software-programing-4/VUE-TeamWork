@@ -83,28 +83,6 @@ export default {
                     query:{searchText:this.searchText}
                 }
             )
-            // var url='/api/movie/moviesearch';
-            // this.$axios.post(url,
-            //     this.searchText,
-            //      {
-            //         headers: {
-            //           'Content-Type':'application/text'
-            //         }
-            //     }//提交的是搜索框内容
-            // ).then(res => {
-            
-            // this.searchImgResult=res.data.messages;
-
-            // for(var i=0;i<res.data.messages.length;i++)
-            // {
-            //     var temp=res.data.messages[i];
-            //     this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
-            // }
-            // console.log(this.searchImgResult);
-            // console.log("更新成功！");
-            // this.$refs.child.getArr(this.searchImgResult);
-            // })
-            // this.status=0;
         },
         // 事件处理函数
         async changeFromShowIm(param1,param2) {//从子组件处获取的值

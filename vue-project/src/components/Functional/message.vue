@@ -66,7 +66,7 @@
  
   <el-form-item>
     <el-button type="success" @click="onSubmit" >更新设置</el-button>
-    <el-button>取消</el-button>
+    <el-button @click="cancel">取消</el-button>
   </el-form-item>
 </el-form>
     </div>
@@ -171,6 +171,11 @@ export default {
           alert("更新成功！")
         })
         this.status=0;
+        this.$router.go("0")
+      },
+      cancel()
+      {
+        this.$router.push("/")
       },
       SubmitPassword() {
          this.form2.uid=this.form.uid;
