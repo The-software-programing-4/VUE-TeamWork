@@ -6,14 +6,11 @@
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="crossLine">{{searchText}}搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="img-show" v-for="img in imageResult1.slice(
+    <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )">
         <div class="item-root">
-            <!-- <a href="" class="a-img">
-                <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
-            </a> -->
             <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
         </div>
         <div class="detail">
@@ -67,23 +64,19 @@ export default {
 
         }
     },
-    props:{
-        msg:String,//从父组件获取的值
-        imageResult1:Array
-    },
    created(){
        var url='/api/movie/moviesearch';
         this.searchText=this.$route.query.searchText;
        console.log("have created search");
        this.$axios.post(url,
-                toString(this.msg),
+                toString(this.searchText),
                 {
                         headers: {
                       'Content-Type':'application/text'
                     }
                 }
             ).then(res => {
-            console.log(res.data);
+            console.log("电影搜索结果"+res.data);
             this.imageResult=res.data.messages;
         })
    },

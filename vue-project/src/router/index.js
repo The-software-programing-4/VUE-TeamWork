@@ -19,9 +19,26 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/MovieShow',
-    name: 'MovieShow',
-    component: () => import('../views/MovieShow.vue')
+    path: '/movie',
+    name: 'movie',
+    component: () => import('../views/movie/moviehead.vue'),
+    children:[
+      {
+        path: '/movie/main',
+        name: 'main',
+        component: () => import('../views/movie/moviemain.vue')
+      },
+      {
+        path: '/movie/info',
+        name: 'info',
+        component: () => import('../views/movie/movieinfo.vue')
+      },
+      {
+        path: '/movie/search',
+        name: 'search',
+        component: () => import('../views/movie/moviesearch.vue')
+      },
+    ]
   },
   {
     path: '/user/message',

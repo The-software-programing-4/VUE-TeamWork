@@ -25,7 +25,7 @@
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">电影</a> -->
-                        <router-link to="/MovieShow">电影</router-link>
+                        <router-link to="/movie/main">电影</router-link>
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">小组</a> -->

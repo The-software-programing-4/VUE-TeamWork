@@ -37,36 +37,17 @@
             </form>
         </div>
     </div>
-    <div id="img-show">
-    <!-- 电影展示 -->
-    <div v-show="showScene==1">
-        <showIm @change="changeFromShowIm"></showIm>
-    </div>
-    <!-- 搜索结果展示 -->
-    <div v-show="showScene==0" id="search-result">
-    <!-- 给子组件的msg变量传值 -->
-        <searchImg :msg="searchText" ref="child" @change="changeFromShowIm"></searchImg>
-    </div>
-    <!-- 点击后对电影详情页的显示-->
-    <div v-show="showScene==2">
-        <MovieInfoCard :mid="toMovieID" class="movieCard" ref="child2" ></MovieInfoCard>
-    </div>
-    </div>
-    <div id="mvlist">
-
-        <PopularMovieList @change="changeFromRank"></PopularMovieList>
-        <movielist></movielist>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import headTop from "../components/pry_part/headtop.vue"
-import showIm from"../components/pry_part/showIm.vue"
-import searchImg from"../components/pry_part/searchResultShow.vue"
-import searchBox from"../components/pry_part/searchBox.vue"
-import MovieInfoCard from "../components/Movies/MovieInfoCard.vue"
-import movielist from "../components/PYK-component/movielist.vue"
-import PopularMovieList from "../components/PYK-component/PopularMovieList.vue"
+import headTop from "../../components/pry_part/headtop.vue"
+import showIm from"../../components/pry_part/showIm.vue"
+import searchImg from"../../components/pry_part/searchResultShow.vue"
+import searchBox from"../../components/pry_part/searchBox.vue"
+import MovieInfoCard from "../../components/Movies/MovieInfoCard.vue"
+import movielist from "../../components/PYK-component/movielist.vue"
+import PopularMovieList from "../../components/PYK-component/PopularMovieList.vue"
 export default {
   components:{
     headTop,
@@ -85,10 +66,10 @@ export default {
             toMovieID:1,   //点击跳转到的电影页面名称
             showScene:1,//showScence决定展示哪一个页面，0时显示搜索结果
             searchImgResult:[
-                {path:require("../components/pry_part/images/one.jpg"),
+                {path:require("../../components/pry_part/images/one.jpg"),
                 name:"名字1",
                 score:"2分"},
-                {path:require("../components/pry_part/images/two.jpg"),
+                {path:require("../../components/pry_part/images/two.jpg"),
                 name:"名字2",
                 score:"3分"}
             ]
@@ -96,31 +77,34 @@ export default {
     },
     methods:{
         onSearch(){
-            //alert(this.searchText+this.searching);
-            this.showScene=0;
-            //alert(this.searchText+this.showScene);
-            var url='/api/movie/moviesearch';
-            this.$axios.post(url,
-                this.searchText,
-                 {
-                    headers: {
-                      'Content-Type':'application/text'
-                    }
-                }//提交的是搜索框内容
-            ).then(res => {
+             this.$router.push(
+                {
+                    path:"/movie/search",
+                    query:{searchText:this.searchText}
+                }
+            )
+            // var url='/api/movie/moviesearch';
+            // this.$axios.post(url,
+            //     this.searchText,
+            //      {
+            //         headers: {
+            //           'Content-Type':'application/text'
+            //         }
+            //     }//提交的是搜索框内容
+            // ).then(res => {
             
-            this.searchImgResult=res.data.messages;
+            // this.searchImgResult=res.data.messages;
 
-            for(var i=0;i<res.data.messages.length;i++)
-            {
-                var temp=res.data.messages[i];
-                this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
-            }
-            console.log(this.searchImgResult);
-            console.log("更新成功！");
-            this.$refs.child.getArr(this.searchImgResult);
-            })
-            this.status=0;
+            // for(var i=0;i<res.data.messages.length;i++)
+            // {
+            //     var temp=res.data.messages[i];
+            //     this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
+            // }
+            // console.log(this.searchImgResult);
+            // console.log("更新成功！");
+            // this.$refs.child.getArr(this.searchImgResult);
+            // })
+            // this.status=0;
         },
         // 事件处理函数
         async changeFromShowIm(param1,param2) {//从子组件处获取的值
@@ -148,7 +132,7 @@ export default {
     #db-nav-group{
         position: relative;
         /* background-color: #FFFFcc; */
-        background: url("../components/pry_part/images/back9.jpg");
+        background: url("../../components/pry_part/images/back9.jpg");
         height: 98px;
         width: 100%;
         margin: 0;
@@ -162,7 +146,7 @@ export default {
         float: left;
         margin-left: 50px;
         text-align: center;
-        background: url("../components/pry_part/images/logo.jpg");
+        background: url("../../components/pry_part/images/logo.jpg");
         background-size: 100%, 100%;
     }
     #db-nav-group .items{
