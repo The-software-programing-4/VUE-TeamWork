@@ -22,7 +22,7 @@ const routes = [
     path: '/movie',
     name: 'movie',
     component: () => import('../views/movie/moviehead.vue'),
-    children:[
+    children: [
       {
         path: '/movie/main',
         name: 'main',
@@ -98,11 +98,11 @@ const routes = [
     path: '/book',
     name: 'book',
     component: () => import('../views/book/bookhead.vue'),
-    children:[
+    children: [
       {
-        path:'/book/main',
-        name:'main',
-        component:()=>import('../views/book/bookmain.vue')
+        path: '/book/main',
+        name: 'main',
+        component: () => import('../views/book/bookmain.vue')
       },
       {
         path: '/book/bookInfo',
@@ -165,6 +165,11 @@ const routes = [
     name: 'create',
     component: () => import("../components/group/creategroup.vue")
   },
+  {
+    path: '/report',
+    name: 'report',
+    component: () => import("../views/report.vue")
+  }
 ]
 
 const router = new VueRouter({

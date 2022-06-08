@@ -79,8 +79,19 @@
             </div>
 
             <div class="writeContent">
-            <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 10}" placeholder="请输入评论" v-model="content">
-            </el-input>
+           <el-input
+  type="textarea"
+  autosize
+  placeholder="请输入标题"
+  v-model="title">
+</el-input>
+<div style="margin: 20px 0;"></div>
+<el-input
+  type="textarea"
+  :autosize="{ minRows: 2, maxRows: 4}"
+  placeholder="请输入内容"
+  v-model="content">
+</el-input>
             <div style="margin: 20px 0;"></div>
             <el-button @click="addmark" type="success">提交评论</el-button>
             </div>
@@ -112,9 +123,16 @@
                                         text-color="#ff9900">
                                     </el-rate>
                                 </span>
+                                <span class="commentThumb">
+                                <a @click="report(index)">举报</a>
+                                </span>
+                                <span class="commentThumb">{{item.disag}}
+                                <a @click="disag(index)">{{item.isdisag}}</a>
+                                </span>
                                 <span class="commentThumb">{{item.thumb}}
                                 <a @click="thumb(index)">{{item.isthumb}}</a>
                                 </span>
+
                                 <span class="commentDate">
                                     {{item.day}}
                                 </span>
@@ -141,14 +159,17 @@ export default {
                 score: 3,
                 content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
                 thumb: 0,
+                disag: 0,
                 reply: 0,
                 day: '2022.5.21 15:36:01',
                 isthumb: '点赞', 
+                isdisag: '反对',
                 },
             ],
             bookMessage:[
 
             ],
+            title: '',
             content: '',
             colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
             directory: '',
@@ -167,6 +188,7 @@ export default {
             bookid: 1,
             starCom: '',
             bookid:0,
+            att: 0,
         }
     },
     methods: {
@@ -218,13 +240,37 @@ export default {
             this.starCom = '';
         },
         thumb(index){
+            if(this.att == 1 ) return;
             if(this.marks[index].isthumb == "点赞"){
                 this.marks[index].thumb++;
-                this.marks[index].isthumb = '已点赞'
+                this.marks[index].isthumb = '已点赞';
+                this.att = 1;
             }
             else{
                 this.marks[index].thumb--;
-                this.marks[index].isthumb = '点赞'
+                this.marks[index].isthumb = '点赞';
+                this.att = 0;
+            }
+            var url='/api/marks/thumb';
+            this.$axios.post(
+                url,
+                {
+                    id: this.marks[index].id,
+                    target: this.marks[index].thumb
+                }
+            )
+        },
+        disag(index){
+            if(this.att == 1) return; 
+            if(this.marks[index].isdisag == "反对"){
+                this.marks[index].disag++;
+                this.marks[index].isdisag = '已反对'
+                this.att = 1;
+            }
+            else{
+                this.marks[index].disag--;
+                this.marks[index].isdisag = '反对'
+                this.att = 0;
             }
             var url='/api/marks/thumb';
             this.$axios.post(
