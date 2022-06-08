@@ -44,7 +44,7 @@
         )' href=""  class="item"  style="height:230px;width: 20% ;float:left;margin-left: 4%;margin-bottom: 10px;">
                 <div class="image-div" style="width:100% height:80%">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)" style="width:70%; height:90%">
+                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)" style="width:100%; height:90%">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
