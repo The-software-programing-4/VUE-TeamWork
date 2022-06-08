@@ -50,11 +50,6 @@ const routes = [
     component: () => import('../views/PhoneLoginView.vue')
   },
   {
-    path: '/bookInfo',
-    name: 'bookInfo',
-    component: () => import('../views/BookInfoView.vue')
-  },
-  {
     path: '/movieInfo',
     name: 'movieInfo',
     component: () => import('../views/MovieInfoView.vue')
@@ -83,10 +78,28 @@ const routes = [
     ]
   },
   {
-
-    path: '/BookShow',
-    name: 'BookShow',
-    component: () => import('../views/BookShow.vue')
+    path: '/book',
+    name: 'book',
+    component: () => import('../views/book/bookhead.vue'),
+    children:[
+      {
+        path:'/book/main',
+        name:'main',
+        component:()=>import('../views/book/bookmain.vue')
+      },
+      {
+        path: '/book/bookInfo',
+        name: 'bookInfo',
+        // component: () => import('../components/Books/bookInfoCard.vue')
+        component: () => import('../views/book/BookInfoView.vue')
+      },
+      {
+        path: '/book/search',
+        name: 'search',
+        // component: () => import('../components/Books/bookInfoCard.vue')
+        component: () => import('../views/book/searchView.vue')
+      },
+    ]
   },
   {
     path: '/WriteReview/:type/:target',

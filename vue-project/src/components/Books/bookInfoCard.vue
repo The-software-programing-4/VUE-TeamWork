@@ -2,7 +2,7 @@
     <div class="bookCard">
         <div class="bookInfo">
             <h1 class="bookTitle">
-            <span>{{bookname}}</span>
+            <span>{{bookname}}书的id:{{bookid}}</span>
             </h1>
             <div class="bookImg">
                 <img :src="src" alt="">
@@ -166,10 +166,8 @@ export default {
             author: '',
             bookid: 1,
             starCom: '',
+            bookid:0,
         }
-    },
-    props:{
-        book_id: Number,//从父组件传值
     },
     methods: {
         write(){

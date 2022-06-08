@@ -36,21 +36,21 @@
             :total="idoLists.length"
             >
             </el-pagination>
-        <div class="image-page" >
+        <div class="image-pages" style="height:500px">
             <!-- 放对影片详细介绍的网址 -->
             <div v-for='img in imgList.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
-        )' href=""  class="item" >
-                <div class="image-div">
+        )' href=""  class="item"  style="height:230px;width: 20% ;float:left;margin-left: 4%;margin-bottom: 10px;">
+                <div class="image-div" style="width:100% height:80%">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)">
+                     <img :src="img.src" class="image" @click="clickMv(img.book_id, 2)" style="width:70%; height:90%">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
                         :fit="fit" @click="clickMv(img.name, 2)"></el-image> -->
                 </div>
-                <p>
+                <p style="width:100%; height:10%">
                     {{img.name}}
                 </p>
             </div>
@@ -76,84 +76,9 @@ export default {
             url:"",
             // 轮播图使用的图片列表
             imgList:[
-                {mid:1,
-    src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:2,
-    src:require('./images/back8.jpg'),
-                name:"pic2",
-                score:2},
-                {mid:3,
-    src:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {mid:5,
-        src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:7,
-    src:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {
-                mid:8,
-    src:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {mid:9,
-    src:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:11,
-    src:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {mid:13,
-    src:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
             //imagebox是assets下一个放图片的文件夹
             ],
             idoLists:[
-                {mid:1,
-
-    src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:2,
-    src:require('./images/back8.jpg'),
-                name:"pic2",
-                score:2},
-                {mid:3,
-    src:require('./images/back9.jpg'),
-                name:"pic3",
-                score:3},
-                 {mid:5,
-        src:require('./images/one.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:7,
-    src:require('./images/back4.jpg'),
-                name:"pic2",
-                score:2},
-                {
-                mid:8,
-    src:require('./images/back6.jpg'),
-                name:"pic3",
-                score:3},
-                {mid:9,
-    src:require('./images/back5.jpg'),
-                name:"pic1",
-                score:1},
-                {mid:11,
-    src:require('./images/back1.jpg'),
-                name:"pic2",
-                score:2},
-                {mid:13,
-    src:require('./images/one.jpg'),
-                name:"pic3",
-                score:3},
             ],
             str:'a'
         }
@@ -191,10 +116,14 @@ export default {
         // alert(this.currentPage);
         },
         clickMv(val1, val2){
-           // alert(val1+val2);
-           console.log(val2);
-           console.log(val1);
-            this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        //    alert(val1, val2);
+        console.log("bookId:"+val1)
+           this.$router.push(
+                {
+                    path:"/book/bookInfo",
+                    query:{bookid:val1}
+                }
+            )
         },
         
     },
@@ -213,7 +142,7 @@ export default {
     line-height: 70px;
     color: #097262;
     font-size: 20px;
-    background: url("./images/yellow9.jpg");
+    background: url("../pry_part/images/yellow9.jpg");
     background-size: 100%, 100%;
 }
 #crossLine2{ 
@@ -222,7 +151,7 @@ export default {
     line-height: 70px;
     font-size: 20px;
     color: #097262;
-    background: url("./images/yellow5.jpg");
+    background: url("../pry_part/images/yellow5.jpg");
     background-size: 100%, 100%;
 }
 #crossLine3{ 
@@ -231,7 +160,7 @@ export default {
     line-height: 70px;
     font-size: 20px;
     color: #097262;
-    background: url("./images/yellow8.jpg");
+    background: url("../pry_part/images/yellow8.jpg");
     background-size: 100%, 100%;
 }
 #images-show .choose-page{
@@ -253,42 +182,8 @@ export default {
  #images-show{
      width: 100%;
      float: left;
-     /* background:url("./images/back1.jpg");
-     background-size:100% 100%; */
-
-     /* background-color: gray; */
  } 
- #images-show .image-page{
-     width: 100%;
-     height: 500px;
- }
- #images-show .image-page .item{
-     display: block;
-     float: left;
-     font-size: 15px;
-     text-align: center;
-     margin-right: 3%;
-     /* margin-bottom: 10px; */
-     width: 20%;
-     height: 240px;
-     
- }
- #images-show .image-page .item .image-div{
-     height: 80%;
-     width: 100%
- }
- #images-show .image-page .item img{
-     max-width: 100%;
-     max-height: 100%;
-     vertical-align: middle;
-     
- }
- #images-show .image-page a p{
-     margin-top: 5%;
-     height: 15%;
-     text-align: center;
-     color: black;
- }
+
  .el-carousel__item h3 {
       color: #475669;
       font-size: 14px;
@@ -296,15 +191,6 @@ export default {
       line-height: 200px;
       margin: 0;
     }
-
-    /* .el-carousel__item:nth-child(2n) {
-      background-color: #272727;
-      
-    }
-
-    .el-carousel__item:nth-child(2n+1) {
-      background-color: #3c3c3c;
-    }*/
     .image{
       max-height: 100%;
     } 

@@ -1,19 +1,14 @@
 <!-- 电影搜索结果 -->
 <template>
 <div>
-    <!-- {{msg}} -->
-
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{msg}}的搜索结果</div>
+    <div id="crossLine">{{searchText}}的搜索结果</div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="img-show" v-for="img in imageResult1.slice(
+    <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
         )">
         <div class="item-root">
-            <!-- <a href="" class="a-img">
-                <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
-            </a> -->
             <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
         </div>
         <div class="detail">
@@ -53,7 +48,7 @@ export default {
    data(){
         return{
             //msg:"的",
-
+            // searchText:'',
            isClass: false,
             currentPage: 1,
             pageSize: 9,
@@ -67,24 +62,20 @@ export default {
 
         }
     },
-    props:{
-        msg:String,//从父组件获取的值
-        imageResult1:Array
-    },
    created(){
-       var url='/api/movie/moviesearch';
-       console.log("have created search");
-       this.$axios.post(url,
-                toString(this.msg),
-                {
-                        headers: {
-                      'Content-Type':'application/text'
-                    }
-                }
-            ).then(res => {
-            console.log(res.data);
-            this.imageResult=res.data.messages;
-        })
+    //    var url='/api/movie/moviesearch';
+    //    console.log("have created search");
+    //    this.$axios.post(url,
+    //             toString(this.searchText),
+    //             {
+    //                     headers: {
+    //                   'Content-Type':'application/text'
+    //                 }
+    //             }
+    //         ).then(res => {
+    //         console.log(res.data);
+    //         this.imageResult=res.data.messages;
+    //     })
    },
    methods:{
        currentChange(val) {

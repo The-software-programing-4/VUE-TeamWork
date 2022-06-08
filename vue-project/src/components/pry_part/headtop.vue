@@ -21,7 +21,7 @@
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">读书</a> -->
-                         <router-link to="/BookShow">读书</router-link>
+                         <router-link to="/book/main">读书</router-link>
                     </li>
                     <li>
                         <!-- <a href="" target="_blank">电影</a> -->
