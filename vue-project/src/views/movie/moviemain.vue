@@ -1,9 +1,9 @@
 <template>
     <div>
-       <div style="width:800px;float: left;margin-left: 100px;">
+       <div style="width:50%;float: left;margin-left: 100px;">
         <showImVue style="width:100%"></showImVue>
        </div>
-    <div style="width: 300px;float: left; margin-left:30px ;">
+    <div style="width: 30%;float: left; margin-left:30px ;">
     <HotBookTopicsVue></HotBookTopicsVue>
     <movielistVue></movielistVue>
     </div>

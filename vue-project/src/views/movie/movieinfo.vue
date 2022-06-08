@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div style="float:left; width:800px;margin-left: 200px; margin-top: 50px;">
+    <div style="display:inline-block; width:50%; margin-top: 50px;">
        <bookInfoCard class="bookCard" style="">
     </bookInfoCard>
     </div>
-     <div style="width: 300px;float: left; margin-left:0px ;">
+     <div style="width: 100px;display:inline-block; margin-left:0px ;">
     <HotBookTopicsVue></HotBookTopicsVue>
     <movielistVue></movielistVue>
     </div>

@@ -2,7 +2,6 @@
 <div >
   <!-- <headtop></headtop> -->
   <homeCard></homeCard>
-
 </div>
 </template>
 

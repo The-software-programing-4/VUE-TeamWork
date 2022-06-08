@@ -48,7 +48,7 @@
 </div>
   <div class="mod">
 <div class="create-group">
-        <a class="" @click="fake"><i>+</i>申请创建小组</a>
+        <a class="" @click="$router.push('/group/create')"><i>+</i>申请创建小组</a>
 </div>
 
   </div>

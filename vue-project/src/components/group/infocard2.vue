@@ -13,6 +13,9 @@
             <div class="ttt2" v-if="this.groupData.join===1">
             <el-button type="info" plain size="small" @click="drop">退出小组</el-button>
             </div>
+            <div class="ttt2" v-if="this.groupData.join===1">
+            <el-button type="info" plain size="small" @click="changeimg">更换头像</el-button>
+            </div>
         </div>
         <div class="message" v-if="status===1">
             <div class="leader">
@@ -116,6 +119,12 @@ export default {
         }
     },
     methods:{
+        changeimg(){
+            this.$router.push({
+                path:"/group/imgchange",
+                query:{gid:this.gid}
+            })
+        },
         getData(gid)
         {
             

@@ -65,13 +65,13 @@ export default {
     },
     download_BookHotTopics() {
       this.$axios.get("api/topics").then((res) => {
-        console.log(res.data);
+        console.log("畅销图书："+res.data);
         this.hotbooktopicsData = res.data.hotbooktopicsData;
       });
     },
   },
   created() {
-    //this.download_HotBookTopics();
+    this.download_BookHotTopics();
   },
 };
 </script>

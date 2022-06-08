@@ -169,7 +169,12 @@ const routes = [
     path: '/report',
     name: 'report',
     component: () => import("../views/report.vue")
-  }
+  },
+  {
+    path: '/group/imgchange',
+    name: 'changeimg',
+    component: () => import("../components/group/headImg.vue")
+  },
 ]
 
 const router = new VueRouter({

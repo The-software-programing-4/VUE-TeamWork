@@ -59,7 +59,6 @@ export default {
                 name:"pic1",
                 score:1,
                 message:"123"},
-
             ],
 
         }
@@ -67,17 +66,22 @@ export default {
    created(){
        var url='/api/movie/moviesearch';
         this.searchText=this.$route.query.searchText;
-       console.log("have created search");
+       console.log("have created search"+this.searchText);
        this.$axios.post(url,
-                toString(this.searchText),
+                this.searchText,
                 {
                         headers: {
                       'Content-Type':'application/text'
                     }
                 }
             ).then(res => {
-            console.log("电影搜索结果"+res.data);
+            console.log(res.data.messages);
             this.imageResult=res.data.messages;
+            for(var i=0;i<this.imageResult.length;i++)
+            {
+                this.imageResult[i].src=this.$hostURL+'/'+this.imageResult[i].src
+                console.log(this.$hostURL)
+            }
         })
    },
    methods:{

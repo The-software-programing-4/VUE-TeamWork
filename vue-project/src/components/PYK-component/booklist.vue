@@ -26,11 +26,6 @@
         {{scope.row.author | ellipsis}}
       </template>
     </el-table-column>
-    <!-- <el-table-column prop="score">
-      <template slot-scope="scope" >
-          评分 {{scope.row.score}}
-        </template>
-    </el-table-column> -->
   </el-table>
   </div>
 </template>
@@ -41,7 +36,7 @@
   margin-top: 30px;
   /* border: 1px solid; */
 }
-/deep/.el-rate__icon {
+.el-rate__icon {
     font-size: 15px;
 }
 </style>
@@ -122,7 +117,7 @@ export default {
     download_booklist() {
       console.log("start rank")
       this.$axios.post("/api/book/listBook").then((res) => {
-        console.log(res.data.messages);
+        console.log("booklist"+res.data);
         this.booktableData = res.data.messages;
       });
       console.log("end rank")
@@ -143,68 +138,3 @@ export default {
 };
 </script>
 
-<!--
-		{
-          name: "平凡的世界（全三部）",
-          author: "[中] 路遥",
-          book_link: "/",
-          score: 5.0,
-        },
-        {
-          name: "活着",
-          author: "[中] 余华",
-          book_link: "/",
-          score: 4.9,
-        },
-        {
-          name: "蛤蟆先生去看心理医生",
-          author: "[英] 罗伯特·戴博德",
-          book_link: "/",
-          score: 4.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 1.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
-        {
-          name: "bookaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          author: "[z] author_a",
-          book_link: "/",
-          score: 5.8,
-        },
--->
-<!--
-  book_link->?
--->
