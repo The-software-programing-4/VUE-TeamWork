@@ -1,15 +1,15 @@
 <template>
     <div>
         <div class="homeNav">
-            <div class="homeNavLogin" v-if="status===0">
+            <div class="homeNavLogin" v-if="this.$store.state.Login==false">
                 <div style="margin:20px;"><h2>登陆/注册</h2></div>
                 <el-input class="homeLoginIn" v-model="form.username" placeholder="请输入用户名"></el-input>
                 <el-input class="homeLoginIn" v-model="form.password" placeholder="请输入密码" show-password></el-input>
-                <el-button type="success" @click="login">登录</el-button>
+                <el-button type="success" @click="loginf">登录</el-button>
                 
                 <el-button type="primary" @click="register">注册</el-button>
             </div>
-            <div class="homeNavLogin" v-if="status===1" style="color:green;"><h2>{{user}} 已登陆</h2>
+            <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:green;"><h2>{{user}} 已登陆</h2>
             <el-button type="info" @click="logout">退出登陆</el-button></div>
         </div>
         <div class="homeNavLogin">
@@ -53,6 +53,7 @@ export default {
     data() {
         return {
             status:0,
+
             user:'',
             form:{
                 username:'',
@@ -69,7 +70,7 @@ export default {
         }
     },
     methods:{
-        login(){
+        loginf(){
           var url="api/user/login";
           this.$axios.post(url,this.form
                     , {
@@ -79,15 +80,16 @@ export default {
                     }
                     }
                   ).then(res=> {
-                      //alert(res.data.message);
+
                       console.log(res.data)
-                      alert(res.data.message)
+                      this.$message(res.data.message)
                       if(res.data.success === true)
                          {   
                               //this.$router.push("/user/message");
                              //store.commit('setGuid',res.data.uid);
                              this.status=1;
                              this.user=this.form.username
+                             this.$store.commit('setLogin',true);
                          }
                   })
             
@@ -99,19 +101,23 @@ export default {
           this.$axios.post(url).then(res=>{
               console.log(res.data);
           })
-          alert("注销成功")
+          this.$message("注销成功")
+          this.$store.commit('setLogin',false);
           this.status=0;
+          this.login=this.$store.state.Login;
       },
       register()
       {
          var url="api/user/register";
           this.$axios.post(url,this.form).then(res=>{
               console.log(res.data);
-              alert(res.data.message)
+              this.$message(res.data.message)
               if(res.data.success)
               {
                   this.status=1;
                 this.user=this.form.username
+                this.$store.commit('setLogin',true);
+                this.login=this.$store.state.Login;
               }
           })
    

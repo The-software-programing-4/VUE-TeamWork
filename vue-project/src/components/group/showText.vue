@@ -2,7 +2,8 @@
     <div class="outside" >
         <div class="title"><h2>{{this.title}}</h2>
 
-            <el-button type="success" style="float:right;" plain size="small" @click="this.toedit">+我也来发言</el-button>
+            <el-button type="success" style="float:right;" plain size="small" @click="this.toedit" v-if="this.$store.state.Login===true">+我也来发言</el-button>
+            <el-button type="success" style="float:right;" plain size="small" @click="tologin" v-if="this.$store.state.Login===false">登陆后发言</el-button>
 
         </div>
         <div class="message">
@@ -53,6 +54,10 @@ export default {
         }
     },
     methods:{
+        tologin()
+    {
+      this.$router.push('/')
+    },
          toedit(){
             this.$router.push({
                 path:"/group/info",

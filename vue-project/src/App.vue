@@ -21,6 +21,9 @@ import headTop from "./components/pry_part/headtop.vue"
 export default{
   components:{
     headTop,
+},
+created(){
+  this.$message("created");
 }
 }
 </script>

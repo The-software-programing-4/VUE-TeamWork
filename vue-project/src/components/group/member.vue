@@ -7,18 +7,18 @@
             <ul>
             <li v-for="item in memberData" class="member-item">
                 <div class="pic">
-                <a href="https://www.douban.com/people/179164772/" class="nbg">
+                <a @click="fake" class="nbg">
                     <img :src="item.src" class="imgnoga" alt="常山" width="48px" height="48px">
                 </a>
                 </div>
 
                 <div class="name">
-                    <a href="https://www.douban.com/people/179164772/" class="">{{item.name}}</a>
+                    <a @click="fake" class="">{{item.name}}</a>
                 </div>
             </li>
             </ul>
         </div>
-        <div class="all">
+        <div class="all" @click="allmember">
             <a> > 查看全部成员</a>
         </div>
     </div>
@@ -104,6 +104,13 @@ export default {
         }
     },
     methods:{
+        fake(){
+            this.$message("天青色等烟雨，而我在等你");
+        },
+        allmember()
+        {
+            this.$message("已展示全部成员")
+        },
         getData(gid){
             this.$axios.post("/api/group/getmember",{
             gid:parseInt(gid)

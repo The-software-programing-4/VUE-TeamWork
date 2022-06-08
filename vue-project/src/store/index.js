@@ -6,12 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     Guid: 1,
+    Login:false,
   },
   getters: {
   },
   mutations: {
     setGuid(state, uid) {
       state.Guid = uid;
+    },
+    setLogin(state, log)
+    {
+      state.Login=log;
     }
   },
   actions: {

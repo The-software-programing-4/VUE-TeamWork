@@ -1,19 +1,24 @@
 <template>
     <div class="aside">
   <div class="mod profile-entry">
-  <div class="pic">
-  <img :src="this.src">
+  <div class="pic" v-if="this.$store.state.Login===true">
+  <img :src="this.src" >
   </div>
-  <div class="info">
+  <div class="info" v-if="this.$store.state.Login===true">
     <a @click="tomanage"><b>管理我的小组</b></a>
-    <p><a href="/group/people/255870596/publish">发起(3)</a> &nbsp;
-    | &nbsp; <a href="/group/people/255870596/reply">回应(110)</a>
+    <p><a @click="fake">发起(3)</a> &nbsp;
+    | &nbsp; <a @click="fake">回应(110)</a>
+  </p></div>
+  <div class="info" v-if="this.$store.state.Login===false">
+    <a @click="tologin"><b>亲爱的，登陆后可享用全部功能</b></a>
+    <p><a @click="fake">发起(0)</a> &nbsp;
+    | &nbsp; <a @click="fake">回应(0)</a>
   </p></div>
 </div>
 
 <div id="g-reguler-groups" class="mod">
   <div class="hd">
-  <span class="more"><a href="/group/people/255870596/joins">&gt; 全部</a></span>
+  <span class="more"><a @click="fake">&gt; 全部</a></span>
   
     <h2>
         常去的小组
@@ -24,17 +29,17 @@
   <div class="content">
       <ul>
           <li class="">
-          <a href="https://www.douban.com/group/villages/">
+          <a @click="fake">
             <img :src="this.$hostURL+'/templates/groupHead/1.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
           </a>
           </li>
           <li class="">
-          <a href="https://www.douban.com/group/villages/">
+          <a @click="fake">
             <img :src="this.$hostURL+'/templates/groupHead/2.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
           </a>
           </li>
           <li class="">
-          <a href="https://www.douban.com/group/villages/">
+          <a @click="fake">
             <img :src="this.$hostURL+'/templates/groupHead/3.jpg'" title="村庄爱好者" alt="村庄爱好者" class="">
           </a>
           </li>
@@ -43,13 +48,13 @@
 </div>
   <div class="mod">
 <div class="create-group">
-        <a class="" href="/group/new_group"><i>+</i>申请创建小组</a>
+        <a class="" @click="fake"><i>+</i>申请创建小组</a>
 </div>
 
   </div>
 <div id="group-contact" class="mod">
   <ul>
-    <li class="group-wb"><a href="http://e.weibo.com/Group2005" target="_blank">豆酱小组在微信</a></li>
+    <li class="group-wb"><a @click="fake" target="_blank">豆酱小组在微信</a></li>
     <li class="feed-back"><span>联系:1971008968@qq.com</span> </li>
   </ul>
 </div>
@@ -64,6 +69,9 @@ export default {
     }
   },
   methods:{
+    fake(){
+      this.$message("你好可爱～ love you")
+    },
     display_photo(){
         this.$axios.get("/api/user/getimg").then(res=>{
         console.log(res.data);
@@ -77,6 +85,10 @@ export default {
     tomanage()
     {
       this.$router.push('/group/manage')
+    },
+    tologin()
+    {
+      this.$router.push('/')
     }
   },
   created(){

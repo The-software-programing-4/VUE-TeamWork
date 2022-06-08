@@ -46,7 +46,7 @@ export default{
     methods:{
         onSearch(){
              this.$emit("getData", this.searchText);//给父组件传值
-             alert(this.searchText);
+             this.$message(this.searchText);
             //点击跳转到搜索结果页面
             this.$router.push({path:"/searchResult"})
         },

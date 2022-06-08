@@ -35,13 +35,13 @@ export default {
   methods: {
     check(){
       if(this.firstPassword !== this.form.password){
-        alert("两次密码不同，请重新输入！");
+        this.$message("两次密码不同，请重新输入！");
         this.firstPassword = '';
         this.form.password = '';
         return false;
       }
       if(this.form.password.length < 6 || this.form.password.length > 20){
-        alert("密码长度不符合要求，请重新输入！");
+        this.$message("密码长度不符合要求，请重新输入！");
         this.firstPassword = '';
         this.form.password = '';
         return false;

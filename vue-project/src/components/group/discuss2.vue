@@ -33,7 +33,7 @@
       <template  slot-scope="scope">
         <el-link
           :underline="false"
-          @click="toinfo(scope.row.gid)"
+          @click="fake"
           type="primary"
         >
           {{scope.row.leader}}
@@ -101,6 +101,9 @@ export default {
     gid:Number
   },
   methods: {
+    fake(){
+      this.$message("你发现了盲点qaq～");
+    },
      sleep1(numberMillis){    
         var now = new Date();    
         var exitTime = now.getTime() + numberMillis;   
@@ -154,7 +157,7 @@ export default {
 
     },
     clickMv(val1, val2){
-           // alert(val1+val2);
+
             console.log("send"+val1+" "+val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },

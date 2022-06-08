@@ -88,12 +88,12 @@ export default {
    },
    methods:{
        currentChange(val) {
-        // alert(val)
+
         this.currentPage = val;
-        // alert(this.currentPage);
+
         },
         clickMv(val1, val2){
-           // alert(val1+val2);
+
            console.log(val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
         },

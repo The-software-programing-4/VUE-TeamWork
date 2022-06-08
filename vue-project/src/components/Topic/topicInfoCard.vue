@@ -7,9 +7,12 @@
             </svg>
           </div>
           <div class="topicTitle"><h2>{{title}}</h2></div>
-          <div class="topicFollow">
+          <div class="topicFollow" v-if="this.login===true">
             <el-button v-if="this.concern===0" type="success" plain @click="tconcern(tid)">关注话题</el-button>
             <el-button v-if="this.concern===1" type="info" plain @click="tconcern(tid)">取消关注</el-button>
+          </div>
+          <div class="topicFollow" v-if="this.login===false">
+            <el-button  type="info" plain @click="">登录后可关注话题</el-button>
           </div>
         </div>
         <div class="topicCounter">
@@ -71,10 +74,12 @@
 import "@/css/style.css";
 import editor from '@/views/group/editor.vue';
 import editor2 from "./editor.vue"
+
 export default {
   components: { editor,editor2 },
   data(){
     return {
+      login:false,
       concern:0,
       classHot: 'topicNow',
       classNew: 'topicWait',
@@ -102,6 +107,8 @@ export default {
     this.tid=parseInt(this.$route.query.tid);
     this.getData(this.tid);
     console.log(this.tid+"::tid")
+    this.login=this.$store.state.Login;
+    console.log("login:"+this.login)
   }
   ,
   methods: {

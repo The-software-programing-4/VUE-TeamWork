@@ -41,7 +41,7 @@ export default {
                       'Content-Type':'application/json'
                     }
                   }).then(res=> {
-                      alert(res.data.message);
+                      this.$message(res.data.message);
                       if(res.data.success === true)
                          {   this.$router.push("/user/message");
                              //store.commit('setGuid',res.data.uid);

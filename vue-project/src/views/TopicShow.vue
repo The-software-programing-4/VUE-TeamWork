@@ -9,16 +9,16 @@
         <div class="items">
             <ul>
                 <li>
-                    <a href="">首页</a>
+                    <a href="/topic/main">首页</a>
                 </li>
                 <li>
-                    <a href="">浏览</a>
+                    <a href="/topic/main">浏览</a>
                 </li>
                 <li>
-                    <a href="">精选</a>
+                    <a href="/topic/main">精选</a>
                 </li>
                 <li>
-                    <a href="">话题广场</a>
+                    <a href="/topic/main">话题广场</a>
                 </li>
             </ul>
         </div>
