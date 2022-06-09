@@ -12,11 +12,11 @@
   >
     
     <el-table-column type="index"></el-table-column>
-    <el-table-column label="热门图书" width="auto">
+    <el-table-column label="热门电影" width="auto">
       <template slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="toinfo(scope.row.mid)"
         >
           {{ scope.row.name | ellipsis }}
         </el-link>
@@ -59,6 +59,13 @@ export default {
     };
   },
   methods: {
+    toinfo(mid)
+    {
+      this.$router.push({
+            path:"/movie/info",
+            query:{mid:mid}
+          })
+    },
     download_movielists() {
       this.$axios.post("api/movie/listmovie").then((res) => {
         console.log("畅销电影："+res.data);

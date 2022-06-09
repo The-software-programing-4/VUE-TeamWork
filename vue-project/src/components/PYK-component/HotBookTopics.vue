@@ -15,7 +15,7 @@
           autofocus
           :key="tag"
           v-for="tag in scope.row.Secondorder_booktopics"
-          @click="handleClick(tag.Secondorder_booktopic_link)"
+          @click="toinfo(scope.row.book_id)"
         >
           {{ tag.Secondorder_booktopic_name }}
         </el-button>
@@ -60,6 +60,13 @@ export default {
     };
   },
   methods: {
+    toinfo(id)
+    {
+      this.$router.push({
+            path:"/book/info",
+            query:{bookid:id}
+          })
+    },
     handleClick(tag) {
       this.$router.push(tag);
     },

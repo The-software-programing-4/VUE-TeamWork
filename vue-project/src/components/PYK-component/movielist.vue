@@ -14,7 +14,7 @@
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="toinfo(scope.row.mid)"
         >
           {{ scope.row.name | ellipsis }}
         </el-link>
@@ -63,6 +63,13 @@ export default {
     };
   },
   methods: {
+    toinfo(mid)
+    {
+      this.$router.push({
+            path:"/movie/info",
+            query:{mid:mid}
+          })
+    },
     download_movielist() {
       console.log("start rank")
       this.$axios.post("/api/movie/listmovie").then((res) => {

@@ -43,11 +43,11 @@
                 <div class="img"><img :src="item.src" width="30px" height="30px"></div>
                 <div class="commentNav">
                 
-                <a href="#" class="commentUser" style="margin-right:20px;"> {{item.writer}} </a>
-                <span class="commentThumb">{{item.thumb}}
-                    <a @click="thumb(index)">{{item.isthumb}}</a>
+                <a href="#" class="commentUser" style="margin-right:40px;"> {{item.writer}} </a>
+                <span class="">{{item.title}}
+                    <!-- <a @click="thumb(index)">{{item.isthumb}}</a> -->
                 </span>
-                <span class="commentDate"> {{item.time}} </span>
+                <span class="commentDate" style="float:right;"> {{item.time}} </span>
                 </div>
                 <div :id="item.id" class="content" v-html="item.content"></div>
                 <a v-if="item.id>0" @click="changeheight(item.id);item.id=0">(展开…)</a>

@@ -306,7 +306,8 @@ h1 {
     height: 30px;
     display: inline-block;
     vertical-align: middle;
-    width: 100%;
+    width: 80%;
+    margin-left: 4%;
 }
 
 .commentThumb {

@@ -14,7 +14,7 @@
       <template slot-scope="scope" >
         <el-link 
               :underline="false"
-              :href="scope.row.book_link"
+              @click="toinfo(scope.row.book_id)"
               style="font-size: 15px"
             >
               {{ scope.row.name | ellipsis }}
@@ -108,6 +108,13 @@ export default {
     };
   },
   methods: {
+    toinfo(id)
+    {
+      this.$router.push({
+            path:"/book/bookinfo",
+            query:{bookid:id}
+          })
+    },
     gotobooklink(index, row) {
       this.$router.push(row.book_link);
     },
