@@ -1,13 +1,12 @@
 <template>
   <div>
-    <div style="display:inline-block; width:50%; margin-top: 50px;">
+    <div style="display:inline-block; width:50%; margin-top: 50px;margin-left:10% ;float: left;">
        <bookInfoCard class="bookCard" style="">
     </bookInfoCard>
     </div>
-     <!-- <div style="width: 100px;display:inline-block; margin-left:0px ;">
-    <HotBookTopicsVue></HotBookTopicsVue>
-    <movielistVue></movielistVue>
-    </div> -->
+    <div style="display:inline-block;width:30%;float:left;margin-left:0px;margin-top: 50px; ">
+        <img src="../../components/imgs/movieinfo.jpg" alt="" style="width:100%">
+    </div>
   </div>
 </template>
 
