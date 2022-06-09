@@ -1,7 +1,7 @@
 <template>
     <div id="topic">
        <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine1">话题广场</div>
+        <div id="crossLine1"></div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         <div class="topic-page" >
             <el-card class="box-card" v-for='topic in topicList.slice(
@@ -33,10 +33,9 @@
            >
       </el-pagination>
         </div>
-        <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
+        <!-- <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
         <div id="crossLine2">我关注的话题动态</div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-    <!-- 话题展示 -->
         <div class="topicComment">
             <ul>
             <li  v-for="(item, index) in forums" class="commentItem">
@@ -45,7 +44,6 @@
                 
                 <a href="#" class="commentUser" style="margin-right:40px;"> {{item.writer}} </a>
                 <span class="">{{item.title}}
-                    <!-- <a @click="thumb(index)">{{item.isthumb}}</a> -->
                 </span>
                 <span class="commentDate" style="float:right;"> {{item.time}} </span>
                 </div>
@@ -53,7 +51,7 @@
                 <a v-if="item.id>0" @click="changeheight(item.id);item.id=0">(展开…)</a>
             </li>
             </ul>
-      </div>
+      </div> -->
     </div>
 
 </template>
@@ -241,7 +239,7 @@ li{
     text-align: center;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/card2.jpg");
+    background: url("../imgs/topic1.jpg");
     background-size: 100%, 100%;
     color: black;
 }

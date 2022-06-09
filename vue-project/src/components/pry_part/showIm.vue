@@ -2,7 +2,9 @@
 
     <div id="images-show">
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine1"></div>
+
+        <div id="mvcrossLine1"></div>
+
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="350px" wight="200px">
@@ -15,20 +17,10 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2"></div>
+
+        <div id="mvcrossLine2"></div>
+
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div class="choose-page">
-            <button @click.stop="showbox=1">全部</button>
-            <button @click.stop="showbox=2">热门</button>
-            <button @click.stop="showbox=3">最新</button>
-            <button @click.stop="showbox=4">豆酱高分</button>
-             <button @click.stop="showbox=5">冷门佳片</button>
-              <button @click.stop="showbox=6">华语</button>
-               <button @click.stop="showbox=7">欧美</button>
-               <button @click.stop="showbox=8">韩国</button>
-               <button @click.stop="showbox=9">日本</button>
-        </div>
-        <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
           <el-pagination
             background
             layout="prev, pager, next"
@@ -219,13 +211,13 @@ export default {
 }
 </script>
 <style>
-#crossLine1{ 
+#mvcrossLine1{ 
     height: 70px;
     text-align: center;
     line-height: 70px;
     color: #ffffff;
     font-size: 20px;
-    background: url("./images/back1.jpg");
+    background: url("../imgs/movie1.jpg");
     background-size: 100%, 100%;
 }
 .picshow{
@@ -236,12 +228,12 @@ export default {
 .image-div{
     margin: 5px 5px;
 }
-#crossLine2{ 
+#mvcrossLine2{ 
     height: 70px;
     text-align: center;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/back2.jpg");
+    background: url("../imgs/movie2.jpg");
     background-size: 100%, 100%;
 }
 #images-show .choose-page{
