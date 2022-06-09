@@ -2,8 +2,9 @@
 <template>
 <div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{searchText}}的搜索结果</div>
+    <div id="crossLine"></div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
+    <div id="book-search-result">
     <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
           currentPage * pageSize
@@ -31,6 +32,7 @@
                 <p>出版社：{{img.press}}</p>
             </div>
         </div>
+         </div>
     </div>
     <el-pagination
         background
@@ -51,7 +53,7 @@ export default {
             searchText:'',
            isClass: false,
             currentPage: 1,
-            pageSize: 9,
+            pageSize: 2,
             imageResult:[
 
             ],
@@ -106,18 +108,25 @@ export default {
 </script>
 <style scoped>
 
+#book-search-result{
+    width: 100%;
+    height: 600px;
+    background: url("../imgs/blue2.jpeg");
+    background-size: 100%, 100%;
+}
+
 #crossLine{ 
     height: 70px;
     text-align: center;
     color: aliceblue;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/back1.jpg");
+    background: url("../imgs/booksearch.jpg");
     background-size: 100%, 100%;
 }
 #img-show{
     margin-top:30px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     width: 100%;
     height: 200px;
 }
@@ -132,6 +141,7 @@ export default {
     max-height: 90%;
     vertical-align: middle;
     margin-left: 30px;
+    margin-top:30px ;
 }
 #img-show .detail{
 

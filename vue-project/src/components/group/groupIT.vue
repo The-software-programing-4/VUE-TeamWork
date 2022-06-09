@@ -1,9 +1,9 @@
 <template>
 <div class="outside">
-    <div class="title">
+    <div class="title" style="text-align:left;font-size:35px;color: #984B4B;">
       <b>推荐小组 </b>
     </div>
-    <div class="group-list group-cards">
+    <div class="group-list group-cards" id="cards">
 
         <ul>
           
@@ -15,7 +15,7 @@
           </div>
           <div class="info">
             <div class="title">
-              <a @click="toGroup(item.gid)" class="">{{item.name}}</a><br>
+              <a @click="toGroup(item.gid)" class="" style="color:white;">{{item.name}}</a><br>
             </div>
             <span class="num">{{item.number}}</span><br>
           </div>
@@ -42,11 +42,12 @@ color: #666699;
 text-decoration: none;
 }
 .group-cards .info {
-color: #aaa;
+color: white;
 }
 .group-cards .title {
 margin-top: -1px;
 line-height: 1.25;
+color: white;
 }
 a img {
 border-width: 0;
@@ -65,7 +66,7 @@ position: relative;
 margin: 15px 20px 0 0;
 width: 198px;
 padding: 10px;
-border: 1px solid #eee;
+border: 1px solid rgb(6, 16, 42);
 }
 li{
   width: 100px;
@@ -81,6 +82,10 @@ li{
   color : black;
   font-size: x-large;
   margin-top: 40px;
+}
+#cards{
+  background:url(../../components/imgs/pink2.jpeg);
+  background-size:100% 100% ;
 }
 </style>
 

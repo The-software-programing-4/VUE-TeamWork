@@ -6,8 +6,8 @@
   <el-collapse-item :name="1">
     <template slot="title">
     <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关电影内容</div>
-    <div style="font-size:18x;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
-    <el-button class="share-button" icon="el-icon-share"  style="border: transparent;font-size:18px;color: blue;" @click="jump">去主页看看</el-button>
+    <div style="font-size:18px;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
+    <el-button class="share-button" icon="el-icon-share"  style="border: transparent;font-size:18px;color: palevioletred;" @click="jump">去主页看看</el-button>
     </div>
     </template>
     <!-- <el-divider><i class="el-icon-mobile-phone"></i></el-divider> -->

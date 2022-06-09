@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="float:left; width:700px;margin-left: 80px;margin-top:50px;float: left;">
+    <div style="float:left; width:700px;margin-left: 150px;margin-top:50px;float: left;">
        <bookInfoCard class="bookCard" style="">
     </bookInfoCard>
     </div>
