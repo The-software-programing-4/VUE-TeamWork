@@ -3,16 +3,9 @@
     <div id="db-nav-group" class="nav" >
         <div class="nav-search">
             <!-- action规定向何处发送表单 methon：get/post -->
-            <form id="form" action="" method="">
-                <div class="input">
-                    <!-- for放关联控件id -->
-                    <input type="text" id="search" placeholder="星际穿越" v-model="searchText">
-                </div>
-                <div class="up">
-                    <!-- <input  value="搜索一下" @click="onSearch"  > -->
-                    <el-button type="success" icon="el-icon-search" @click="onSearch" background-color="#67C23A">搜索</el-button>
-                </div>
-            </form>
+            <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
+                <el-button slot="append" icon="el-icon-search" @click="onSearch" id="button1"></el-button>
+            </el-input>
         </div>
     </div>
         <router-view></router-view>
