@@ -2,7 +2,7 @@
 
     <div id="images-show">
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine1">最新热映</div>
+        <div id="crossLine1"></div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="350px" wight="200px">
@@ -15,7 +15,7 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2">热门电影</div>
+        <div id="crossLine2"></div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
         <div class="choose-page">
             <button @click.stop="showbox=1">全部</button>
