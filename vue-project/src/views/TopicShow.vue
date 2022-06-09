@@ -68,7 +68,8 @@ export default {
         position: relative;
         /* background-color: #FFFFcc; */
         background: url("../components/imgs/topic.jpg");
-        height: 98px;
+        height: 110px;
+        background-repeat:no-repeat ;
         width: 100%;
         margin: 0;
         padding: 0;

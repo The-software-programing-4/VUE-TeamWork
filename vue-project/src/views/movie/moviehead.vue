@@ -5,7 +5,7 @@
     <div id="db-nav-group" class="nav" >
         <div class="nav-search">
             <!-- action规定向何处发送表单 methon：get/post -->
-            <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
+            <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px; position: absolute;">
                 <el-button slot="append" icon="el-icon-search" @click="onSearch" id="button1"></el-button>
             </el-input>
         </div>
@@ -85,7 +85,8 @@ export default {
         position: relative;
         /* background-color: #FFFFcc; */
         background: url("../../components/imgs/movie.jpg");
-        height: 98px;
+        height: 110px;
+        background-repeat:no-repeat ;
         width: 100%;
         margin: 0;
         padding: 0;

@@ -3,18 +3,18 @@
   <!-- <headtop></headtop> -->
   <div style="margin-top: 0px; height: 100px;width: 100%;" id="searchBox" >
   <el-row >
-  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple" > 
-  <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click1">图书</button></div></el-col>
-  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
-     <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click2">电影</button>
+  <el-col :span="2" offset="4" style="margin-top: 25px; color: white;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple" > 
+  <button style="color: white;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click1">图书</button></div></el-col>
+  <el-col :span="2" style="margin-top: 25px; color: white;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
+     <button style="color: white;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click2">电影</button>
   </div></el-col>
-  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple">
-    <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click3">小组</button>
+  <el-col :span="2" style="margin-top: 25px; color: white;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple">
+    <button style="color: white;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click3">小组</button>
   </div></el-col>
-  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
-    <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click4">话题</button>
+  <el-col :span="2" style="margin-top: 25px; color: white;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
+    <button style="color: white;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click4">话题</button>
   </div></el-col>
-  <el-col :span="30" offset="6" style="margin-top: 20px; "><div class="grid-content bg-purple-light">
+  <el-col :span="30" offset="4" style="margin-top: 25px; "><div class="grid-content bg-purple-light">
     <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
     <el-button slot="append" icon="el-icon-search" @click="search" id="button1"></el-button>
   </el-input>
@@ -113,7 +113,7 @@ export default {
     width: 50px;
   }
   #searchBox{
-    background:url("../components/imgs/pink1.jpeg") ;
+    background:url("../components/imgs/mainhead.jpg") ;
     background-size:100% 100% ;
   }
 

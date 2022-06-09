@@ -64,7 +64,8 @@ export default {
         position: relative;
         /* background-color: #FFFFcc; */
         background: url("../../components/imgs/book.jpg");
-        height: 100px;
+       height: 110px;
+        background-repeat:no-repeat ;
         width: 100%;
         margin: 0;
         padding: 0;
