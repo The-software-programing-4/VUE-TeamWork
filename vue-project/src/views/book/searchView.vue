@@ -1,13 +1,13 @@
 <template>
 <!-- <BookSearchResultVue style="width:100%"></BookSearchResultVue> -->
   <div>
-    <div style="float:left; width:800px;margin-left: 150px;">
+    <div style="float:left; width:800px;margin-left: 200px;">
        <BookSearchResultVue style="width:100%"></BookSearchResultVue>
     </div>
-     <div style="width: 300px;float: left; margin-left:50px ;">
+     <!-- <div style="width: 300px;float: left; margin-left:50px ;">
     <HotBookTopicsVue></HotBookTopicsVue>
     <booklistvue></booklistvue>
-    </div>
+    </div> -->
   </div>
 </template>
 

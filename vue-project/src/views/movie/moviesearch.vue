@@ -4,10 +4,6 @@
     <div style="float:left; width:800px;margin-left: 150px;">
        <BookSearchResultVue style="width:100%"></BookSearchResultVue>
     </div>
-     <div style="width: 300px;float: left; margin-left:50px ;">
-    <HotBookTopicsVue></HotBookTopicsVue>
-    <booklistvue></booklistvue>
-    </div>
   </div>
 </template>
 
