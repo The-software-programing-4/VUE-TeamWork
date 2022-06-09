@@ -17,8 +17,8 @@
             <el-button type="info" plain size="small" @click="changeimg">更换头像</el-button>
             </div>
         </div>
-        <div class="message" v-if="status===1">
-            <div class="leader">
+        <div class="message" v-if="status===1" >
+            <div class="leader" >
                 <b>组长</b> : {{this.groupData.leader}} &nbsp;&nbsp;  <b>创建日期</b> : {{this.groupData.time}}
             </div>
             <div class="intro">

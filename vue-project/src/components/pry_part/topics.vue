@@ -242,6 +242,7 @@ li{
     background: url("../imgs/topic1.jpg");
     background-size: 100%, 100%;
     color: black;
+     background-repeat: no-repeat;
 }
 #crossLine2{ 
     height: 80px;

@@ -2,14 +2,14 @@
     <div>
         <div class="homeNav" >
             <div class="homeNavLogin" v-if="this.$store.state.Login==false">
-                <div style="margin:20px;"><h2>登陆/注册</h2></div>
-                <el-input class="homeLoginIn" v-model="form.username" placeholder="请输入用户名"></el-input>
-                <el-input class="homeLoginIn" v-model="form.password" placeholder="请输入密码" show-password></el-input>
-                <el-button type="success" @click="loginf">登录</el-button>
+                <div style="margin:20px;color:#613030"><h2>登陆/注册</h2></div>
+                <el-input class="homeLoginIn" v-model="form.username" placeholder="请输入用户名" style="background-color:transparent"></el-input>
+                <el-input class="homeLoginIn" v-model="form.password" placeholder="请输入密码" show-password style="background-color:transparent"> </el-input>
+                <el-button type="success" @click="loginf " style="background-color:#FF8040;border:transparent;">登录</el-button>
                 
-                <el-button type="primary" @click="register">注册</el-button>
+                <el-button type="primary" @click="register" style="background-color:#66B3FF;border:transparent;">注册</el-button>
             </div>
-            <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:green;"><h2>{{this.$store.state.username}} 已登陆</h2>
+            <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:#FF8040;"><h2>{{this.$store.state.username}} 已登陆</h2>
             <el-button type="info" @click="logout">退出登陆</el-button></div>
         </div>
         <!-- <div class="homeFoot" style="margin-top:-150px">

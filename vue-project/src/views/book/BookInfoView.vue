@@ -5,6 +5,7 @@
     </bookInfoCard>
     </div>
     <div style="width:350px; margin-left:0px ;float: left;margin-top: 100px;">
+     <img src="../../components/imgs/bookinfo2.jpg" alt="" style="width:100%">
     <img src="../../components/imgs/bookinfo.jpg" alt="" style="width:100%">
     </div>
   </div>

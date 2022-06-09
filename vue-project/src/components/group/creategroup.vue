@@ -2,9 +2,9 @@
 <div>
    <div id="title">申请创建豆酱小组</div>
    <div id="create-form" class="left">
-   <el-form ref="form" :model="form" label-width="80px" class="form">
+   <el-form ref="form" :model="form" label-width="80px" class="form" style="color:white;">
    <!-- <el-divider><i class="el-icon-mobile-phone"></i></el-divider> -->
-  <el-form-item label="小组名称" style="color:green">
+  <el-form-item label="小组名称" style="color:white">
     <el-input v-model="form.name"></el-input>
   </el-form-item>
 
@@ -99,6 +99,9 @@
     width: 400px;
     margin-left: 15%;
     float: left;
+    background:url(../imgs/art5.jpeg);
+    background-size:100% 100% ;
+    background-repeat: no-repeat;
 }
 #info{
     height: 60px;

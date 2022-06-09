@@ -131,6 +131,7 @@ export default {
     font-size: 20px;
     background: url("../imgs/book1.jpg");
     background-size: 100%, 100%;
+     background-repeat: no-repeat;
 }
 #crossLine2{ 
     height: 70px;
@@ -140,6 +141,7 @@ export default {
     color: #097262;
     background: url("../imgs/book2.jpg");
     background-size: 100%, 100%;
+     background-repeat: no-repeat;
 }
 #crossLine3{ 
     height: 70px;

@@ -219,6 +219,7 @@ export default {
     font-size: 20px;
     background: url("../imgs/movie1.jpg");
     background-size: 100%, 100%;
+     background-repeat: no-repeat;
 }
 .picshow{
     width: 120px;
@@ -235,6 +236,7 @@ export default {
     font-size: 20px;
     background: url("../imgs/movie2.jpg");
     background-size: 100%, 100%;
+    background-repeat: no-repeat;
 }
 #images-show .choose-page{
     width: 100%;
