@@ -454,11 +454,11 @@ h1 {
 
 /* Home */
 .homeNav {
-    background-image: url(../assets/homePhone.jpg);
-    background-color: #edf4ed;
-    background-size: contain;
-    background-position: calc(50% - 305px) top;
-    background-repeat: no-repeat;
+    background-image: url(../components/imgs/main1.jpeg);
+    /* background-color: #edf4ed; */
+    background-size: 100% 100%;
+    /* background-position: calc(50% - 305px) top; */
+    /* background-repeat: no-repeat; */
     height: 800px;
 }
 
@@ -475,7 +475,7 @@ h1 {
 
 .homeFoot {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: 20%;
     margin-right: 20%;
 }

@@ -1,11 +1,25 @@
 <template>
 <div >
   <!-- <headtop></headtop> -->
-  <div style="margin-top: 0px; height: 80px;" id="searchBox">
-  <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="margin-top:30px; width: 1200px;">
+  <div style="margin-top: 0px; height: 100px;width: 100%;" id="searchBox" >
+  <el-row >
+  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple" > 
+  <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click1">图书</button></div></el-col>
+  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
+     <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click2">电影</button>
+  </div></el-col>
+  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple">
+    <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click3">小组</button>
+  </div></el-col>
+  <el-col :span="2" style="margin-top: 20px; color: #46A3FF;font-size: 35px;font-weight: 900;"><div class="grid-content bg-purple-light">
+    <button style="color: #46A3FF;font-size: 35px;font-weight: 900;background: transparent;border: transparent;" @click="click4">话题</button>
+  </div></el-col>
+  <el-col :span="30" offset="6" style="margin-top: 20px; "><div class="grid-content bg-purple-light">
+    <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
     <el-button slot="append" icon="el-icon-search" @click="search" id="button1"></el-button>
   </el-input>
-  
+  </div></el-col>
+</el-row>
 </div>
 <router-view></router-view>
   <!-- <homeCard></homeCard> -->
@@ -27,10 +41,6 @@ export default {
   },
   data() {
     return {
-      input1: '',
-      input2: '',
-      input3: '',
-      input4:'',
       select:'',
       searchText:"",
     }
@@ -42,6 +52,34 @@ export default {
                 {
                     path:'/search',
                     query:{searchText:this.searchText}
+                }
+            )
+    },
+    click1(){
+      this.$router.push(
+                {
+                    path:'/book/main',
+                }
+            )
+    },
+    click2(){
+      this.$router.push(
+                {
+                    path:'/movie/main',
+                }
+            )
+    },
+    click3(){
+      this.$router.push(
+                {
+                    path:'/group/main',
+                }
+            )
+    },
+    click4(){
+      this.$router.push(
+                {
+                    path:'/topic/main',
                 }
             )
     }
@@ -57,12 +95,13 @@ export default {
     background-color: #fff;
   }
   #button1{
-    background-color:green;
-    color:black;
+    background: color #97CBFF;;
+    color:pink;
     width: 50px;
   }
   #searchBox{
-    background:url("../components/pry_part/images/back1.jpg") ;
+    background:url("../components/imgs/pink1.jpeg") ;
     background-size:100% 100% ;
   }
+
 </style>
