@@ -11,7 +11,7 @@
     :cell-style="{padding:'1px'}"
     >
 
-      <el-table-column label="" width="200px" label="题目">
+      <el-table-column label="" width="180px" label="题目">
          <template slot-scope="scope">
            <i v-if="scope.row.star===1" class="el-icon-star-on"></i>
         <el-link
@@ -19,16 +19,11 @@
           @click="totext(scope.row.id)"
           type="primary"
         >
-          
-          {{ scope.row.name | ellipsis }} <i v-if="scope.row.top===1" class="el-icon-upload2"></i>
-        </el-link>
+          {{ scope.row.name | ellipsis }} 
+        </el-link><i v-show="scope.row.top===1" class="el-icon-upload2"></i>
       </template>
     </el-table-column>
-    <!-- <el-table-column prop="score" label="" width="30px" v-if="scope.row.top===1">
-      <template>
-    <i class="el-icon-upload2"></i>
-      </template>
-    </el-table-column> -->
+
   <el-table-column prop="score" label="作者" width="">
       <template  slot-scope="scope">
         <el-link

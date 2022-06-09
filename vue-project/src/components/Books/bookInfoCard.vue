@@ -85,12 +85,12 @@
 </el-input>
 <el-input style="width: 40%;margin-right: 60%;float: left;height: 70px;"
   type="textarea"
-  :autosize="{ minRows: 4, maxRows: 10}"
+  :autosize="{ minRows: 6, maxRows: 8}"
   placeholder="请输入不少于25字的简评"
   v-model="content">
 </el-input>
-            <div style="margin: 20px 0;"></div>
-            <el-button style="margin-top:30px;margin-right:70%;" @click="addmark" type="success">提交评论</el-button>
+            <div style="margin: 20px 0;display:inline-block;"></div>
+            <el-button style="margin-top:30px;margin-right:0;" @click="addmark" type="success">提交评论</el-button>
             <div style="margin: 30px 0;"></div>
             </div>
         </div>
@@ -259,7 +259,10 @@ export default {
                     }
                 }
             )
+            this.$message("评论成功")
             this.getMarks();
+            this.write();
+            //this.$router.go(0)
         },
         fillStar(index){
             for(let i = 0; i <= index; i++){
@@ -399,7 +402,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .star{
       /* border: 1px solid ; */
         text-align: left;

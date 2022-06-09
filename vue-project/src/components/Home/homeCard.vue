@@ -72,7 +72,8 @@ export default {
                              this.user=this.form.username
                              this.$store.state.username=this.user;
                              this.$store.commit('setLogin',true);
-
+                             this.$store.state.uid=res.data.uid;
+                             console.log(this.$store.state.uid)
                          }
                   })
                   //this.$router.go(0);
@@ -90,22 +91,34 @@ export default {
           this.status=0;
           this.login=this.$store.state.Login;
       },
+      sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
       register()
       {
          var url="api/user/register";
           this.$axios.post(url,this.form).then(res=>{
               console.log(res.data);
               this.$message(res.data.message)
+              
               if(res.data.success)
               {
                   this.status=1;
                 this.user=this.form.username
-                this.$store.commit('setLogin',true);
-                this.login=this.$store.state.Login;
+                this.sleep1(500);
+                this.loginf();
+                this.$message("前往修改个人信息");
               }
           })
-   
-          
+            
+           // this.sleep1(500);
+            //this.$router.push("/user/message");
+
       },
         getMovie(){
             var url='/api/movie/listmovie';
@@ -158,7 +171,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #showIm{
     width: 65%;
     /* height: 100px; */

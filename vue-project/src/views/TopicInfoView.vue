@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .topicCard{
   width: 40%;
   position: relative;

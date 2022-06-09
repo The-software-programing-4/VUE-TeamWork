@@ -138,6 +138,8 @@ export default Vue.extend({
             }).then(res=>{
                 console.log(res.data)
             })
+            //this.$router.go(0)
+            this.$message("发布成功")
         },
         getData()
         {

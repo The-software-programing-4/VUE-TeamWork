@@ -56,7 +56,7 @@
         <div class="feedback">
           <el-link
             type="primary"
-            :href="AddorRelatedData.link"
+            @click="this.$message('邮箱:1971008969')"
             style="font-size: 15px "
             >&gt; 对搜索不满意？给我们反馈
           </el-link>

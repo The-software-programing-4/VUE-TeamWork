@@ -5,8 +5,8 @@
        <BookSearchResultVue style="width:100%"></BookSearchResultVue>
     </div>
      <div style="width: 300px;float: left; margin-left:50px ;">
-    <HotBookTopicsVue></HotBookTopicsVue>
-    <booklistvue></booklistvue>
+    <!-- <HotBookTopicsVue></HotBookTopicsVue>
+    <booklistvue></booklistvue> -->
     </div>
   </div>
 </template>
@@ -35,5 +35,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

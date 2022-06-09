@@ -110,7 +110,7 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 
 #crossLine{ 
     height: 70px;

@@ -159,6 +159,7 @@ export default {
         this.form.h1=this.form.region2[0];
         this.form.h2=this.form.region2[1];
         this.form.h3=this.form.region2[2];
+        console.log(this.form.uid+" is uid")
         axios.post(url,
                   this.form,
                   {
@@ -180,6 +181,7 @@ export default {
       SubmitPassword() {
          this.form2.uid=this.form.uid;
          var url='/api/user/password_set';
+         
         axios.post(url,
                   this.form2,
                   {
@@ -246,8 +248,10 @@ export default {
       }
     },
     created(){
-      this.getMessage();
+      
       this.form.uid=parseInt(this.$store.state.uid);
+      console.log(this.form.uid+"  get")
+      this.getMessage();
     },
     components: {
       ImgChange,

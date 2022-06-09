@@ -9,12 +9,12 @@
           currentPage * pageSize
         )">
         <div class="item-root">
-            <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
+            <img :src="img.src" alt="" @click="toinfo(img.book_id)">
         </div>
         <div class="detail">
             <div>
 
-                <div @click="clickMv(img.bookname, 2)">名字:{{img.bookname}}</div>
+                <div @click="toinfo(img.book_id)">名字:{{img.bookname}}</div>
             </div>
             <div>
                 <el-rate
@@ -85,6 +85,13 @@ export default {
         this.currentPage = val;
 
         },
+        toinfo(id)
+        {
+            this.$router.push({
+                path:"/book/bookinfo",
+                query:{bookid:id}
+            })
+        },
         clickMv(val1, val2){
 
            console.log(val2);
@@ -97,7 +104,7 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 
 #crossLine{ 
     height: 70px;

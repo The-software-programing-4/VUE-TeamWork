@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .Content-Main{
             max-width: 500px;
             margin: auto;

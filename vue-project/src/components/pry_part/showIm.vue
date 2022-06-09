@@ -210,7 +210,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 #mvcrossLine1{ 
     height: 70px;
     text-align: center;

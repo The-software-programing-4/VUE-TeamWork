@@ -64,12 +64,13 @@ export default {
                     }
                 }
             )
+            this.$router.go(0)
             
         }        
     }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

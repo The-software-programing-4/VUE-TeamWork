@@ -22,5 +22,5 @@ import "@/css/iconfont.css";
 export default {};
 </script>
 
-<style>
+<style scoped>
 </style>

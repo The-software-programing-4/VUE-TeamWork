@@ -43,7 +43,7 @@
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          @click="toinfo(scope.row.tid)"
+          @click="$router.push("/topic/main")"
           type="primary"
           icon="el-icon-share"
         >
@@ -103,6 +103,9 @@ export default {
            // alert(val1+val2);
             console.log("send"+val1+" "+val2);
             this.$emit('change', val1, val2);//子组件给父组件传值，事件为change
+        },
+        tomain(){
+          this.$router.push("/topic/main")
         }
   },
   filters: {

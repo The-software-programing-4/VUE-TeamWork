@@ -81,7 +81,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
 .form{
   text-align: left;
 }

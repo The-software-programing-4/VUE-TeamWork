@@ -37,7 +37,7 @@
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          @click="toinfo(scope.row.tid)"
+          @click="$router.push('/topic/main')"
           type="primary"
           icon="el-icon-share"
         >

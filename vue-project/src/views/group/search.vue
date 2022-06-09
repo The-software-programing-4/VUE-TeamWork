@@ -4,7 +4,7 @@
         <searchlist></searchlist>
         </div>
         <div class="right">
-            <a> > 对搜索结果不满意？联系我们</a>
+            <a @click="this.$message('邮箱:1971008969')"> > 对搜索结果不满意？联系我们</a>
         </div>
     </div>
 </template>

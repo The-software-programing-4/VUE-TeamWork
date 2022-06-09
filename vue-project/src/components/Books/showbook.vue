@@ -122,7 +122,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 #crossLine1{ 
     height: 70px;
     text-align: center;

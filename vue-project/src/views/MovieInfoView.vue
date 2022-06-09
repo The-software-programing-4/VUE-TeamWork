@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .movieCard{
   position: relative;
   left: 300px;

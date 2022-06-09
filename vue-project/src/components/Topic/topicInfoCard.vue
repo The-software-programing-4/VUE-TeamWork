@@ -109,6 +109,7 @@ export default {
     console.log(this.tid+"::tid")
     this.login=this.$store.state.Login;
     console.log("login:"+this.login)
+    this.tid=parseInt(this.$route.query.tid);
   }
   ,
   methods: {
