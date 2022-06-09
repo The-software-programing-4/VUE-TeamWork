@@ -15,7 +15,7 @@
           </div>
           <div class="info">
             <div class="title">
-              <a @click="toGroup(item.gid)" class="">{{item.name}}</a><br>
+              <a @click="toGroup(item.gid)" class="" style="color:white;">{{item.name}}</a><br>
             </div>
             <span class="num">{{item.number}}</span><br>
           </div>
@@ -42,11 +42,12 @@ color: #666699;
 text-decoration: none;
 }
 .group-cards .info {
-color: #aaa;
+color: white;
 }
 .group-cards .title {
 margin-top: -1px;
 line-height: 1.25;
+color: white;
 }
 a img {
 border-width: 0;
