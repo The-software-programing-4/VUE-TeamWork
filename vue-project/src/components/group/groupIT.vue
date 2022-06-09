@@ -1,6 +1,6 @@
 <template>
 <div class="outside">
-    <div class="title" style="text-align:left;font-size:35px;color: #984B4B;">
+    <div class="title" style="text-align:left;font-size:35px;color: rgb(209, 163, 178);">
       <b>推荐小组 </b>
     </div>
     <div class="group-list group-cards" id="cards">
@@ -15,7 +15,7 @@
           </div>
           <div class="info">
             <div class="title">
-              <a @click="toGroup(item.gid)" class="" style="color:white;">{{item.name}}</a><br>
+              <a @click="toGroup(item.gid)" class="" style="color:rgb(211, 32, 92);">{{item.name}}</a><br>
             </div>
             <span class="num">{{item.number}}</span><br>
           </div>
@@ -42,12 +42,12 @@ color: #666699;
 text-decoration: none;
 }
 .group-cards .info {
-color: white;
+color:rgb(211, 32, 92);
 }
 .group-cards .title {
 margin-top: -1px;
 line-height: 1.25;
-color: white;
+color: rgb(209, 163, 178);
 }
 a img {
 border-width: 0;
@@ -66,7 +66,7 @@ position: relative;
 margin: 15px 20px 0 0;
 width: 198px;
 padding: 10px;
-border: 1px solid rgb(6, 16, 42);
+border: 1px solid rgb(249, 245, 246);
 }
 li{
   width: 100px;
@@ -84,7 +84,7 @@ li{
   margin-top: 40px;
 }
 #cards{
-  background:url(../../components/imgs/pink2.jpeg);
+  background:url(../../components/imgs/green5.jpeg);
   background-size:100% 100% ;
 }
 </style>
