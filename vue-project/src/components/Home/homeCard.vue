@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="homeNav">
+        <div class="homeNav" >
             <div class="homeNavLogin" v-if="this.$store.state.Login==false">
                 <div style="margin:20px;"><h2>登陆/注册</h2></div>
                 <el-input class="homeLoginIn" v-model="form.username" placeholder="请输入用户名"></el-input>
@@ -12,27 +12,7 @@
             <div class="homeNavLogin" v-if="this.$store.state.Login==true" style="color:green;"><h2>{{this.$store.state.username}} 已登陆</h2>
             <el-button type="info" @click="logout">退出登陆</el-button></div>
         </div>
-        <div class="homeNavLogin">
-            <!-- <div id="showIm">
-            
-             <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-               <el-carousel :interval="4000" type="card" height="250px" wight="100px">
-                <el-carousel-item v-for="img in mvList" :key="img.mid">
-                    <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
-                </el-carousel-item>
-                </el-carousel>
-            <router-link to="/MovieShow">点击查看更多电影</router-link>
-             <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-             <el-carousel :interval="4000" type="card" height="250px" wight="100px">
-                <el-carousel-item v-for="img in bookList" :key="img.mid">
-                    <img :src="img.src" class="image" @click="clickMv(img.name, 2)">
-                </el-carousel-item>
-                </el-carousel>
-             <router-link to="/BookShow">点击查看更多图书</router-link>
-        </div> -->
-        
-        </div>
-        <div class="homeFoot" style="margin-top:-150px">
+        <!-- <div class="homeFoot" style="margin-top:-150px">
             <div class="homeICP">
                 © 2022-2022 doubanjiang.com, all rights reserved BUAA豆瓣酱小组
                 <br>
@@ -42,7 +22,7 @@
                 <br>
                 <a href="#">关于豆酱小组</a>
             </div>
-        </div>
+        </div> -->
   </div>
 </template>
 
