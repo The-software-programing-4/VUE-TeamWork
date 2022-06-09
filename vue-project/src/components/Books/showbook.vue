@@ -2,7 +2,7 @@
 
     <div id="images-show">
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine1">畅销图书</div>
+        <div id="crossLine1"></div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="350px"  wight="200px">
@@ -14,18 +14,8 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div id="crossLine2">新书速递</div>
+        <div id="crossLine2"></div>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
-        <div class="choose-page">
-            <button @click.stop="showbox=1">全部</button>
-            <button @click.stop="showbox=2">文学</button>
-            <button @click.stop="showbox=3">小说</button>
-            <button @click.stop="showbox=4">历史文化</button>
-             <button @click.stop="showbox=5">社会纪实</button>
-              <button @click.stop="showbox=5">科学新知</button>
-               <button @click.stop="showbox=5">商业经营</button>
-               <button @click.stop="showbox=5">绘本漫画</button>
-        </div>
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
           <el-pagination
             background
@@ -55,9 +45,6 @@
                 </p>
             </div>
         </div>
-       <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
-        <div id="crossLine3">最受欢迎的书评</div>
-        <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
         
 
     </div>
@@ -142,7 +129,7 @@ export default {
     line-height: 70px;
     color: #097262;
     font-size: 20px;
-    background: url("../pry_part/images/yellow9.jpg");
+    background: url("../imgs/book1.jpg");
     background-size: 100%, 100%;
 }
 #crossLine2{ 
@@ -151,7 +138,7 @@ export default {
     line-height: 70px;
     font-size: 20px;
     color: #097262;
-    background: url("../pry_part/images/yellow5.jpg");
+    background: url("../imgs/book2.jpg");
     background-size: 100%, 100%;
 }
 #crossLine3{ 

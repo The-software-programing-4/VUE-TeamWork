@@ -3,26 +3,6 @@
     <!-- <headTop></headTop> -->
     
     <div id="db-nav-group" class="nav" >
-        <div class="logo">
-            <!-- 存放小组主页面地址 -->
-            <!-- <a href="">豆瓣酱电影</a> -->
-        </div>
-        <div class="items">
-            <ul>
-                <li>
-                    <a href="">精选</a>
-                </li>
-                <li>
-                    <a href="">娱乐</a>
-                </li>
-                <li>
-                    <a href="">时尚</a>
-                </li>
-                <li>
-                    <a href="">科技</a>
-                </li>
-            </ul>
-        </div>
         <div class="nav-search">
             <!-- action规定向何处发送表单 methon：get/post -->
             <form id="form" action="" method="">
@@ -110,7 +90,7 @@ export default {
     #db-nav-group{
         position: relative;
         /* background-color: #FFFFcc; */
-        background: url("../../components/pry_part/images/back9.jpg");
+        background: url("../../components/imgs/movie.jpg");
         height: 98px;
         width: 100%;
         margin: 0;
