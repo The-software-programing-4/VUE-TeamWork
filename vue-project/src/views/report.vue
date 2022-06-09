@@ -5,34 +5,31 @@
     </div>
     <form action="" method="post" class="form-report">
         <label>
-            <span>Type:</span>
-            <select name="select2" class="select2">
-                <option value="">涉及诈骗</option>
-                <option value="">涉及侵权</option>
-                <option value="">虚假内容</option>
-                <option value="">垃圾信息</option>
-                <option value="">色情信息</option>
-            </select>
+            <span>举报类型:</span>
+            <el-select v-model="value" placeholder="请选择">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+            </el-select>
         </label>
         <label>
-            <span>URL:</span>
-            <textarea id="url" name="url" placeholder="请在此填写网站，需以http或https开头"></textarea>
-        </label>
-        <label>
-            <span>Describe:</span>
-            <textarea id="describe" name="describe" placeholder="详细填写举报理由，有利于审核，不得少于8个字"></textarea>
+            <span>举报原因:</span>
+            <textarea id="describe" name="describe" placeholder="请详细填写举报理由，有利于审核，不得少于8个字"></textarea>
         </label>
  
         <label>
-            <span>Email:</span>
-            <textarea id="email" name="email" placeholder="请务必填写正确的邮箱地址"></textarea>
+            <span>举报内容:</span>
+            <textarea id="email" name="email" placeholder="请详细填写举报内容"></textarea>
         </label>
         <label>
-            <span>备注：（验证码）</span>
-            <input type="text" id="verifiation code">
+            <span>填写邮箱</span>
+            <textarea id="email" name="email" placeholder="请填写正确的邮箱地址"></textarea>
         </label>
         <label>
-            <input type="button" class="button" value="Send">
+            <input type="button" @click="addreport" class="button" value="Send">
         </label>
     </form>
     </div>
@@ -40,7 +37,60 @@
 
 <script>
 export default {
-
+    data(){
+        return {
+            options: [{
+          value: '选项1',
+          label: '涉及诈骗'
+        }, {
+          value: '选项2',
+          label: '涉及侵权'
+        }, {
+          value: '选项3',
+          label: '虚假内容'
+        }, {
+          value: '选项4',
+          label: '垃圾信息'
+        }, {
+          value: '选项5',
+          label: '色情信息'
+        }],
+        value: '',
+            reason: '',
+            type: '',
+            content: '',
+        }
+    },
+    methods: {
+        addreport(){
+            var url='/api/addreport';
+            this.$axios.post(
+                url,
+                {
+                    mid: this.$route.params.mid,
+                    uid1: this.$store.state.uid,
+                    uid2: 1,
+                    reason: this.reason,
+                    type: this.value,
+                    content: this.content
+                },
+                {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
+            )
+            alert('举报成功');
+            this.$router.push(
+                {
+                    path:"/book/bookInfo",
+                    query:{
+                        bookid: this.$route.params.bookid,
+                    }
+                }
+            )
+        }
+    }
 }
 </script>
 

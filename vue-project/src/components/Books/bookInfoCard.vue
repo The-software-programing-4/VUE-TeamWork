@@ -127,7 +127,7 @@
                                     </el-rate>
                                 </span>
                                 <span class="commentThumb">
-                                <a @click="report(index)" v-if="$store.state.Login==true">举报</a>
+                                <a @click="report(index)">举报</a>
 
                                 </span>
                                 <span class="commentThumb">{{item.disag}}
@@ -164,6 +164,7 @@ export default {
                 {
                 id: 1,
                 username: 'ando',
+                uid: 1,
                 score: 3,
                 content: '民国时期的经济环境居然已经如此丰富多彩了，什么商业竞争之类的应有尽有。在克劳对于中国人的一些总结的确实一针见血，像要面子这种，不愧是在中国生活这么久的人。整体写作风格偏幽默，虽然实际当时中国人民的生活并没有克劳所描写的那么乐观，但在当时已经算超前的了。',
                 thumb: 0,
@@ -195,7 +196,6 @@ export default {
             publish_date: '',
             bookname: "",
             author: '',
-            bookid: 1,
             starCom: '',
             bookid:0,
             att: 0,
@@ -203,7 +203,13 @@ export default {
     },
     methods: {
         report(index){
-            
+            this.$router.push({
+                name: 'report',
+                params: {
+                    mid: this.marks[index].id,
+                    bookid: this.bookid
+                },
+            })
         },
         write(){
             this.showWrite = 1 - this.showWrite;
