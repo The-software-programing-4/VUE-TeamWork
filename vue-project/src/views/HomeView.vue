@@ -45,16 +45,29 @@ export default {
       searchText:"",
     }
   },
+ 
   methods:{
+    sleep1(numberMillis){    
+        var now = new Date();    
+        var exitTime = now.getTime() + numberMillis;   
+        while (true) { 
+          now = new Date();       
+          if (now.getTime() > exitTime) return;
+        }     
+      },
     search(){
       //console.log("搜索类别"+this.select+"搜索内容："+this.searchText);
+      console.log(window.location.href);
+      
        this.$router.push(
                 {
                     path:'/search',
-                    query:{searchText:this.searchText}
+                    query:{searchText:this.searchText},
                 }
             )
+            
     },
+    
     click1(){
       this.$router.push(
                 {

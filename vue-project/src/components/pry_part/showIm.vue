@@ -2,7 +2,9 @@
 
     <div id="images-show">
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
+
         <div id="mvcrossLine1"></div>
+
         <el-divider class="line"><i class="el-icon-sugar"></i></el-divider>
       <!-- <el-button type="success" icon="el-icon-sunny" class="newest">最新热映</el-button> -->
     <el-carousel :interval="4000" type="card" height="350px" wight="200px">
@@ -15,7 +17,9 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
+
         <div id="mvcrossLine2"></div>
+
     <el-divider class="line"><i class="el-icon-sunny"></i></el-divider>
           <el-pagination
             background
