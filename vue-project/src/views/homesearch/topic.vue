@@ -43,7 +43,7 @@
          <template slot-scope="scope">
         <el-link
           :underline="false"
-          @click="$router.push("/topic/main")"
+          @click="tomain"
           type="primary"
           icon="el-icon-share"
         >

@@ -21,7 +21,7 @@
         <div class="detail">
             <div>
 
-                <div @click="clickMv(img.name, 2)">名字:{{img.name}}</div>
+                <div @click="toinfo(img.mid)">名字:{{img.name}}</div>
             </div>
             <div>
                 <el-rate
