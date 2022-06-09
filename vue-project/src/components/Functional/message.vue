@@ -58,7 +58,7 @@
   </el-form-item>
   <el-form-item label="手机号：">
     <span>{{form.phone}}  </span>
-    <a>换绑</a>
+    <a @click="$message('请联系管理员')">换绑</a>
   </el-form-item>
   <el-form-item label="第三方：">
 
@@ -121,7 +121,7 @@ export default {
     data() {
       return {
         form: {
-          uid : '',
+          uid : 0,
           username: '',
           regionOP: "公开可见",
           date1: '',
@@ -151,7 +151,7 @@ export default {
     },
     methods: {
       onSubmit() {
-        var url='api/user/message_set';
+        var url='/api/user/message_set';
         console.log(this.form);
         this.form.l1=this.form.region1[0];
         this.form.l2=this.form.region1[1];
@@ -167,11 +167,11 @@ export default {
                     }
                   }
         ).then(res => {
-          console.log(res);
-          alert("更新成功！")
+          console.log(res.data);
+          this.$message(res.data);
         })
         this.status=0;
-        this.$router.go("0")
+        //this.$router.go("0")
       },
       cancel()
       {
@@ -195,7 +195,7 @@ export default {
       },
       handleChange() {
       var loc = "";
-      for (let i = 0; i < this.region1.length; i++) {
+      for (let i = 0; i < this.form.region1.length; i++) {
         loc += CodeToText[this.form.region1[i]];
       }
       },
@@ -228,24 +228,26 @@ export default {
         this.$axios.get("/api/user/message_get").then(res=>{
         console.log(res.data);
 
-          this.form.uid = res.data.uid;
+
           this.form.username= res.data.username;
           this.form.password= res.data.password;
           this.form.regionOP= res.data.regionOP;
-          var n=(res.data.date1).split(" ");
-          this.form.date1= n[0];
+          if(res.data.date1)
+          {var n=(res.data.date1).split(" ");
+          this.form.date1= n[0];}
           this.form.birthOP= res.data.birthOP;
           this.form.email= res.data.email;
           this.form.phone= res.data.phone;
           this.form.region1= res.data.region1;
           this.form.region2= res.data.region2;
 
-          console.log(this.form);
+          console.log(res.data);
          })
       }
     },
     created(){
       this.getMessage();
+      this.form.uid=parseInt(this.$store.state.uid);
     },
     components: {
       ImgChange,

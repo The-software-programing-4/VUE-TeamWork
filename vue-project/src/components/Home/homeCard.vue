@@ -36,6 +36,7 @@ export default {
 
             user:'',
             form:{
+                uid:0,
                 username:'',
                 password:''
             },

@@ -2,7 +2,7 @@
   <div>
     <el-upload
   class="avatar-uploader"
-  action="http://39.105.102.182:8080/api/user/imgUpload"
+  :action="$hostURL+'/api/user/imgUpload'"
   :data="this.form"
   :show-file-list="false"
   :on-success="handleAvatarSuccess"
@@ -45,7 +45,7 @@
     data() {
       return {
         form:{
-          username: '',
+          uid: 0,
         },
         imageUrl: ''
       };
@@ -96,6 +96,7 @@
     },
     created(){
        this.display_photo();
+       this.form.uid=parseInt(this.$store.state.uid);
     },
     beforeAvatarUpload(){
       this.display_photo();

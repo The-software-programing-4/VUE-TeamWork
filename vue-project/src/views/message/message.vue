@@ -29,7 +29,7 @@
             <b>联系管理员</b>
         </div>
         <div class="word2">如果遇到任何问题欢迎联系管理员，1971008968@qq.com</div>
-         <div class="word3"> > 删除账号</div>
+         <a class="word3" @click="$message('请联系管理员')"> > 删除账号</a>
     </div>
    
 </div>
@@ -70,8 +70,10 @@ export default {
     text-align: left;
 }
 .word3{
-    width: 80%;
+    width: 20%;
+    float: left;
     margin: 10px;
+    margin-left: 40px;
     color: blue;
     font-size: small;
     display: inline-block;
