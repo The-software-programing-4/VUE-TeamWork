@@ -8,7 +8,7 @@
     <el-carousel :interval="4000" type="card" height="350px" wight="200px">
       <el-carousel-item v-for="img in imgList" :key="img.mid">
           
-        <img :src="img.src" class="image" style="height:90%;" @click="clickMv(img.mid, 2)"> 
+        <img :src="img.src" class="image" style="height:90%;" @click="toinfo(img.mid)"> 
         <div class="picshow">
         {{img.name}}
           </div>
@@ -46,7 +46,7 @@
         )' href=""  class="item" >
                 <div class="image-div">
                     <!-- <img :src="isrc"/> -->
-                     <img :src="img.src" class="image" @click="clickMv(img.mid, 2)">
+                     <img :src="img.src" class="image" @click="toinfo(img.mid)">
                     <!-- <el-image
                         style=" height: 100%"
                         :src="isrc"
@@ -160,6 +160,14 @@ export default {
     methods:{
         turnUrl(src){
             return require(src);
+        },
+        toinfo(id){
+            this.$router.push(
+                {
+                    path:"/movie/info",
+                    query:"{mid:id}"
+                }
+            )
         },
         getPhoto(){
             var url='/api/movie/listmovie';

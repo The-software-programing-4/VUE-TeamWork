@@ -161,7 +161,7 @@ export default {
     data(){
         return{
             colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
-            movieid:1,
+            mid:1,
             marks: [
 
             ],
@@ -184,9 +184,6 @@ export default {
             score: 0,
             brief_introduction: '',
         }
-    },
-    props:{
-        mid: Number,//从父组件传值
     },
     methods: {
         write(){
@@ -355,7 +352,7 @@ export default {
         }
     },
     created(){
-        this.mid=this.$route.query.movieid
+        this.mid=this.$route.query.mid
         this.getData(this.mid);
     }
 }
