@@ -104,11 +104,11 @@ export default Vue.extend({
             editorConfig: { placeholder: '请输入内容...',
                              MENU_CONF: {
                                  'uploadImage':{
-                                     server: this.$hostURL+"/api/group/uploadimg",
+                                     server: "http://39.105.102.182:8080"+"/api/group/uploadimg",
                                      fieldName: 'file',
                                      customInsert(res, insertFn) {
                                          console.log(res.data);
-                                        insertFn("http://127.0.0.1:8080"+res.data.url, 
+                                        insertFn("http://39.105.102.182:8080"+res.data.url, 
                                         res.data.alt, res.data.href)
                                     },
                                  },
@@ -147,6 +147,8 @@ export default Vue.extend({
             }).then(res=>{
                 console.log(res.data)
             })
+            alert("发表成功")
+            this.$router.go(-1);
         },
         getData()
         {

@@ -1,28 +1,7 @@
 <template>
   <div class="about">
     <!-- <headTop></headTop> -->
-    
     <div id="db-nav-group" class="nav" >
-        <div class="logo">
-            <!-- 存放小组主页面地址 -->
-            <!-- <a href="">豆酱图书</a> -->
-        </div>
-        <div class="items">
-            <ul>
-                <li>
-                    <a href="">精选</a>
-                </li>
-                <li>
-                    <a href="">畅销</a>
-                </li>
-                <li>
-                    <a href="">文学</a>
-                </li>
-                <li>
-                    <a href="">科技</a>
-                </li>
-            </ul>
-        </div>
         <div class="nav-search">
             <!-- action规定向何处发送表单 methon：get/post -->
             <form id="form" action="" method="">
@@ -81,39 +60,6 @@ export default {
                     query:{searchText:this.searchText}
                 }
             )
-        //    this.showScene=0;
-            //alert(this.searchText+this.showScene);
-            // var url='/api/book/booksearch';
-            // this.$axios.post(url,
-            //     this.searchText,
-            //      {
-            //         headers: {
-            //           'Content-Type':'application/text'
-            //         }
-            //     }//提交的是搜索框内容
-            // ).then(res => {
-            
-            // this.searchImgResult=res.data.messages;
-
-            // for(var i=0;i<res.data.messages.length;i++)
-            // {
-            //     var temp=res.data.messages[i];
-            //     this.searchImgResult[i].src=this.$hostURL+'/'+temp.src;
-            // }
-            // console.log(this.searchImgResult);
-            // console.log("更新成功！");
-            // this.$refs.child.getArr(this.searchImgResult);
-            // })
-            // this.status=0;
-        },
-        // 事件处理函数
-       async changeFromShowIm(param1,param2) {//从子组件处获取的值
-       //从子组件获取的图书名字和将要展示的场景
-            this.showScene=param2;
-            this.toBookId=parseInt(param1) ;
-            //alert(this.showScene+this.toMovieName);
-            this.$refs.child2.getData(parseInt(param1));
-            document.documentElement.scrollTop = 0;
         },
     },
 
@@ -124,14 +70,17 @@ export default {
     #db-nav-group{
         position: relative;
         /* background-color: #FFFFcc; */
-        background: url("../../components/pry_part/images/yellow1.jpg");
-        height: 98px;
+        background: url("../../components/imgs/book.jpg");
+        height: 100px;
         width: 100%;
         margin: 0;
         padding: 0;
-        background-size: 100%, 100%;
+        /* background-size:auto; */
+        /* padding-bottom: 34.156%; */
+        background-repeat:no-repeat ;
+        background-size: 100%, 20%;
         }
-    #db-nav-group .logo{
+    /* #db-nav-group .logo{
         height: 100%;
         width: 145px;
         margin-top: 0;
@@ -140,7 +89,7 @@ export default {
         text-align: center;
         background: url("../../components/pry_part/images/logo.jpg");
         background-size: 100%, 100%;
-    }
+    } */
     #db-nav-group .items{
         margin-top: 20px;
         height: 58px;
