@@ -96,7 +96,7 @@ export default Vue.extend({
                                      fieldName: 'file',
                                      customInsert(res, insertFn) {
                                          console.log(res.data);
-                                        insertFn("http://127.0.0.1:8080"+res.data.url, 
+                                        insertFn("http://39.105.102.182:8080"+res.data.url, 
                                         res.data.alt, res.data.href)
                                     },
                                  },

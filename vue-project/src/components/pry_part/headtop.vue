@@ -5,6 +5,7 @@
                 <!-- href里待添加login页面地址 -->
                 <!-- <a href="" class="nav-login" ref="nofollow">登录/注册</a> -->
                 <router-link to="/" v-if="this.$store.state.Login===false"> 登录</router-link>
+                
                 <span v-if="this.$store.state.Login===true">{{this.$store.state.username}} 已登陆</span>
                 <router-link to="/user/message" v-if="this.$store.state.Login===true"> 修改个人信息</router-link>
             </div>
@@ -35,6 +36,9 @@
                     <li>
                         <!-- <a href="../../views/TopicShow.vue" target="_blank">话题</a> -->
                         <router-link to="/topic/main">话题</router-link>
+                    </li>
+                    <li>
+                    <span >版本号:豆酱-1.3</span>
                     </li>
                 </ul>
             </div>
