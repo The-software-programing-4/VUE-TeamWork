@@ -55,17 +55,15 @@
         </div>
         
         <div class="bookCommentLink">
-            <li class="bookWriteLink">
-                <img src="../../assets/write.gif" alt="" >
-                <router-link :to="`/WriteReview/1/${bookid}`" class="bookWriteWord">写书评</router-link>
-            </li>
+            
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <a @click="write" class="bookWriteWord">写书评</a>
+                <a @click="write" class="bookWriteWord" v-if="$store.state.Login==true">写简评</a>
+                <a v-if="$store.state.Login==false" @click="$router.push('/')">登陆后可以参与评论</a>
             </li>
             <li class="bookWriteLink">
                 <img src="../../assets/money.gif" alt="">
-                <router-link to="#" class="bookWriteWord">加入购书单</router-link>
+                <a class="bookWriteWord" @click="$message('已添加')">加入购书单</a>
             </li>
         </div>
         <div v-if="showWrite" class="writeWrap">
@@ -87,8 +85,8 @@
 </el-input>
 <el-input style="width: 40%;margin-right: 60%;float: left;height: 70px;"
   type="textarea"
-  :autosize="{ minRows: 2, maxRows: 4}"
-  placeholder="请输入内容"
+  :autosize="{ minRows: 4, maxRows: 10}"
+  placeholder="请输入不少于25字的简评"
   v-model="content">
 </el-input>
             <div style="margin: 20px 0;"></div>
@@ -114,8 +112,13 @@
                 <div class="commentCard">
                     <ul>
                         <li v-for="(item, index) in marks" class="commentItem">
+                            
                             <div class="commentNav">
+                                <div style="float:left;margin-right:10px;">
+                                <img :src="item.src" width="27px" height="27px">
+                                </div>
                                 <a href="#" class="commentUser">{{item.username}}</a>
+                                <div class="commentTitle" style="float:left;margin-left:10px"><b>{{item.title}}</b></div>
                                 <span class="commentStar">
                                     <el-rate
                                         v-model="item.score"
@@ -124,20 +127,23 @@
                                     </el-rate>
                                 </span>
                                 <span class="commentThumb">
-                                <a @click="report(index)">举报</a>
+                                <a @click="report(index)" v-if="$store.state.Login==true">举报</a>
+
                                 </span>
                                 <span class="commentThumb">{{item.disag}}
-                                <a @click="disag(index)">{{item.isdisag}}</a>
+                                <a @click="disag(index)" v-if="$store.state.Login==true">{{item.isdisag}}</a>
+                                <span v-if="$store.state.Login==false">点赞</span>
                                 </span>
                                 <span class="commentThumb">{{item.thumb}}
-                                <a @click="thumb(index)">{{item.isthumb}}</a>
+                                <a @click="thumb(index)" v-if="$store.state.Login==true">{{item.isthumb}}</a>
+                                <span v-if="$store.state.Login==false">反对</span>
                                 </span>
 
                                 <span class="commentDate">
                                     {{item.day}}
                                 </span>
                             </div>
-                            <div class="commentTitle">{{item.title}}</div>
+                            
                             <div>{{item.content}}</div>
                         </li>
                     </ul>
@@ -203,11 +209,18 @@ export default {
             this.showWrite = 1 - this.showWrite;
         },
         addmark(){
-            if(comment.length < 25){
-                alert('评论不得少于25字!');
+            if(this.content.length < 25){
+                this.$message('评论不得少于25字!');
                 return;
             }
-
+            if(this.content.length > 400){
+                this.$message('评论不得多于400字!');
+                return;
+            }
+            if(this.title.length > 10){
+                this.$message('标题不得多于10字!');
+                return;
+            }
             var url='/api/marks/addmark';
 
             let yy = new Date().getFullYear();
@@ -220,6 +233,7 @@ export default {
             var fscore = parseFloat(this.score);
             console.log("日期:"+time)
             this.day=time;
+            console.log("score send:"+this.commentScore);
             this.$axios.post(
                 url,
                 {
@@ -320,7 +334,7 @@ export default {
             )
             .then(
                 res=>{
-                    console.log(this.book_id+"receive");
+                    console.log(this.bookid+"receive");
                     console.log(res.data);
                     this.author = res.data.author;
                     this.score = res.data.score;
@@ -358,6 +372,10 @@ export default {
                 res=>{
                     console.log(res.data.marks)
                     this.marks = res.data.marks;
+                    for(var i=0;i<this.marks.length;i++)
+                    {
+                        this.marks[i].src=this.$hostURL+'/'+this.marks[i].src
+                    }
                 }
             )
             .catch(err => {              
@@ -368,6 +386,7 @@ export default {
     created(){
         //this.getData(0);
         this.bookid=this.$route.query.bookid;
+        console.log(this.bookid)
         this.getData(this.bookid);
         this.getMarks();
     }

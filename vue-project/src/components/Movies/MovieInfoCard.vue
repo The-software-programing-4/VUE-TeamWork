@@ -356,7 +356,7 @@ export default {
     },
     created(){
         this.mid=this.$route.query.movieid
-        this.getData(1);
+        this.getData(this.mid);
     }
 }
 </script>
