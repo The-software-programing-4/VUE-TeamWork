@@ -58,16 +58,17 @@
         </div>
 
         <div class="bookCommentLink">
-            <li class="bookWriteLink">
-                <img src="../../assets/write.gif" alt="" >
-                <a @click="write" class="bookWriteWord">写短评</a>
-            </li>
+            
             <li class="bookWriteLink">
                 <img src="../../assets/write.gif" alt="">
-                <a @click="write" class="bookWriteWord">写影评</a>
+                <a @click="write" class="bookWriteWord" v-if="$store.state.Login==true">写影评</a>
+                <a v-if="$store.state.Login==false" @click="$router.push('/')">登陆后可以参与评论</a>
+            </li>
+            <li class="bookWriteLink">
+                <img src="../../assets/money.gif" alt="">
+                <a class="bookWriteWord" @click="$message('已添加')">添加到我的想看</a>
             </li>
         </div>
-
         <div v-if="showWrite" class="writeWrap">
             <div class="bookFav">
             <span class="bookFavComment">评价：</span>
@@ -87,8 +88,8 @@
 </el-input>
 <el-input style="width: 40%;margin-right: 60%;float: left;height: 70px;"
   type="textarea"
-  :autosize="{ minRows: 2, maxRows: 4}"
-  placeholder="请输入内容"
+  :autosize="{ minRows: 4, maxRows: 10}"
+  placeholder="请输入不少于25字的简评"
   v-model="content">
 </el-input>
             <div style="margin: 20px 0;"></div>
@@ -123,8 +124,13 @@
                 <div class="commentCard">
                     <ul>
                         <li v-for="(item, index) in marks" class="commentItem">
+                            
                             <div class="commentNav">
+                                <div style="float:left;margin-right:10px;">
+                                <img :src="item.src" width="27px" height="27px">
+                                </div>
                                 <a href="#" class="commentUser">{{item.username}}</a>
+                                <div class="commentTitle" style="float:left;margin-left:10px"><b>{{item.title}}</b></div>
                                 <span class="commentStar">
                                     <el-rate
                                         v-model="item.score"
@@ -133,19 +139,23 @@
                                     </el-rate>
                                 </span>
                                 <span class="commentThumb">
-                                <a @click="report(index)">举报</a>
+                                <a @click="report(index)" v-if="$store.state.Login==true">举报</a>
+
                                 </span>
                                 <span class="commentThumb">{{item.disag}}
-                                <a @click="disag(index)">{{item.isdisag}}</a>
+                                <a @click="disag(index)" v-if="$store.state.Login==true">{{item.isdisag}}</a>
+                                <span v-if="$store.state.Login==false">点赞</span>
                                 </span>
                                 <span class="commentThumb">{{item.thumb}}
-                                <a @click="thumb(index)">{{item.isthumb}}</a>
+                                <a @click="thumb(index)" v-if="$store.state.Login==true">{{item.isthumb}}</a>
+                                <span v-if="$store.state.Login==false">反对</span>
                                 </span>
 
                                 <span class="commentDate">
                                     {{item.day}}
                                 </span>
                             </div>
+                            
                             <div>{{item.content}}</div>
                         </li>
                     </ul>
@@ -190,8 +200,19 @@ export default {
             this.showWrite = 1 - this.showWrite;
         },
         addmark(){
+            if(this.content.length < 25){
+                this.$message('评论不得少于25字!');
+                return;
+            }
+            if(this.content.length > 400){
+                this.$message('评论不得多于400字!');
+                return;
+            }
+            if(this.title.length > 10){
+                this.$message('标题不得多于10字!');
+                return;
+            }
             var url='/api/marks/addmark';
-
 
             let yy = new Date().getFullYear();
             let mm = new Date().getMonth()+1;
@@ -203,16 +224,17 @@ export default {
             var fscore = parseFloat(this.score);
             console.log("日期:"+time)
             this.day=time;
+            console.log("score send:"+this.commentScore);
             this.$axios.post(
                 url,
                 {
                     title: '',
-                    type: 1,
-                    target:parseInt(this.bookid),
+                    type: 2,
+                    target:parseInt(this.mid),
                     uid:this.$store.state.uid,
                     content: this.content,
                     day: this.day,
-                    score: fscore,
+                    score: this.commentScore,
                     thumb:0,
                     reply:0
                 },
@@ -237,8 +259,6 @@ export default {
             this.starCom = '';
         },
         thumb(index){
-            if(this.att == 1 ) return;
-
             var url='/api/marks/thumb';
 
             if(this.marks[index].isthumb == "点赞"){
@@ -267,7 +287,6 @@ export default {
         disag(index){
             var url='/api/marks/disag';
 
-            if(this.att == 1) return; 
             if(this.marks[index].isdisag == "反对"){
                 this.marks[index].disag++;
                 this.marks[index].isdisag = '已反对';
@@ -293,46 +312,46 @@ export default {
                 })
             }
         },
-        getData(id){
-            var url='/api/book/message_get';
+        getData(mid){
+            var url='/api/movie/message_get';
+            console.log(this.mid+"??");
             this.$axios.post(
                 url,
-                id
+                parseInt(mid)
                 ,{
                     headers: {
-                        'Content-Type':'application/json'
+                      'Content-Type':'application/json'
                     }
                 }
             )
             .then(
                 res=>{
-                    console.log(this.book_id+"receive");
-                    console.log(res.data);
-                    this.author = res.data.author;
-                    this.score = res.data.score;
-                    this.src = this.$hostURL+"/"+ res.data.src;
-                    this.bookname=res.data.bookname;
-                    this.isbn = res.data.isbn;
-                    this.price = res.data.price;
-                    this.pages_number = res.data.pages_number;
-                    this.press = res.data.press;
-                    this.publish_date = res.data.publish_date;
-                    this.directory = res.data.directory;
-                    this.brief_introduction_of_author = res.data.brief_introduction_of_author;
-                    this.brief_introduction = res.data.brief_introduction;
+                    
+                    this.src = this.$hostURL+"/"+res.data.src;
+                    this.name = res.data.name;
+                    this.score = res.data.moviescore;
+                    this.actors = res.data.actors;
+                    this.IMDb = res.data.IMDb;
+                    this.category = res.data.category;
+                    this.directors = res.data.directors;
+                    this.writers = res.data.writers;
+                    this.language = res.data.language;
+                    this.length = res.data.length;
+                    this.date = res.data.date;
+                    this.position = res.data.position;
                 }
             )
             .catch(err => {              
                 console.log(err);
             })
         },
-        getMarks(){
+       getMarks(){
             var url='/api/marks/getmark';
             this.$axios.post(
                 url,
                 {
-                type: parseInt(1),
-                target: parseInt(this.bookid)
+                type: parseInt(2),
+                target: parseInt(this.mid)
                 }, 
                 {
                     headers: {
@@ -344,6 +363,10 @@ export default {
                 res=>{
                     console.log(res.data.marks)
                     this.marks = res.data.marks;
+                    for(var i=0;i<this.marks.length;i++)
+                    {
+                        this.marks[i].src=this.$hostURL+'/'+this.marks[i].src
+                    }
                 }
             )
             .catch(err => {              
@@ -353,7 +376,9 @@ export default {
     },
     created(){
         this.mid=this.$route.query.mid
+        console.log(this.mid);
         this.getData(this.mid);
+        this.getMarks();
     }
 }
 </script>

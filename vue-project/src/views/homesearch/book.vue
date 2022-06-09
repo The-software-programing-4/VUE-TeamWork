@@ -1,8 +1,8 @@
 <!-- 图书搜索结果 -->
 <template>
 <div>
-    <el-collapse accordion>
-    <el-collapse-item>
+    <el-collapse accordion v-model="name">
+    <el-collapse-item :name="1">
      <template slot="title">
     <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关图书内容</div>
     <div style="font-size:18px;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
@@ -12,7 +12,7 @@
     </template>
     <div id="img-show" v-for="img in imageResult">
         <div class="item-root">
-            <img :src="img.src" alt="" @click="clickMv(img.bookname, 2)">
+            <img :src="img.src" alt="" @click="clickMv(img.book_id, 2)">
         </div>
         <div class="detail">
             <div>
@@ -43,6 +43,7 @@
 export default {
    data(){
         return{
+            name:1,
             //msg:"的",
             searchText:'',
            isClass: false,
@@ -58,7 +59,7 @@ export default {
    created(){
         this.searchText=this.$route.query.searchText;
        var url='/api/book/booksearch';
-       console.log("have created search"+this.searchText);
+       console.log("have created search book:"+this.searchText);
        this.$axios.post(url,
                 this.searchText,
                 {

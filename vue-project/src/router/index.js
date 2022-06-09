@@ -11,7 +11,7 @@ const routes = [
     component: HomeView,
     children:[
       {
-        path: '/main',
+        path: '/',
         name: 'main',
         component: () => import('../components/Home/homeCard.vue')
       },

@@ -32,7 +32,7 @@
         </div> -->
         
         </div>
-        <div class="homeFoot" style="margin-top:-1500px">
+        <div class="homeFoot" style="margin-top:-150px">
             <div class="homeICP">
                 © 2022-2022 doubanjiang.com, all rights reserved BUAA豆瓣酱小组
                 <br>

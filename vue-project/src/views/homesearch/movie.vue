@@ -2,8 +2,8 @@
 <template>
 <div>
     <!-- {{msg}} -->
-    <el-collapse accordion>
-  <el-collapse-item>
+    <el-collapse accordion v-model="name">
+  <el-collapse-item :name="1">
     <template slot="title">
     <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关电影内容</div>
     <div style="font-size:18x;width:100%;text-align:left;" v-show="imageResult.length==0">无相关内容
@@ -16,7 +16,7 @@
           currentPage * pageSize
         )">
         <div class="item-root">
-            <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
+            <img :src="img.src" alt="" @click="toinfo(img.mid)">
         </div>
         <div class="detail">
             <div>
@@ -47,7 +47,7 @@ export default {
    data(){
         return{
             //msg:"的",
-
+            name:1,
            isClass: false,
            searchText:'123',
             currentPage: 1,
@@ -79,6 +79,12 @@ export default {
         })
    },
    methods:{
+       toinfo(mid){
+           this.$router.push({
+               path:"/movie/info",
+               query:{mid:mid}
+           })
+       },
        currentChange(val) {
         // alert(val)
         this.currentPage = val;

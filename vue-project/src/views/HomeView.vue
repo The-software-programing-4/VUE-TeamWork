@@ -37,7 +37,7 @@ export default {
   },
   methods:{
     search(){
-      console.log("搜索类别"+this.select+"搜索内容："+this.searchText);
+      //console.log("搜索类别"+this.select+"搜索内容："+this.searchText);
        this.$router.push(
                 {
                     path:'/search',
@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .el-select .el-input {
     width: 130px;
   }

@@ -1,7 +1,7 @@
 <template>
 <div class="outside">
-  <el-collapse accordion>
-  <el-collapse-item>
+  <el-collapse accordion v-model="name">
+  <el-collapse-item :name="1">
     <template slot="title">
     <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关小组内容</div>
     <div style="font-size:18px;width:100%;text-align:left;" v-show="groupData.length==0">无相关内容
@@ -83,6 +83,7 @@
 export default {
   data() {
     return {
+      name:1,
       searchText:'搜索内容',
       groupData: [
       ],

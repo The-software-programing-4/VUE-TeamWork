@@ -165,7 +165,7 @@ export default {
             this.$router.push(
                 {
                     path:"/movie/info",
-                    query:"{mid:id}"
+                    query:{mid:id}
                 }
             )
         },

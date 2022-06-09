@@ -1,18 +1,18 @@
 <template>
     <div>
         <div style="width:40%; float:left;margin-left: 3%;">
-        <div style="margin-top:100px; margin-bottom: 200px;">
+        <div style="margin-top:100px; margin-bottom: 20px;">
             <book ></book>
         </div>
-        <div style="margin-top:100px; margin-bottom: 200px;">
+        <div style="margin-top:10px; margin-bottom: 20px;">
              <movie></movie>
         </div>
         </div>
         <div style="width:45%; float:left;margin-left: 7%;">
-        <div style="margin-top:100px; margin-bottom: 200px;">
+        <div style="margin-top:100px; margin-bottom: 20px;">
             <group></group>
         </div>
-        <div style="margin-top:100px; margin-bottom: 200px;">
+        <div style="margin-top:10px; margin-bottom: 20px;">
              <topic></topic>
         </div>
         </div>

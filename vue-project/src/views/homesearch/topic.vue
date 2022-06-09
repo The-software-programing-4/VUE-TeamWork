@@ -1,7 +1,7 @@
 <template>
 <div class="outside">
-  <el-collapse accordion>
-  <el-collapse-item>
+  <el-collapse accordion v-model="name">
+  <el-collapse-item :name="1">
     <template slot="title">
    <div style="font-size:20px;text-align:left; width: 100%;">豆酱相关话题内容</div>
     <div style="font-size:18px;width:100%;text-align:left;" v-show="topicData.length==0">无相关内容
@@ -75,32 +75,10 @@
 export default {
   data() {
     return {
-      searchText:'搜索内容',
+      name:1,
+      searchText:'',
       topicData: [
-        {
-          tid:'',
-          name:"这是一个新话题",
-          focus: 100,
-          number:10,
-          introduction:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。",
-          createUid: '', 
-        },
-        {
-          tid:'',
-          name:"这是一个新话题",
-          focus: 100,
-          number:10,
-          introduction:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。",
-          createUid: '', 
-        },
-        {
-          tid:'',
-          name:"这是一个新话题",
-          focus: 100,
-          number:10,
-          introduction:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。",
-          createUid: '', 
-        },
+      
       ],
     };
   },
@@ -137,17 +115,17 @@ export default {
     },
   },
   created() {
-    this.searchText=this.$route.query.searchText;
-    console.log("话题搜索text："+this.searchText)
+    this.searchText=String(this.$route.query.searchText);
+    console.log(this.searchText)
     var url='/api/topic/topicsearch';
             console.log("have created search");
             this.$axios.post(url,
-                        {searchtext:this.searchText},
+                       {key: this.searchText},
             ).then(res => {
             console.log("话题搜索结果："+res.data.messages);
             this.topicData=res.data.messages;
             console.log("话题"+this.topicData);
-            });
+            })
   }
 }
 </script>

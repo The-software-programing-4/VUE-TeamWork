@@ -11,7 +11,7 @@
           currentPage * pageSize
         )">
         <div class="item-root">
-            <img :src="img.src" alt="" @click="clickMv(img.name, 2)">
+            <img :src="img.src" alt="" @click="toinfo(img.mid)">
         </div>
         <div class="detail">
             <div>
@@ -85,6 +85,14 @@ export default {
         })
    },
    methods:{
+       toinfo(mid){
+           this.$router.push(
+               {
+                   path:"/movie/info",
+                   query:{mid:mid}
+               }
+           )
+       },
        currentChange(val) {
         // alert(val)
         this.currentPage = val;
