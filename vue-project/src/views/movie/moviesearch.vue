@@ -1,7 +1,7 @@
 <template>
 <!-- <BookSearchResultVue style="width:100%"></BookSearchResultVue> -->
   <div>
-    <div style="float:left; width:800px;margin-left: 150px;">
+    <div style="width:800px;position: relative;margin:0 auto">
        <BookSearchResultVue style="width:100%"></BookSearchResultVue>
     </div>
   </div>

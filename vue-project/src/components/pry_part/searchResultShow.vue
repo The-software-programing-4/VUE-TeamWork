@@ -4,7 +4,7 @@
     <!-- {{msg}} -->
     
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
-    <div id="crossLine">{{searchText}}搜索结果</div>
+    <div id="mvscrossLine"></div>
     <el-divider class="line"><i class="el-icon-search"></i></el-divider>
     <div id="img-show" v-for="img in imageResult.slice(
           (currentPage - 1) * pageSize,
@@ -112,13 +112,13 @@ export default {
 </script>
 <style>
 
-#crossLine{ 
+#mvscrossLine{ 
     height: 70px;
     text-align: center;
     color: aliceblue;
     line-height: 70px;
     font-size: 20px;
-    background: url("./images/back1.jpg");
+    background: url("../imgs/moviesearch.jpg");
     background-size: 100%, 100%;
 }
 #img-show{
