@@ -76,7 +76,8 @@
         }).then(res=>{
             console.log(res.data)
         })
-        
+        this.$message("创建成功")
+        this.$router.go(-1)
       }
     }
   }

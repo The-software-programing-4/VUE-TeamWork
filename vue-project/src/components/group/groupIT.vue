@@ -15,7 +15,7 @@
           </div>
           <div class="info">
             <div class="title">
-              <a @click="toGroup(item.gid)" class="" style="color:rgb(211, 32, 92);">{{item.name}}</a><br>
+              <a @click="toGroup(item.gid)" class="" style="color:rgb(211, 32, 92);"><b>{{item.name}}</b></a><br>
             </div>
             <span class="num">{{item.number}}</span><br>
           </div>
