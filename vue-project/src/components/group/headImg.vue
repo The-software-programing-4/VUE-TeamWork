@@ -14,7 +14,7 @@
   <img v-if="imageUrl" :src="imageUrl" class="avatar">
   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
- 
+    <el-button class="success" size="middle" @click="go">确认</el-button>
   </div>
 </template>
 
@@ -66,6 +66,9 @@
       };
     },
     methods: {
+      go(){
+        this.$router.go(-1)
+      },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
         console.log(res);

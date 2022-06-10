@@ -45,7 +45,7 @@
       <template  slot-scope="scope">
         <el-link
           :underline="false"
-          :href="scope.row.src"
+          @click="toinfo(scope.row.gid)"
           type="primary"
         >
           {{scope.row.leader}}

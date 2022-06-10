@@ -4,7 +4,7 @@
     <div id="db-nav-group" class="nav" >
         <div class="logo">
             <!-- 存放小组主页面地址 -->
-            <a href="">豆酱</a>
+            <a href="/">豆酱</a>
         </div>
     </div>
     <div class="left">

@@ -1,9 +1,10 @@
 <template>
     <div class="main">
         <div class="left">
+            <list3></list3>
             <list2></list2>
         <list></list>
-        <list3></list3>
+        
         </div>
         <div class="right">
             <mainr></mainr>
