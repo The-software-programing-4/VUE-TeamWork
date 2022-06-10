@@ -17,7 +17,8 @@
   <el-col :span="35" offset="2" style="margin-top: 25px; "><div class="grid-content bg-purple-light">
     <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
     <el-button slot="append" id="button1" >
-      <router-link target="_blank" :to="{path:'/search',query:{searchText:this.searchText}}">搜索</router-link>
+      <router-link target="_blank" :to="{path:'/search',query:{searchText:this.searchText}}">搜
+      </router-link>
     </el-button>
 
   </el-input>
