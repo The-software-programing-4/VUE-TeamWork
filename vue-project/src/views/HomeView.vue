@@ -19,7 +19,6 @@
     <el-button slot="append" id="button1" >
       <router-link target="_blank" :to="{path:'/search',query:{searchText:this.searchText}}">搜索</router-link>
     </el-button>
-    </router-link>
 
   </el-input>
   </div></el-col>
