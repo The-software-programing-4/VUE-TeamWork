@@ -10,7 +10,7 @@
             <div class="bookIntro">
                 <li class="bookInfoItem">导演:{{directors}}</li>
                 <li class="bookInfoItem">编剧:{{writers}}</li>
-                <li class="bookInfoItem">主演:{{actors}}</li>
+                <li class="bookInfoItem">主演:{{actors | ellipsis}}</li>
                 <li class="bookInfoItem">类型:{{category}}</li>
                 <li class="bookInfoItem">国家:{{position}}</li>
                 <li class="bookInfoItem">语言:{{language}}</li>
@@ -106,9 +106,9 @@
             </div>
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">演职员</div>
-                <div class="indent"></div>
+                <div class="indent">{{actors}}</div>
             </div>
-            <div class="relatedInfoBlock">
+            <!-- <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">视频和图片</div>
                 <div class="indent">
                 </div>
@@ -118,7 +118,7 @@
                 <div class="indent">
 
                 </div>
-            </div>
+            </div> -->
             <div class="relatedInfoBlock">
                 <div class="relatedInfoTitle">短评</div>
                 <div class="commentCard">
@@ -132,11 +132,7 @@
                                 <a href="#" class="commentUser">{{item.username}}</a>
                                 <div class="commentTitle" style="float:left;margin-left:10px"><b>{{item.title}}</b></div>
                                 <span class="commentStar">
-                                    <el-rate
-                                        v-model="item.score"
-                                        disabled
-                                        text-color="#ff9900">
-                                    </el-rate>
+                                    评分: {{item.score}}
                                 </span>
                                 <span class="commentThumb">
                                 <a @click="report(index)" v-if="$store.state.Login==true">举报</a>
@@ -156,7 +152,7 @@
                                 </span>
                             </div>
                             
-                            <div>{{item.content}}</div>
+                            <div style="margin-left:20px;margin-top:5px">{{item.content}}</div>
                         </li>
                     </ul>
                 </div>
@@ -195,6 +191,15 @@ export default {
             brief_introduction: '',
         }
     },
+     filters: {
+    ellipsis: function (value) {
+      if (!value) return "";
+      if (value.length > 50) {
+        return value.slice(0, 50) + "...";
+      }
+      return value;
+    },
+  },
     methods: {
         write(){
             this.showWrite = 1 - this.showWrite;
@@ -332,7 +337,7 @@ export default {
                     
                     this.src = this.$hostURL+"/"+res.data.src;
                     this.name = res.data.name;
-                    this.score = res.data.moviescore;
+                    this.score = res.data.score;
                     this.actors = res.data.actors;
                     this.IMDb = res.data.IMDb;
                     this.category = res.data.category;
@@ -342,6 +347,7 @@ export default {
                     this.length = res.data.length;
                     this.date = res.data.date;
                     this.position = res.data.position;
+                    this.brief_introduction=res.data.introduction
                 }
             )
             .catch(err => {              

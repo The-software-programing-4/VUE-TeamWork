@@ -11,16 +11,18 @@
     :cell-style="{padding:'1px'}"
     >
 
-      <el-table-column label="" width="180px" label="题目">
+      <el-table-column label="" width="230px" label="题目">
          <template slot-scope="scope">
-           <i v-if="scope.row.star===1" class="el-icon-star-on"></i>
+           <i v-if="scope.row.star==1" class="el-icon-star-on"></i>
+           <i v-if="scope.row.top==1" class="el-icon-upload2"></i>
         <el-link
           :underline="false"
+          style="width:150px"
           @click="totext(scope.row.id)"
           type="primary"
         >
           {{ scope.row.name | ellipsis }} 
-        </el-link><i v-show="scope.row.top===1" class="el-icon-upload2"></i>
+        </el-link>
       </template>
     </el-table-column>
 
@@ -126,7 +128,7 @@ export default {
         console.log(res.data);
         
       })
-      this.sleep1(200)
+      this.sleep1(500)
      this.download_movielist(this.gid);
     },
     tostar(id)

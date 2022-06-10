@@ -299,14 +299,14 @@ h1 {
     word-wrap: break-word;
     line-height: 1.5;
     overflow: hidden;
-    width: 80%;
+    width: 100%;
 }
 
 .commentNav {
     height: 30px;
     display: inline-block;
     vertical-align: middle;
-    width: 80%;
+    width: 97%;
     margin-left: 4%;
 }
 
@@ -318,12 +318,12 @@ h1 {
 .commentUser {
     text-decoration: none;
     color: #3377aa;
-    float: left;
+    display: inline-block;
 }
 
 .commentStar {
     position: relative;
-    float: left;
+    display: inline-block;
     margin-left: 10px;
     top: 3px;
 }
@@ -335,6 +335,8 @@ h1 {
 }
 
 .commentDate {
+    width: 100px;
+    overflow: hidden;
     color: #aaa;
     margin-left: 3px;
 }

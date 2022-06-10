@@ -16,19 +16,30 @@
         <div class="detail">
             <div>
 
-                <div @click="toinfo(img.mid)">名字:{{img.name}}</div>
+                <div @click="toinfo(img.mid)"><b>影片:</b>{{img.name}}</div>
             </div>
+            
             <div>
+                <b>评分：</b>{{img.score}}
                 <el-rate
                 v-model="img.score/2"
                 disabled
                 show-score
                 text-color="#EA7500"
-                score-template="评分">
+                score-template="">
                 </el-rate>
+                
             </div>
             <div>
-                <p>主演：{{img.actors}}
+                <p><b>主演：</b>{{img.actors}}
+                </p>
+            </div>
+            <div>
+                <p><b>类型：</b>{{img.category}}
+                </p>
+            </div>
+            <div>
+                <p><b>简介：</b>{{img.brief_introduction |ellipsis}}
                 </p>
             </div>
         </div>
@@ -84,7 +95,17 @@ export default {
             }
         })
    },
+    filters: {
+    ellipsis: function (value) {
+      if (!value) return "";
+      if (value.length > 150) {
+        return value.slice(0, 150) + "...";
+      }
+      return value;
+    },
+  },
    methods:{
+      
        toinfo(mid){
            this.$router.push(
                {

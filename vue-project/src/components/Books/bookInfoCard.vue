@@ -118,13 +118,9 @@
                                 <img :src="item.src" width="27px" height="27px">
                                 </div>
                                 <a href="#" class="commentUser">{{item.username}}</a>
-                                <div class="commentTitle" style="float:left;margin-left:10px"><b>{{item.title}}</b></div>
+                                <div class="commentTitle" style="display:inline-block;margin-left:10px"><b>{{item.title}}</b></div>
                                 <span class="commentStar">
-                                    <el-rate
-                                        v-model="item.score"
-                                        disabled
-                                        text-color="#ff9900">
-                                    </el-rate>
+                                    评分:{{item.score}}
                                 </span>
                                 <span class="commentThumb">
                                 <a @click="report(index)">举报</a>
@@ -144,7 +140,7 @@
                                 </span>
                             </div>
                             
-                            <div>{{item.content}}</div>
+                            <div style="margin-left:23px;margin-top:3px">{{item.content }}</div>
                         </li>
                     </ul>
                 </div>
@@ -201,6 +197,15 @@ export default {
             att: 0,
         }
     },
+    filters: {
+    ellipsis: function (value) {
+      if (!value) return "";
+      if (value.length > 100) {
+        return value.slice(0, 100) + "...";
+      }
+      return value;
+    },
+  },
     methods: {
         report(index){
             this.$router.push({
@@ -214,6 +219,7 @@ export default {
         write(){
             this.showWrite = 1 - this.showWrite;
         },
+
         addmark(){
             if(this.content.length < 25){
                 this.$message('评论不得少于25字!');

@@ -39,6 +39,7 @@
       </template>
     </el-table-column>
     </el-table>
+    
 </div>
 </template>
 <style scoped>

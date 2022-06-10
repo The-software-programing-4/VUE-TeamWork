@@ -35,7 +35,7 @@ export default {
             console.log("re"+p1)
             this.status=1;
             this.$refs.child2.getData(p1);
-            //this.$refs.childr.getData(p1);
+            this.$refs.childr.getData(p1);
         },
         sleep1(numberMillis){    
         var now = new Date();    
