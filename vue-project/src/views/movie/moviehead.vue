@@ -6,7 +6,9 @@
         <div class="nav-search">
             <!-- action规定向何处发送表单 methon：get/post -->
             <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select" size="medium" style="width: 400px;">
-                <el-button slot="append" icon="el-icon-search" @click="onSearch" id="button1"></el-button>
+                <el-button slot="append" icon="el-icon-search"  id="button1">
+                <router-link target="_blank" :to="{path:'/movie/search',query:{searchText:this.searchText}}">搜索</router-link>
+                </el-button>
             </el-input>
         </div>
     </div>
