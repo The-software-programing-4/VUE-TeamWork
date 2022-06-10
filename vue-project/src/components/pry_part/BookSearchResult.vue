@@ -145,7 +145,7 @@ export default {
 }
 #img-show .detail{
 
-    margin-top: 4px;
+    margin-top: 35px;
     width: 70%;
     max-height: 100%;
     /* margin-left: 0; */
