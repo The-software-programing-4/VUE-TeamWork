@@ -184,7 +184,7 @@ export default {
   },
   created() {
     this.gid=this.$route.query.gid;
-        console.log("list收到:"+this.groupData.gid)
+    console.log("list收到:"+this.gid)
     this.download_movielist(this.gid);
   },
   rateChange(value) {
